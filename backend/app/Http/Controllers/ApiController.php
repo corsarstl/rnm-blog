@@ -8,6 +8,7 @@ class ApiController extends Controller
 {
     /**
      * Register a user and create a valid token
+     * Return user and token                            // !!!UPDATE WHAT IT RETURNS!!!
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
