@@ -21,12 +21,13 @@
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Punk Rock</a>
-      <a class="dropdown-item" href="#">Alternative rock</a>
-      <a class="dropdown-item" href="#">Hard rock</a>
-      <a class="dropdown-item" href="#">Heavy metal</a>
-      <a class="dropdown-item" href="#">Symphonic metal</a>
-      <a class="dropdown-item" href="#">Industrial metal</a>
+      <!--<a class="dropdown-item" href="#">Punk Rock</a>-->
+      <!--<a class="dropdown-item" href="#">Alternative rock</a>-->
+      <!--<a class="dropdown-item" href="#">Hard rock</a>-->
+      <!--<a class="dropdown-item" href="#">Heavy metal</a>-->
+      <!--<a class="dropdown-item" href="#">Symphonic metal</a>-->
+      <!--<a class="dropdown-item" href="#">Industrial metal</a>-->
+      <a class="dropdown-item" *ngFor="let genre of genres">{{ genre }}</a> <!--[value]="genre"-->
     </div>
   </div>
 </div>
