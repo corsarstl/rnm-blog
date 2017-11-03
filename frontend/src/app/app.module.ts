@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
+import { SingUpComponent } from './sing-up/sing-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    SingUpComponent
   ],
   imports: [
     BrowserModule
