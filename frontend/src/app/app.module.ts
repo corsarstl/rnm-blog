@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PostsComponent } from './posts/posts.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PostsComponent } from './posts/posts.component';
     LoginComponent,
     PageNotFoundComponent,
     PostsComponent,
-    SingUpComponent
+    SingUpComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
