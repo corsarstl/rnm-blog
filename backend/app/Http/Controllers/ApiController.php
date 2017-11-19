@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -23,7 +20,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Sign in user and create a valid token.
+     * Sign in the user and create a valid token.
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -38,11 +35,26 @@ class ApiController extends Controller
             $token = $user->createToken('login')->accessToken;
 
             return response()->json([
-                'user'  => $user['name'],
+                'user'  => $user,
                 'token' => $token
             ], 200);
         }
 
         return response()->json(['message' => 'Please, check your credentials.'], 422);
+    }
+
+    /**
+     * Logout the user and delete his oauth token.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        DB::table('oauth_access_tokens')
+            ->where('user_id', $request->get('id'))
+            ->delete();
+
+        return response()->json(['message' => 'You are logged out.'], 200);
     }
 }
