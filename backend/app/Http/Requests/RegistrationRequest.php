@@ -76,8 +76,8 @@ class RegistrationRequest extends FormRequest
         $token = $user->createToken('login')->accessToken;
 
         return response()->json([
-            'user' => $user['name'],
-            'token'    => $token
+            'user'  => $user['name'],
+            'token' => $token
         ], 200);
     }
 }
