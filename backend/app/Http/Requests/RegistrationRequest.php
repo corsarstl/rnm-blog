@@ -25,11 +25,10 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|max:255',
+            'name'     => 'required|string|min:3|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => [
                 'required',
-                'string',
                 'min:8',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'
             ]
@@ -46,13 +45,13 @@ class RegistrationRequest extends FormRequest
         return [
             'name.required'     => 'The name field is required.',
             'name.string'       => 'The name field must be a string.',
+            'name.min'          => 'The name field must be at least 3 characters.',
             'name.max'          => 'The name field must be no longer than 255 characters.',
             'email.required'    => 'The email field is required.',
             'email.email'       => 'The email field is not a valid email address.',
             'email.max'         => 'The email field must be no longer than 255 characters.',
             'email.unique'      => 'The user with such email already exists.',
             'password.required' => 'The password field is required.',
-            'password.string'   => 'The password field must be a string.',
             'password.min'      => 'The password must be at least 8 characters.',
             'password.regex'    => 'The password must contain at least one uppercase and lowercase letters, one number and one special character.'
         ];
