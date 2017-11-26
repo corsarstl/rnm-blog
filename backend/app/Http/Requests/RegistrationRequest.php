@@ -26,7 +26,7 @@ class RegistrationRequest extends FormRequest
     {
         return [
             'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => [
                 'required',
                 'string',
@@ -48,7 +48,6 @@ class RegistrationRequest extends FormRequest
             'name.string'       => 'The name field must be a string.',
             'name.max'          => 'The name field must be no longer than 255 characters.',
             'email.required'    => 'The email field is required.',
-            'email.string'      => 'The email field must be a string.',
             'email.email'       => 'The email field is not a valid email address.',
             'email.max'         => 'The email field must be no longer than 255 characters.',
             'email.unique'      => 'The user with such email already exists.',
