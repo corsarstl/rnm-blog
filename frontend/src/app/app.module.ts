@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LoginComponent } from './login/login.component';
-import { SingUpComponent } from './sing-up/sing-up.component';
+import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PostsComponent } from './posts/posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,7 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     PageNotFoundComponent,
     PostsComponent,
-    SingUpComponent,
+    RegisterComponent,
     NavbarComponent
   ],
   imports: [
