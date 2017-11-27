@@ -3,68 +3,169 @@
         <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
             <h3>Register</h3>
 
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registerForm"
+                  (ngSubmit)="onSubmit()"
+                  novalidate>
+                            <!--[class.was-validated]="registerForm.invalid && (registerForm.dirty || registerForm.touched)"-->
+                <!--<div class="alert alert-danger" *ngIf="dataInvalid">-->
+                    <!--<p *ngFor="let error of formErrors">{{ error }}</p>-->
+                <!--</div>-->
 
+                <!--FormControlName - Username-->
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text"
                            class="form-control"
+                           [ngClass]="{'is-invalid':registerForm.get('username').invalid &&
+                                                    registerForm.get('username').touched}"
                            id="username"
                            name="username"
                            formControlName="username"
-                           placeholder="Your name here."
-                           required>
-                </div>
+                           placeholder="Your name here.">
 
+                    <span *ngIf="registerForm.get('username').errors?.required &&
+                                 registerForm.get('username').touched"
+                         class="invalid-feedback">
+                        Username is required.
+                    </span>
+
+                    <span *ngIf="registerForm.get('username').errors?.pattern &&
+                                 registerForm.get('username').touched"
+                         class="invalid-feedback">
+                        Username can contain only upper/lowercase letters and digits.
+                    </span>
+
+                    <span *ngIf="registerForm.get('username').errors?.minlength &&
+                                 registerForm.get('username').touched"
+                         class="invalid-feedback">
+                        Username must be at least 3 characters long.
+                    </span>
+
+                    <span *ngIf="registerForm.get('username').errors?.maxlength &&
+                                 registerForm.get('username').touched"
+                          class="invalid-feedback">
+                        Username must be no longer than 255 characters.
+                    </span>
+                </div>
+                <!--End of FormControlName - Username-->
+
+                <!--FormControlName - Email-->
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email"
                            class="form-control"
+                           [ngClass]="{'is-invalid':registerForm.get('email').invalid &&
+                                                    registerForm.get('email').touched}"
                            id="email"
                            name="email"
                            formControlName="email"
                            placeholder="Your email here."
                            required>
-                </div>
 
-                <div formGroupName="passwords">
+                    <span *ngIf="registerForm.get('email').errors?.required &&
+                                 registerForm.get('email').touched"
+                          class="invalid-feedback">
+                        Email is required.
+                    </span>
+
+                    <span *ngIf="registerForm.get('email').errors?.pattern &&
+                                 registerForm.get('email').touched"
+                          class="invalid-feedback">
+                        Email is not a valid email address.
+                    </span>
+
+                    <span *ngIf="registerForm.get('email').errors?.maxlength &&
+                                 registerForm.get('email').touched"
+                          class="invalid-feedback">
+                        Email must be no longer than 255 characters.
+                    </span>
+                </div>
+                <!--End of FormControlName - Email-->
+
+                <!--FormGroupName - Passwords-->
+                <div formGroupName="passwords"
+                     [ngClass]="{'is-invalid':registerForm.get('passwords').invalid &&
+                                              registerForm.get('passwords').touched}">
+
+                    <!--FormControlName - Password-->
                     <div class="form-group">
                         <label for="password">Password:</label>
                         <input type="password"
                                class="form-control"
+                               [ngClass]="{'is-invalid':registerForm.get('passwords.password').invalid &&
+                                                        registerForm.get('passwords.password').touched}"
                                id="password"
                                name="password"
                                formControlName="password"
-                               placeholder="Type your password."
-                               required>
-                    </div>
+                               placeholder="Type your password.">
 
+                        <span *ngIf="registerForm.get('passwords.password').errors?.required &&
+                                     registerForm.get('passwords.password').touched"
+                              class="invalid-feedback">
+                            Password is required.
+                        </span>
+
+                         <span *ngIf="registerForm.get('passwords.password').errors?.minlength &&
+                                     registerForm.get('passwords.password').touched"
+                              class="invalid-feedback">
+                            Password must be at least 8 characters long.
+                        </span>
+
+                         <span *ngIf="registerForm.get('passwords.password').errors?.pattern &&
+                                     registerForm.get('passwords.password').touched"
+                              class="invalid-feedback">
+                            Password must contain at least one uppercase and lowercase letters,
+                            one digit and one special character.
+                        </span>
+                    </div>
+                    <!--End of FormControlName - Password-->
+
+                    <!--FormControlName - Password Confirmation-->
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password:</label>
                         <input type="password"
                                class="form-control"
+                               [ngClass]="{'is-invalid':registerForm.get('passwords.password_confirmation').invalid &&
+                                                        registerForm.get('passwords.password_confirmation').touched}"
                                id="password_confirmation"
                                name="password_confirmation"
                                formControlName="password_confirmation"
-                               placeholder="Type your password one more time."
-                               required>
+                               placeholder="Type your password one more time.">
+
+                        <span *ngIf="registerForm.get('passwords.password_confirmation').errors?.required &&
+                                     registerForm.get('passwords.password_confirmation').touched"
+                              class="invalid-feedback">
+                            Please, retype your password.
+                        </span>
                     </div>
+                    <!--End of FormControlName - Password Confirmation-->
+
+                    <span *ngIf="registerForm.get('passwords').errors?.passwordNotConfirmed &&
+                                 registerForm.get('passwords').touched"
+                          class="invalid-feedback">
+                            Passwords don't match.
+                    </span>
                 </div>
+                <!--End of FormGroupName - Passwords-->
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit"
+                            class="btn btn-success"
+                            [disabled]="registerForm.invalid">
+                        Register
+                    </button>
                 </div>
             </form>
 
             <div class="form-group">
                 <p>Already have an account? Please login</p>
 
-                <a routerLink="/login" class="btn btn-outline-dark" role="button">Login</a>
+                <a routerLink="/login"
+                   class="btn btn-outline-dark"
+                   role="button">
+                    Login
+                </a>
             </div>
         </div>
     </div>
 </div>
-
-
-
-

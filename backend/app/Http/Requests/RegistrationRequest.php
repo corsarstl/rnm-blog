@@ -25,7 +25,7 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|min:3|max:255',
+            'username' => 'required|string|min:3|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => [
                 'required',
@@ -43,17 +43,17 @@ class RegistrationRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'     => 'The name field is required.',
-            'name.string'       => 'The name field must be a string.',
-            'name.min'          => 'The name field must be at least 3 characters.',
-            'name.max'          => 'The name field must be no longer than 255 characters.',
+            'username.required' => 'The username field is required.',
+            'username.string'   => 'The username field must be a string.',
+            'username.min'      => 'The username field must be at least 3 characters long.',
+            'username.max'      => 'The username field must be no longer than 255 characters.',
             'email.required'    => 'The email field is required.',
             'email.email'       => 'The email field is not a valid email address.',
             'email.max'         => 'The email field must be no longer than 255 characters.',
             'email.unique'      => 'The user with such email already exists.',
             'password.required' => 'The password field is required.',
-            'password.min'      => 'The password must be at least 8 characters.',
-            'password.regex'    => 'The password must contain at least one uppercase and lowercase letters, one number and one special character.'
+            'password.min'      => 'The password must be at least 8 characters long.',
+            'password.regex'    => 'The password must contain at least one uppercase and lowercase letters, one digit and one special character.'
         ];
     }
 
@@ -66,7 +66,7 @@ class RegistrationRequest extends FormRequest
     public function handle()
     {
         $user = User::create([
-            'name'     => $this->input('name'),
+            'name'     => $this->input('username'),
             'email'    => $this->input('email'),
             'password' => bcrypt($this->input('password'))
         ]);

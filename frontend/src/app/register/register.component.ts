@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-const EMAIL_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/;
 const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/;
 
 @Component({
   selector: 'rnm-register',
@@ -11,6 +12,7 @@ const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  dataInvalid = false;
 
   constructor (private fb: FormBuilder) {}
 
@@ -24,14 +26,14 @@ export class RegisterComponent implements OnInit {
             ]],
       'email': ['', [
               Validators.required,
-              Validators.email,
+              Validators.pattern(EMAIL_REGEX),
               Validators.maxLength(255)
             ]],
       'passwords': this.fb.group({
         'password': ['', [
               Validators.required,
               Validators.minLength(8),
-              Validators.pattern(EMAIL_REGEX)
+              Validators.pattern(PASSWORD_REGEX)
             ]],
         'password_confirmation': ['', Validators.required]},
         {validator: this.ValidatePasswordConfirmation.bind(this)})
