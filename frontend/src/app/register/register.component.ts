@@ -40,10 +40,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.registerForm);
-  }
-
   /**
    * Check if user confirmed password.
    *
@@ -59,5 +55,9 @@ export class RegisterComponent implements OnInit {
       return {'passwordNotConfirmed': true};
     }
     return null;
+  }
+
+  register() {
+
   }
 }

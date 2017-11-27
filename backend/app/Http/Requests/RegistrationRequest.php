@@ -30,8 +30,10 @@ class RegistrationRequest extends FormRequest
             'password' => [
                 'required',
                 'min:8',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'
-            ]
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/',
+                'confirmed'
+            ],
+            'password_confirmation' => 'required'
         ];
     }
 
@@ -53,7 +55,8 @@ class RegistrationRequest extends FormRequest
             'email.unique'      => 'The user with such email already exists.',
             'password.required' => 'The password field is required.',
             'password.min'      => 'The password must be at least 8 characters long.',
-            'password.regex'    => 'The password must contain at least one uppercase and lowercase letters, one digit and one special character.'
+            'password.regex'    => 'The password must contain at least one uppercase and lowercase letters, one digit and one special character.',
+            'password.confirmed' => 'The password is not confirmed.'
         ];
     }
 

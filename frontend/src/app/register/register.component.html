@@ -4,7 +4,7 @@
             <h3>Register</h3>
 
             <form [formGroup]="registerForm"
-                  (ngSubmit)="onSubmit()"
+                  (ngSubmit)="register()"
                   novalidate>
                             <!--[class.was-validated]="registerForm.invalid && (registerForm.dirty || registerForm.touched)"-->
                 <!--<div class="alert alert-danger" *ngIf="dataInvalid">-->
