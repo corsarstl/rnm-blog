@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -13,8 +16,13 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/;
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   dataInvalid = false;
+  formErrors = [];
+  // For future loader component
+  // formSubmitting = false;
 
-  constructor (private fb: FormBuilder) {}
+  constructor (public authService: AuthService,
+               public router: Router,
+               private fb: FormBuilder) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -57,7 +65,48 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  register() {
 
+  /**
+   * Get registration data and redirect to home page.
+   * If fail, return errors for handling.
+   */
+  register() {
+    this.formErrors = [];
+    this.authService.register(this.registerForm.value).subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        // Get the redirect URL from auth service
+        // If no redirect has been set, use the default
+        const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'posts';
+        // Redirect the user
+        this.router.navigate([redirect]);                         // Use promise and add ".then removeLoader"
+      }
+    }, (err: HttpErrorResponse) => {
+      this.dataInvalid = true;
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        this.formErrors.push(err.error.message);
+        console.log(this.formErrors);
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        if (err.status === 0) {
+          this.formErrors.push('Please check your backend server.');
+        } else {
+          // const errors = JSON.parse(err.error);
+          console.log(this.formErrors);
+          // const items = [];
+          // for (const key in errors) {
+          //   if (errors.hasOwnProperty(key)) {
+          //     items.push(errors[key]);
+          //   }
+          // }
+          // for (const k in items[1]) {
+          //   if (items[1].hasOwnProperty(k)) {
+          //     this.formErrors.push(items[1][k][0]);
+          //   }
+          // }
+        }
+      }
+    });
   }
 }
