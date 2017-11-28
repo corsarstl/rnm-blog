@@ -13,6 +13,8 @@ export class AuthService {
   authData = JSON.parse(localStorage.getItem('authData'));
   // Id of current logged in user.
   userId = '';
+  // Name of current logged in user.
+  userName = '';
 
   constructor(private httpClient: HttpClient) {
     if (this.authData != null) {
@@ -20,6 +22,7 @@ export class AuthService {
         this.isLoggedIn = true;
       }
       this.userId = this.authData.user.id;
+      this.userName = this.authData.user.name;
     }
   }
 

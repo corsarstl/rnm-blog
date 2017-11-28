@@ -1,8 +1,29 @@
 <a routerLink="/posts"><h1>Rock 'N' Metal Blog</h1></a>
 
-<a routerLink="/login" class="btn btn-outline-dark" role="button">Login</a>
-<a routerLink="/register" class="btn btn-outline-dark" role="button">Register</a>
-<a class="btn btn-outline-dark" role="button">Logout</a>
+<span *ngIf="authService.isLoggedIn">
+  You are logged in as <strong>{{ userName }}</strong>.
+</span>
+
+<a routerLink="/login"
+   class="btn btn-outline-dark"
+   role="button"
+   *ngIf="!authService.isLoggedIn">
+  Login
+</a>
+
+<a routerLink="/register"
+   class="btn btn-outline-dark"
+   role="button"
+   *ngIf="!authService.isLoggedIn">
+  Register
+</a>
+
+<a class="btn btn-outline-danger"
+   role="button"
+   (click)="logout()"
+   *ngIf="authService.isLoggedIn">
+  Logout
+</a>
 
 <form class="form-inline my-2 my-lg-0">
   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

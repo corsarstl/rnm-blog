@@ -52,7 +52,7 @@ class ApiController extends Controller
     public function logout(Request $request)
     {
         DB::table('oauth_access_tokens')
-            ->where('user_id', $request->get('userId'))
+            ->where('user_id', $request->get('id'))
             ->delete();
 
         return response()->json(['message' => 'You are logged out.'], 200);
