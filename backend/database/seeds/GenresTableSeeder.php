@@ -11,7 +11,7 @@ class GenresTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
+        $genres = [
             'punk rock',
             'alternative rock',
             'hard rock',
@@ -20,9 +20,9 @@ class GenresTableSeeder extends Seeder
             'industrial metal'
         ];
 
-        foreach ($data as $item) {
+        foreach ($genres as $genre) {
             DB::table('genres')->insert([
-                'name' => $item
+                'name' => $genre
             ]);
         }
     }
