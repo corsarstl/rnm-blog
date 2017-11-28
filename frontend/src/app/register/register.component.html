@@ -6,7 +6,7 @@
             <form [formGroup]="registerForm"
                   (ngSubmit)="register()"
                   novalidate>
-                            <!--[class.was-validated]="registerForm.invalid && (registerForm.dirty || registerForm.touched)"-->
+
                 <div class="alert alert-danger" *ngIf="dataInvalid">
                     <p *ngFor="let error of formErrors">{{ error }}</p>
                 </div>

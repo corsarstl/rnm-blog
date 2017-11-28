@@ -7,12 +7,21 @@ import 'rxjs/add/operator/do';
 export class AuthService {
   private apiUrl = 'http://rnmblog.com';
   isLoggedIn = false;
-  // redirect url after registration and login
+  // Redirect url after registration and login.
   userRedirectUrl = 'posts';
-  // data containing user name, email, id and valid token
+  // Data containing user name, email, id and valid token.
   authData = JSON.parse(localStorage.getItem('authData'));
+  // Id of current logged in user.
+  userId = '';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    if (this.authData != null) {
+      if (this.authData.token) {
+        this.isLoggedIn = true;
+      }
+      this.userId = this.authData.user.id;
+    }
+  }
 
   /**
    * Send registration data.
@@ -31,4 +40,35 @@ export class AuthService {
       });
   }
 
+  /**
+   * Send login data for verification.
+   * If successful, get user name, email, id and valid token and save them.
+   *
+   * @param data
+   * @returns {Observable<any>}
+   */
+  login(data: any): Observable<any> {
+    localStorage.clear();
+    const url = `${this.apiUrl}/api/login`;
+    return this.httpClient.post(url, data)
+      .do(res => {
+        this.isLoggedIn = true;
+        localStorage.setItem('authData', JSON.stringify(res));
+      });
+  }
+
+  /**
+   * Log user out. Delete all info about user on client.
+   *
+   */
+  logout(): void {
+    const url = `${this.apiUrl}/api/logout`;
+    this.httpClient.post(url, {
+      id: this.userId
+    }).subscribe(res => {
+      this.isLoggedIn = false;
+      localStorage.clear();
+      console.log(res);
+    });
+  }
 }
