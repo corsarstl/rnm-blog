@@ -55,15 +55,9 @@ export class LoginComponent implements OnInit {
           this.formErrors.push('Please check your backend server.');
         } else {
           const errors = err.error;
-          const items = [];
           for (const key in errors) {
             if (errors.hasOwnProperty(key)) {
-              items.push(errors[key]);
-            }
-          }
-          for (const k in items) {
-            if (items.hasOwnProperty(k)) {
-              this.formErrors.push(items[k][0]);
+              this.formErrors.push(errors[key]);
             }
           }
         }
