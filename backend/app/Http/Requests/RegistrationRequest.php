@@ -25,11 +25,11 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'                        => 'required|string|min:5|max:255',
-            'email'                           => 'required|email|max:255|unique:users',
+            'username'                        => 'required|string|min:3|max:20',
+            'email'                           => 'required|email|max:30|unique:users',
             'passwords.password'              => [
                                                     'required',
-                                                    'min:10',
+                                                    'min:8',
                                                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/',
                                                     'confirmed'
             ],
@@ -48,10 +48,10 @@ class RegistrationRequest extends FormRequest
             'username.required'            => 'The username field is required.',
             'username.string'              => 'The username field must be a string.',
             'username.min'                 => 'The username field must be at least 3 characters long.',
-            'username.max'                 => 'The username field must be no longer than 255 characters.',
+            'username.max'                 => 'The username field must be no longer than 20 characters.',
             'email.required'               => 'The email field is required.',
             'email.email'                  => 'The email field is not a valid email address.',
-            'email.max'                    => 'The email field must be no longer than 255 characters.',
+            'email.max'                    => 'The email field must be no longer than 30 characters.',
             'email.unique'                 => 'The user with such email already exists.',
             'passwords.password.required'  => 'The password field is required.',
             'passwords.password.min'       => 'The password must be at least 8 characters long.',

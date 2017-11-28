@@ -30,12 +30,12 @@ export class RegisterComponent implements OnInit {
               Validators.required,
               Validators.pattern(USER_NAME_REGEX),
               Validators.minLength(3),
-              Validators.maxLength(255)
+              Validators.maxLength(20)
             ]],
       'email': ['', [
               Validators.required,
               Validators.pattern(EMAIL_REGEX),
-              Validators.maxLength(255)
+              Validators.maxLength(30)
             ]],
       'passwords': this.fb.group({
         'password': ['', [
@@ -85,26 +85,24 @@ export class RegisterComponent implements OnInit {
       if (err.error instanceof Error) {
         // A client-side or network error occurred. Handle it accordingly.
         this.formErrors.push(err.error.message);
-        console.log(this.formErrors);
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
         if (err.status === 0) {
           this.formErrors.push('Please check your backend server.');
         } else {
-          // const errors = JSON.parse(err.error);
-          console.log(this.formErrors);
-          // const items = [];
-          // for (const key in errors) {
-          //   if (errors.hasOwnProperty(key)) {
-          //     items.push(errors[key]);
-          //   }
-          // }
-          // for (const k in items[1]) {
-          //   if (items[1].hasOwnProperty(k)) {
-          //     this.formErrors.push(items[1][k][0]);
-          //   }
-          // }
+          const errors = err.error;
+          const items = [];
+          for (const key in errors) {
+            if (errors.hasOwnProperty(key)) {
+              items.push(errors[key]);
+            }
+          }
+          for (const k in items) {
+            if (items.hasOwnProperty(k)) {
+              this.formErrors.push(items[k][0]);
+            }
+          }
         }
       }
     });
