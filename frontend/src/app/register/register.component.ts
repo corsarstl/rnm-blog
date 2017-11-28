@@ -46,6 +46,14 @@ export class RegisterComponent implements OnInit {
         'password_confirmation': ['', Validators.required]},
         {validator: this.ValidatePasswordConfirmation.bind(this)})
     });
+
+    if (this.authService.isLoggedIn) {
+      // Get the redirect URL from auth service
+      // If no redirect has been set, use the default
+      const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'posts';
+      // Redirect the user
+      this.router.navigate([redirect]);
+    }
   }
 
   /**
