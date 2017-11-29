@@ -15,4 +15,12 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Band');
     }
+
+    /**
+     * Get all the tags for the post.
+     */
+    public function tags()
+    {
+        return $this->hasMany('App\Models\Tag');
+    }
 }

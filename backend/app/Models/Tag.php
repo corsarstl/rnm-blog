@@ -10,5 +10,11 @@ class Tag extends Model
 
     public $timestamps = false;
 
-
+    /**
+     * Get all the posts for the tag.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany('App\Models\Post');
+    }
 }

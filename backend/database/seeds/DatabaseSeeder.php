@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BandsTableSeeder::class);
         factory(App\Models\Post::class, 400)->create();
         $this->call(TagsTableSeeder::class);
+        $this->call(PostTagTableSeeder::class);
     }
 }
