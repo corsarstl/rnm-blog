@@ -20,12 +20,13 @@ class BandsTableSeeder extends Seeder
             6 => ['Rammstein', 'OOMPH!', 'Nine Inch Nails', 'KMFDM', 'Static‐X']
         ];
 
-        foreach ($genresBands as $key => $value) {
-            for ($i = 0; $i<7; $i++)
+        foreach ($genresBands as $genre => $bands) {
+            foreach ($bands as $key => $band) {
                 DB::table('bands')->insert([
-                    'name'     => $key,
-                    'genre_id' => $value[$i]
+                    'name'     => $band,
+                    'genre_id' => $genre
                 ]);
+            }
         }
     }
 }
