@@ -16,9 +16,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'name'           => $faker->name,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
@@ -27,9 +27,15 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
 
     return [
-        'title' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-        'content' => $faker->text($maxNbChars = 1000),
-        'band_id' => function () {
+        'title'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+        'content'    => $faker->text($maxNbChars = 1000),
+        'image' => function () {
+            $imageId = Faker\Factory::create()->numberBetween($min = 1, $max = 20);
+            $imageName = $imageId . '.jpg';
+
+            return $imageName;
+        },
+        'band_id'    => function () {
             return \App\Models\Band::all()->random()->id;
         },
     ];

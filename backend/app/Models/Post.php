@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'content', 'band_id'];
+    protected $fillable = ['title', 'content', 'image', 'band_id'];
 
     /**
      * Get the genre of the band.

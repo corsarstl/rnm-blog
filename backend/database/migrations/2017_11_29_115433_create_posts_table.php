@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
+            $table->string('image');
             $table->integer('band_id');
             $table->timestamps();
         });

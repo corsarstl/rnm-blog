@@ -13,7 +13,7 @@ class BandsTableSeeder extends Seeder
     {
         $genresBands = [
             1 => ['Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins'],
-            2 => ['Radiohead', 'Nirvana', 'Foo Fighters', 'Red Hot Chilly Peppers', 'Pearl Jam'],
+            2 => ['Radiohead', 'Nirvana', 'Foo Fighters', 'Red Hot Chilli Peppers', 'Pearl Jam'],
             3 => ['Led Zeppelin', 'Black Sabbath', 'Deep Purple', 'Aerosmith', 'Scorpions'],
             4 => ['Metallica', 'Iron Maiden', 'Megadeth', 'Judas Priest', 'Slayer'],
             5 => ['Nightwish', 'Within Temptation', 'Epica', 'Delain', 'Twilight Ophera'],
