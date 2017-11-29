@@ -17,4 +17,12 @@ class Genre extends Model
     {
         return $this->hasMany('App\Models\Band');
     }
+
+    /**
+     * Get all the posts for the genre.
+     */
+    public function posts()
+    {
+        return $this->hasManyThrough('App\Models\Post', 'App\Models\Band');
+    }
 }

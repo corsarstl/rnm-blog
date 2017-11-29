@@ -17,4 +17,12 @@ class Band extends Model
     {
         return $this->belongsTo('App\Models\Genre');
     }
+
+    /**
+     * Get all the posts for the band.
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }
