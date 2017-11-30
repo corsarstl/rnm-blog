@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Models\Post::class, 400)->create();
         $this->call(TagsTableSeeder::class);
         $this->call(PostTagTableSeeder::class);
+        factory(App\Models\Comment::class, 700)->create();
     }
 }

@@ -40,3 +40,17 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
         },
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
+
+    return [
+        'body' => $faker->paragraph($nbSentences = 2, $variableNbSentences = true),
+        'post_id' => function () {
+            return \App\Models\Post::all()->random()->id;
+        },
+        'user_id' => function () {
+            return \App\Models\User::all()->random()->id;
+        }
+    ];
+});
