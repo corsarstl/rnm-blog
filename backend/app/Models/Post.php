@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'content', 'image', 'band_id'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'band_id'
+    ];
 
     /**
      * Get the genre of the band.
@@ -22,5 +32,13 @@ class Post extends Model
     public function tags()
     {
         return $this->hasMany('App\Models\Tag');
+    }
+
+    /**
+     * Get all the comments for the post.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 }

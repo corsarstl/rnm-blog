@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Band extends Model
 {
-    protected $fillable = ['name', 'genre_id'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'genre_id'
+    ];
 
     public $timestamps = false;
 
