@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-// User routes
 Route::post('register', 'ApiController@register');
 Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
+
+Route::get('navbarMenu', 'GenreController@genresBandsForMenu');
