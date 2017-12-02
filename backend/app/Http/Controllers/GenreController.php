@@ -33,6 +33,6 @@ class GenreController extends Controller
             array_push($genresBands, $genreName, $bands);
         }
 
-        return response()->json($genresBands);
+        return response()->json(['menu'=> $genresBands]);
     }
 }
