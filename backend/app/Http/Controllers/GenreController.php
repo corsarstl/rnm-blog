@@ -29,6 +29,22 @@ class GenreController extends Controller
             $query->orderBy('name');
         }])->get();
 
-        return response()->json(['menuItems'=> $genres]);
+//        $menuItems = [];
+//        $menuItem = [];
+//
+//        foreach ($genres as $genre) {
+//            $genreName = $genre['name'];
+//            $genreBands = $genre['bands'];
+//
+//            array_push($menuItem, $genreName, $genreBands);
+//            array_push($menuItems, $menuItem);
+//            $menuItem = [];
+//        }
+
+//        array_push($stack, "apple", "raspberry");
+
+//        dd($menuItems);
+
+        return response()->json(['Genres'=> $genres]);
     }
 }

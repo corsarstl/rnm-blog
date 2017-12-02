@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { NavbarService } from './navbar.service';
+import { Genre } from './genre';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'rnm-navbar',
@@ -8,52 +11,53 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  genres = [
-    'Punk Rock',
-    'Alternative Rock',
-    'Hard Rock',
-    'Heavy Metal',
-    'Symphonic Metal',
-    'Industrial Metal'
-  ];
-
+  // Genres with bands to display in menu
+  genres: Genre[] = [];
+  errors = [];
   userName = '';
-/*  genresBands = [
-  {
-    'genre': 'Punk Rock',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  },
-  {
-    'genre': 'Alternative Rock',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  },
-  {
-    'genre': 'Hard Rock',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  },
-  {
-    'genre': 'Heavy Metal',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  },
-  {
-    'genre': 'Symphonic Metal',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  },
-  {
-    'genre': 'Industrial Metal',
-    'bands': [ 'Green Day', 'AFI', 'The Offspring', 'Sex Pistols', 'Melvins']
-  }
-];*/
 
   constructor(private authService: AuthService,
+              private navbarService: NavbarService,
               private router: Router) {
     this.userName = this.authService.userName;
   }
 
   ngOnInit() {
+    this.getMenuItems();
   }
 
+  /**
+   * Get all genres with corresponding bands for menu.
+   */
+  getMenuItems() {
+    this.navbarService.getMenuItems()
+      .subscribe(data => {
+        this.genres = data['Genres'];
+      }, (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          // A client-side or network error occurred. Handle it accordingly.
+          this.errors.push(err.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          if (err.status === 0) {
+            this.errors.push('Please check your backend server.');
+          } else {
+            const errors = err.error;
+            for (const key in errors) {
+              if (errors.hasOwnProperty(key)) {
+                this.errors.push(errors[key]);
+              }
+            }
+          }
+        }
+      });
+  }
+
+  /**
+   * Log user out. Delete all info about user on client.
+   *
+   */
   logout() {
     this.authService.logout();
     this.router.navigate([this.authService.userRedirectUrl]);

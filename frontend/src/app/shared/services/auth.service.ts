@@ -5,7 +5,7 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AuthService {
-  private apiUrl = 'http://rnmblog.com';
+  private apiUrl = 'http://rnmblog.com/api';
   isLoggedIn = false;
   // Redirect url after registration and login.
   userRedirectUrl = 'posts';
@@ -35,7 +35,7 @@ export class AuthService {
    */
   register(data: any): Observable<any> {
     localStorage.clear();
-    const url = `${this.apiUrl}/api/register`;
+    const url = `${this.apiUrl}/register`;
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;
@@ -52,7 +52,7 @@ export class AuthService {
    */
   login(data: any): Observable<any> {
     localStorage.clear();
-    const url = `${this.apiUrl}/api/login`;
+    const url = `${this.apiUrl}/login`;
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;
@@ -65,7 +65,7 @@ export class AuthService {
    *
    */
   logout(): void {
-    const url = `${this.apiUrl}/api/logout`;
+    const url = `${this.apiUrl}/logout`;
     this.httpClient.post(url, {
       id: this.userId
     }).subscribe(res => {

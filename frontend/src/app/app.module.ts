@@ -12,6 +12,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PostsComponent } from './posts/posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './shared/services/auth.service';
+import { NavbarService } from './navbar/navbar.service';
+import { TitleCasePipe } from './shared/pipes/title-case.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { AuthService } from './shared/services/auth.service';
     PageNotFoundComponent,
     PostsComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    TitleCasePipe
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,10 @@ import { AuthService } from './shared/services/auth.service';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ AuthService ],
+  providers: [
+    AuthService,
+    NavbarService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
