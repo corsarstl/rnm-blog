@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class GenreController extends Controller
 {
-
+    /**
+     * Get all genres with corresponding bands for menu in navbar.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function genresBandsForMenu()
     {
 //        $genresBands = DB::table('genres as g')
@@ -21,18 +25,10 @@ class GenreController extends Controller
 //            ->orderBy('Genre')
 //            ->get();
 
+        $genres = Genre::with(['bands' => function($query) {
+            $query->orderBy('name');
+        }])->get();
 
-        $genres = Genre::all();
-
-        $genresBands = [];
-
-        foreach ($genres as $genre) {
-            $genreName = $genre->name;
-            $bands = $genre->bands->pluck('name');
-
-            array_push($genresBands, $genreName, $bands);
-        }
-
-        return response()->json(['menu'=> $genresBands]);
+        return response()->json(['menuItems'=> $genres]);
     }
 }
