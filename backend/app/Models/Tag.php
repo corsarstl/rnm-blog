@@ -18,7 +18,7 @@ class Tag extends Model
     public $timestamps = false;
 
     /**
-     * Get all the posts for the tag.
+     * Get all the home for the tag.
      */
     public function posts()
     {

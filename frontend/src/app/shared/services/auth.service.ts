@@ -8,7 +8,7 @@ export class AuthService {
   private apiUrl = 'http://rnmblog.com/api';
   isLoggedIn = false;
   // Redirect url after registration and login.
-  userRedirectUrl = 'posts';
+  userRedirectUrl = 'home';
   // Data containing user name, email, id and valid token.
   authData = JSON.parse(localStorage.getItem('authData'));
   // Id of current logged in user.

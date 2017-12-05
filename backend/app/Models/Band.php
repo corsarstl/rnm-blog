@@ -27,7 +27,7 @@ class Band extends Model
     }
 
     /**
-     * Get all the posts for the band.
+     * Get all the home for the band.
      */
     public function posts()
     {

@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PostsComponent } from './posts/posts.component';
+import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './shared/services/auth.service';
 import { NavbarService } from './navbar/navbar.service';
@@ -20,7 +20,7 @@ import { TitleCasePipe } from './shared/pipes/title-case.pipe';
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    PostsComponent,
+    HomeComponent,
     RegisterComponent,
     NavbarComponent,
     TitleCasePipe

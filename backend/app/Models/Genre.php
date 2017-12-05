@@ -26,7 +26,7 @@ class Genre extends Model
     }
 
     /**
-     * Get all the posts for the genre.
+     * Get all the home for the genre.
      */
     public function posts()
     {

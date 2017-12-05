@@ -15,7 +15,7 @@ export class NavbarService {
    *
    * @returns {Observable<Genre[]>}
    */
-  getMenuItems(): Observable<Genre[]>  {
+  getMenuItems(): Observable<Genre[]> {
     const url = `${this.apiUrl}/navbarMenu`;
     return this.httpClient.get(url)
       .map(res => res as Genre[]);

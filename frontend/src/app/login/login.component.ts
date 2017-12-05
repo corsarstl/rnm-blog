@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     if (this.authService.isLoggedIn) {
       // Get the redirect URL from auth service
       // If no redirect has been set, use the default
-      const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'posts';
+      const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'home';
       // Redirect the user
       this.router.navigate([redirect]);
     }
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from auth service
         // If no redirect has been set, use the default
-        const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'posts';
+        const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'home';
         // Redirect the user
         this.router.navigate([redirect]);                         // Use promise and add ".then removeLoader"
       }
