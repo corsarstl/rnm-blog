@@ -17,4 +17,5 @@ Route::post('register', 'ApiController@register');
 Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
 
-Route::get('navbarMenu', 'GenreController@genresBandsForMenu');
+Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
+Route::get('home', 'HomeController@latest5PostsPerGenre');
