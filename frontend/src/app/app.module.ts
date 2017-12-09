@@ -16,6 +16,7 @@ import { NavbarService } from './navbar/navbar.service';
 import { TitleCasePipe } from './shared/pipes/title-case.pipe';
 import { GenreService } from './shared/services/genre.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

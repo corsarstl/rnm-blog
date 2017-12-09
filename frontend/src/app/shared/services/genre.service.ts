@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class GenreService {
   private apiUrl = 'http://rnmblog.com/api';
-  latest5PostsPerGenre = [];
 
   constructor(private httpClient: HttpClient) {}
 
