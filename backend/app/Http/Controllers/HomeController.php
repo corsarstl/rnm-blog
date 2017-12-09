@@ -32,19 +32,28 @@ class HomeController extends Controller
         return response()->json(['Genres'=> $genres]);
     }
 
+    /**
+     * Get 5 latest posts for each genre.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function latest5PostsPerGenre()
     {
-        $latest5PostsPerGenre = Genre::with([
-            'posts' => function($query) {
-                $query->orderBy('id', 'desc')->get(['posts.id', 'title']);
-            }])->orderBy('name')->get();
+//        optimized, but can't limit number of posts for each genre, only total number of posts.
 
-//        $genres = Genre::with('posts')->orderBy('name')->get();
-//        $latest5PostsPerGenre = [];
-//
-//        foreach ($genres as $genre) {
-//            $latest5PostsPerGenre[$genre->name] = $genre->posts()->take(5)->orderBy('id', 'desc')->get(['posts.id', 'title']);
-//        }
+//        $latest5PostsPerGenre = Genre::with([
+//            'posts' => function($query) {
+//                $query->orderBy('id', 'desc')->get(['posts.id', 'title']);
+//            }])->orderBy('name')->get();
+
+
+        // performs 8 db queries. need to optimize.
+        $genres = Genre::with('posts')->orderBy('name')->get();
+        $latest5PostsPerGenre = [];
+
+        foreach ($genres as $genre) {
+            $latest5PostsPerGenre[$genre->name] = $genre->posts()->take(5)->orderBy('id', 'desc')->get(['posts.id', 'title']);
+        }
 
         return response()->json(['data'=> $latest5PostsPerGenre]);
     }
