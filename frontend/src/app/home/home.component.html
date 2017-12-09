@@ -1,16 +1,10 @@
 <h2>Latest news from your favorite genres:</h2>
 
-<div class="card">
+<div class="card" *ngFor="let genre of latest5PostsPerGenre">
     <div class="card-header">
-        Genre
+        {{ genre.name | titleCase }}
     </div>
-    <div class="card-body">
-        <h3 class="card-title">Post band</h3>
-        <p class="card-text">Post title</p>
-    </div>
-    <div class="card-body">
-        <h3 class="card-title">Post band</h3>
-        <p class="card-text">Post title</p>
-    </div>
-
+    <ul *ngFor="let post of genre.posts">
+        <li>{{ post.title }}</li>
+    </ul>
 </div>

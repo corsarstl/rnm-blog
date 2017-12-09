@@ -21,8 +21,10 @@ class GenresTableSeeder extends Seeder
         ];
 
         foreach ($genres as $genre) {
+            $slug = strtolower(implode('-',explode(" ", $genre)));
             DB::table('genres')->insert([
-                'name' => $genre
+                'name' => $genre,
+                'slug' => $slug
             ]);
         }
     }

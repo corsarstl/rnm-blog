@@ -41,19 +41,19 @@ class HomeController extends Controller
     {
 //        optimized, but can't limit number of posts for each genre, only total number of posts.
 
-//        $latest5PostsPerGenre = Genre::with([
-//            'posts' => function($query) {
-//                $query->orderBy('id', 'desc')->get(['posts.id', 'title']);
-//            }])->orderBy('name')->get();
+        $latest5PostsPerGenre = Genre::with([
+            'posts' => function($query) {
+                $query->orderBy('id', 'desc')->get(['posts.id', 'title']);
+            }])->orderBy('name')->get();
 
 
         // performs 8 db queries. need to optimize.
-        $genres = Genre::with('posts')->orderBy('name')->get();
-        $latest5PostsPerGenre = [];
-
-        foreach ($genres as $genre) {
-            $latest5PostsPerGenre[$genre->name] = $genre->posts()->take(5)->orderBy('id', 'desc')->get(['posts.id', 'title']);
-        }
+//        $genres = Genre::with('posts')->orderBy('name')->get();
+//        $latest5PostsPerGenre = [];
+//
+//        foreach ($genres as $genre) {
+//            $latest5PostsPerGenre[$genre->name] = $genre->posts()->take(5)->orderBy('id', 'desc')->get(['posts.id', 'title']);
+//        }
 
         return response()->json(['data'=> $latest5PostsPerGenre]);
     }

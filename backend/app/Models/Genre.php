@@ -12,7 +12,7 @@ class Genre extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'slug'
     ];
 
     public $timestamps = false;

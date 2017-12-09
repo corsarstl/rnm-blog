@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './shared/services/auth.service';
 import { NavbarService } from './navbar/navbar.service';
 import { TitleCasePipe } from './shared/pipes/title-case.pipe';
+import { GenreService } from './shared/services/genre.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TitleCasePipe } from './shared/pipes/title-case.pipe';
   ],
   providers: [
     AuthService,
-    NavbarService
+    NavbarService,
+    GenreService
   ],
   bootstrap: [ AppComponent ]
 })

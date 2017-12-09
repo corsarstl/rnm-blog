@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Genre } from './menu-item';
+import { MenuItem } from './menu-item';
 
 @Injectable()
 export class NavbarService {
@@ -15,10 +15,10 @@ export class NavbarService {
    *
    * @returns {Observable<Genre[]>}
    */
-  getMenuItems(): Observable<Genre[]> {
+  getMenuItems(): Observable<MenuItem[]> {
     const url = `${this.apiUrl}/navbarMenu`;
     return this.httpClient.get(url)
-      .map(res => res as Genre[]);
+      .map(res => res as MenuItem[]);
   }
 
 }
