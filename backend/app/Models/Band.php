@@ -13,6 +13,7 @@ class Band extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
         'genre_id'
     ];
 

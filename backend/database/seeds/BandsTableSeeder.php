@@ -22,8 +22,10 @@ class BandsTableSeeder extends Seeder
 
         foreach ($genresBands as $genre => $bands) {
             foreach ($bands as $key => $band) {
+                $slug = strtolower(implode('-',explode(" ", $band)));
                 DB::table('bands')->insert([
                     'name'     => $band,
+                    'slug'     => $slug,
                     'genre_id' => $genre
                 ]);
             }
