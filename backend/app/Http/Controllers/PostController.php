@@ -15,8 +15,7 @@ class PostController extends Controller
      */
     public function indexByGenre($slug)
     {
-        $genre = Genre::where('slug', $slug)->get();
-
+        $genre = Genre::where('slug', $slug)->first();
         $posts = $genre->posts()->orderBy('id', 'desc')->get(['posts.id', 'title']);
 
         return response()->json(['data'=> $posts]);
