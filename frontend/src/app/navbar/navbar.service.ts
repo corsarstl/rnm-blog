@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Genre } from './genre';
+import { Genre } from './menu-item';
 
 @Injectable()
 export class NavbarService {

@@ -19,10 +19,10 @@
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
 
                 <li class="nav-item dropdown"
-                    *ngFor="let genre of genres">
+                    *ngFor="let menuItem of menuItems">
 
                     <a data-toggle="dropdown" class="nav-link dropdown-toggle">
-                        {{ genre.name | titleCase }}
+                        {{ menuItem.name | titleCase }}
                         <b class="caret"></b>
                     </a>
 
@@ -30,14 +30,14 @@
                         <li>
                             <a href="#" class="dropdown-item">
                                 <strong>
-                                    {{ genre.name | titleCase }}
+                                    {{ menuItem.name | titleCase }}
                                 </strong>
                             </a>
                         </li>
 
                         <div class="dropdown-divider"></div>
 
-                        <li *ngFor="let band of genre.bands">
+                        <li *ngFor="let band of menuItem.bands">
                             <a href="#" class="dropdown-item">
                                 {{ band.name }}
                             </a>

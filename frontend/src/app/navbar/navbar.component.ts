@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { NavbarService } from './navbar.service';
-import { Genre } from './genre';
+import { MenuItem } from './menu-item';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
-  genres: Genre[] = [];
+  menuItems: MenuItem[] = [];
   errors = [];
   userName = '';
 
@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   getMenuItems() {
     this.navbarService.getMenuItems()
       .subscribe(data => {
-        this.genres = data['Genres'];
+        this.menuItems = data['menuItems'];
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.

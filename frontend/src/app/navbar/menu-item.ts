@@ -1,4 +1,4 @@
-export class Genre {
+export class MenuItem {
   id: number;
   name: string;
   bands: string[];

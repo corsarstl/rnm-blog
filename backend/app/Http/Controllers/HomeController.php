@@ -29,7 +29,7 @@ class HomeController extends Controller
             $query->orderBy('name');
         }])->orderBy('name')->get();
 
-        return response()->json(['Genres'=> $genres]);
+        return response()->json(['menuItems'=> $genres]);
     }
 
     /**
