@@ -8,6 +8,7 @@ export class PostService {
   private apiUrl = 'http://rnmblog.com/api';
   // 5 latest posts for each genre.
   latest5PostsPerGenre = [];
+  posts = [];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -22,7 +23,9 @@ export class PostService {
       .do(res => res = this.latest5PostsPerGenre);
   }
 
-  getPostsByGenre(): Observable<any> {
-    const url = `${this.apiUrl}/genres/`;
+  getPostsByGenre(genreSlug): Observable<any> {
+    const url = `${this.apiUrl}/genres/${genreSlug}`;
+    return this.httpClient.get(url)
+      .do(res => res = this.posts);
   }
 }
