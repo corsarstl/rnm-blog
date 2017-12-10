@@ -14,7 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './shared/services/auth.service';
 import { NavbarService } from './navbar/navbar.service';
 import { TitleCasePipe } from './shared/pipes/title-case.pipe';
-import { GenreService } from './shared/services/genre.service';
+import { PostService } from './shared/services/post.service';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { GenreService } from './shared/services/genre.service';
   providers: [
     AuthService,
     NavbarService,
-    GenreService
+    PostService
   ],
   bootstrap: [ AppComponent ]
 })

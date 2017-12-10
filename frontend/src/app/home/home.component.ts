@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GenreService } from '../shared/services/genre.service';
+import { PostService } from '../shared/services/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   latest5PostsPerGenre = [];
   errors = [];
 
-  constructor(private genreService: GenreService) {
+  constructor(private postService: PostService) {
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
    * Get 5 latest posts for each genre.
    */
   getLatest5PostsPerGenre() {
-    this.genreService.getLatest5PostsPerGenre()
+    this.postService.getLatest5PostsPerGenre()
       .subscribe(data => {
         this.latest5PostsPerGenre = data['data'];
       }, (err: HttpErrorResponse) => {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class GenreService {
+export class PostService {
   private apiUrl = 'http://rnmblog.com/api';
 
   constructor(private httpClient: HttpClient) {}
