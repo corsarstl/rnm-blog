@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  // 5 latest posts for each genre.
   latest5PostsPerGenre = [];
   errors = [];
 
