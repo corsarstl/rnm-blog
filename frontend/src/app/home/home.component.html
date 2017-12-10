@@ -1,6 +1,6 @@
 <h2>Latest news from your favorite genres:</h2>
 
-<div class="card" *ngFor="let genre of latest5PostsPerGenre">
+<div class="card mt-3" *ngFor="let genre of latest5PostsPerGenre">
     <div class="card-header">
         <a routerLink="/genres/{{ genre.name | kebabCase }}">
             {{ genre.name | titleCase }}
