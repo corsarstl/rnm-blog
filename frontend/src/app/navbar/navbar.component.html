@@ -38,7 +38,7 @@
                         <div class="dropdown-divider"></div>
 
                         <li *ngFor="let band of menuItem.bands">
-                            <a href="#" class="dropdown-item">
+                            <a routerLink="/{{ menuItem.name | kebabCase }}/{{ band.name | kebabCase }}" class="dropdown-item">
                                 {{ band.name }}
                             </a>
                         </li>

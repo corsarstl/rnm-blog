@@ -2,7 +2,9 @@
 
 <div class="card" *ngFor="let genre of latest5PostsPerGenre">
     <div class="card-header">
-        {{ genre.name | titleCase }}
+        <a routerLink="/genres/{{ genre.name | kebabCase }}">
+            {{ genre.name | titleCase }}
+        </a>
     </div>
     <ul *ngFor="let post of genre.posts">
         <li>{{ post.title }}</li>
