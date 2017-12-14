@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     this.postService.getLatest5PostsPerGenre()
       .subscribe(data => {
         this.latest5PostsPerGenre = data['data'];
+        console.log(this.latest5PostsPerGenre);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
