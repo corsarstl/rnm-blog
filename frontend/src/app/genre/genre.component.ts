@@ -21,6 +21,7 @@ export class GenreComponent implements OnInit {
     this.genre = {
       genreSlug: this.route.snapshot.params['genreSlug']
     };
+
     this.route.params
       .subscribe(
         (params: Params) => {

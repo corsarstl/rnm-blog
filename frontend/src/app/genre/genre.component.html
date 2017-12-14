@@ -1,4 +1,4 @@
-<h2>{{ genre.genreSlug }}</h2>
+<h2>{{ genre.genreSlug | titleCase }}</h2>
 
 <ul *ngFor="let post of posts">
   <li>{{ post.title }}</li>
