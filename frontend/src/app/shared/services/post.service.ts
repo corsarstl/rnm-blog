@@ -23,8 +23,26 @@ export class PostService {
       .do(res => res = this.latest5PostsPerGenre);
   }
 
+  /**
+   * Get all posts for selected genre.
+   *
+   * @param genreSlug
+   * @returns {Observable<any>}
+   */
   getPostsByGenre(genreSlug): Observable<any> {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
+    return this.httpClient.get(url)
+      .do(res => res = this.posts);
+  }
+
+  /**
+   * Get all posts for selected band.
+   *
+   * @param bandSlug
+   * @returns {Observable<any>}
+   */
+  getPostsByBand(genreSlug, bandSlug): Observable<any> {
+    const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
     return this.httpClient.get(url)
       .do(res => res = this.posts);
   }

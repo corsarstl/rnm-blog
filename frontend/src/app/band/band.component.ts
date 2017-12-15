@@ -4,40 +4,44 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'rnm-genre',
-  templateUrl: './genre.component.html',
-  styleUrls: ['./genre.component.css']
+  selector: 'rnm-band',
+  templateUrl: './band.component.html',
+  styleUrls: ['./band.component.css']
 })
-export class GenreComponent implements OnInit {
-  genre: {genreSlug: string};
+export class BandComponent implements OnInit {
+  band: {
+    genreSlug: string,
+    bandSlug: string
+  };
   // Posts fetched from server.
   posts = [];
   errors = [];
-
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.genre = {
-      genreSlug: this.route.snapshot.params['genreSlug']
+    this.band = {
+      genreSlug: this.route.snapshot.params['genreSlug'],
+      bandSlug: this.route.snapshot.params['bandSlug']
     };
 
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.genre.genreSlug = params['genreSlug'];
-          this.getPostsByGenre(this.genre.genreSlug);
+          this.band.genreSlug = params['genreSlug'];
+          this.band.bandSlug = params['bandSlug'];
+          this.getPostsByBand(this.band.genreSlug, this.band.bandSlug);
         }
       );
   }
 
   /**
-   * Get all posts for selected genre.
+   * Get all posts for selected band.
    *
-   * @param genreSlug
+   * @param bandSlug
    */
-  getPostsByGenre(genreSlug) {
-    this.postService.getPostsByGenre(genreSlug)
+  getPostsByBand(genreSlug, bandSlug) {
+    this.postService.getPostsByBand(genreSlug, bandSlug)
       .subscribe(data => {
         this.posts = data['data'];
         console.log(this.posts);
@@ -61,5 +65,4 @@ export class GenreComponent implements OnInit {
         }
       });
   }
-
 }

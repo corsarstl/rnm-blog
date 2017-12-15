@@ -19,5 +19,6 @@ Route::post('logout', 'ApiController@logout');
 
 Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
 Route::get('home', 'HomeController@latest5PostsPerGenre');
-Route::get('genres/{slug}', 'PostController@indexByGenre');
+Route::get('genres/{genreSlug}', 'PostController@indexByGenre');
+Route::get('{genreSlug}/{bandSlug}', 'PostController@indexByBand');
 

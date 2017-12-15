@@ -17,6 +17,7 @@ import { TitleCasePipe } from './shared/pipes/title-case.pipe';
 import { PostService } from './shared/services/post.service';
 import { GenreComponent } from './genre/genre.component';
 import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
+import { BandComponent } from './band/band.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
     NavbarComponent,
     TitleCasePipe,
     GenreComponent,
-    KebabCasePipe
+    KebabCasePipe,
+    BandComponent
   ],
   imports: [
     BrowserModule,
