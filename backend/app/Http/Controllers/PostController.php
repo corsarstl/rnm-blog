@@ -16,10 +16,16 @@ class PostController extends Controller
      */
     public function indexByGenre($genreSlug)
     {
-        $genre = Genre::where('slug', $genreSlug)->first();
-        $posts = $genre->posts()->orderBy('id', 'desc')->get(['posts.id', 'title']);
+        $posts = Genre::with([
+            'posts' => function ($query) {
+                $query->with('band')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }])
+            ->where('slug', $genreSlug)
+            ->get();
 
-        return response()->json(['data'=> $posts]);
+        return response()->json(['data' => $posts]);
     }
 
     /**
@@ -34,7 +40,7 @@ class PostController extends Controller
         $band = Band::where('slug', $bandSlug)->first();
         $posts = $band->posts()->orderBy('id', 'desc')->get(['posts.id', 'title']);
 
-        return response()->json(['data'=> $posts]);
+        return response()->json(['data' => $posts]);
     }
 
 
