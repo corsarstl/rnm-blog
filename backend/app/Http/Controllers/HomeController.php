@@ -15,16 +15,6 @@ class HomeController extends Controller
      */
     public function genresBandsForMenu()
     {
-//        $genresBands = DB::table('genres as g')
-//            ->select(
-//                'g.id as GenreId',
-//                'g.name as GenreName',
-//                'b.name as Band')
-//            ->leftJoin('bands as b', 'g.id', 'b.genre_id')
-//            ->groupBy('GenreId', 'Genre', 'Band')
-//            ->orderBy('Genre')
-//            ->get();
-
         $genres = Genre::with(['bands' => function($query) {
             $query->orderBy('name');
         }])->orderBy('name')->get();

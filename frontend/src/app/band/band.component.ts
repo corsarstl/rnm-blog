@@ -13,6 +13,7 @@ export class BandComponent implements OnInit {
     genreSlug: string,
     bandSlug: string
   };
+  bandName: string;
   // Posts fetched from server.
   posts = [];
   errors = [];
@@ -28,7 +29,6 @@ export class BandComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.band.genreSlug = params['genreSlug'];
           this.band.bandSlug = params['bandSlug'];
           this.getPostsByBand(this.band.genreSlug, this.band.bandSlug);
         }
@@ -43,7 +43,8 @@ export class BandComponent implements OnInit {
   getPostsByBand(genreSlug, bandSlug) {
     this.postService.getPostsByBand(genreSlug, bandSlug)
       .subscribe(data => {
-        this.posts = data['data'];
+        this.posts = data['data'][0]['posts'];
+        this.bandName = data['data'][0]['name'];
         console.log(this.posts);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

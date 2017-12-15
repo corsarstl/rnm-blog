@@ -1,5 +1,9 @@
-<h2>{{ band.bandSlug | titleCase }}</h2>
+<h2>{{ bandName }}</h2>
 
 <ul *ngFor="let post of posts">
-  <li>{{ post.title }}</li>
+  <li>
+    <a routerLink="/{{ band.genreSlug }}/{{ bandName | kebabCase }}/{{ post.id }}/{{ post.title | kebabCase }}">
+      {{ post.title }}
+    </a>
+  </li>
 </ul>

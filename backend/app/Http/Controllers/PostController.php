@@ -37,11 +37,14 @@ class PostController extends Controller
      */
     public function indexByBand($genreSlug, $bandSlug)
     {
-        $band = Band::where('slug', $bandSlug)->first();
-        $posts = $band->posts()->orderBy('id', 'desc')->get(['posts.id', 'title']);
+        $posts = Band::with([
+            'posts' => function ($query) {
+                $query->orderBy('id', 'desc')
+                      ->get();
+            }])
+            ->where('slug', $bandSlug)
+            ->get();
 
         return response()->json(['data' => $posts]);
     }
-
-
 }

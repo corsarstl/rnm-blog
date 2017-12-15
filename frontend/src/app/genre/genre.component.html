@@ -2,7 +2,7 @@
 
 <ul *ngFor="let post of posts">
   <li>
-    <a routerLink="/{{ genre.genreSlug }}/{{ post.band.name | kebabCase  }}/{{ post.id }}/{{ post.title | kebabCase }}">
+    <a routerLink="/{{ genre.genreSlug }}/{{ post.band.name | kebabCase }}/{{ post.id }}/{{ post.title | kebabCase }}">
       {{ post.title }}
     </a>
   </li>
