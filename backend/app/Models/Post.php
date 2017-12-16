@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    const POST_IMAGE_URL = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,7 +33,7 @@ class Post extends Model
      */
     public function tags()
     {
-        return $this->hasMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag');
     }
 
     /**

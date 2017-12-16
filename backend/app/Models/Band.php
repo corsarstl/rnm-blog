@@ -34,4 +34,9 @@ class Band extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+//    public function name()
+//    {
+//        return $this->name;
+//    }
 }

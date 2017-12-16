@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Band;
+use App\Models\Comment;
 use App\Models\Genre;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -46,5 +49,40 @@ class PostController extends Controller
             ->get();
 
         return response()->json(['data' => $posts]);
+    }
+
+    /**
+     * Show the post with request id.
+     *
+     * @param $genreSlug
+     * @param $bandSlug
+     * @param $id
+     * @param $titleSlug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($genreSlug, $bandSlug, $id, $titleSlug)
+    {
+        $post = Post::with(['band', 'comments' => function($q) {
+            $q->orderBy('id', 'desc')
+                ->with('user')
+                ->get();
+        }])
+            ->where('id', $id)
+            ->first();
+
+//        $postToShow = [];
+//        $postToShow['id'] = $post->id;
+//        $postToShow['title'] = $post->title;
+//        $postToShow['content'] = $post->content;
+//        $postToShow['image'] = Post::POST_IMAGE_URL. $post->image;
+        $post['image'] = Post::POST_IMAGE_URL. $post->image;
+
+//        $postToShow['genre'] = $post->band->genre->name;
+//        $postToShow['band'] = $post->band->name;
+//        $postToShow['tags'] = $post->tags;
+//        $postToShow['comments'] = $post->comments;
+
+        return response()->json(['data' => $post]);
+//        return response()->json(['data' => $postToShow]);
     }
 }
