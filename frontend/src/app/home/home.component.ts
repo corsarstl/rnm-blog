@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
    * Get 5 latest posts for each genre.
    */
   getLatest5PostsPerGenre() {
-    this.postService.getLatest5PostsPerGenre()
+    this.postService.latest5PostsPerGenre()
       .subscribe(data => {
         this.latest5PostsPerGenre = data['data'];
         console.log(this.latest5PostsPerGenre);

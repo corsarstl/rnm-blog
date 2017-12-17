@@ -18,6 +18,7 @@ import { PostService } from './shared/services/post.service';
 import { GenreComponent } from './genre/genre.component';
 import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
 import { BandComponent } from './band/band.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { BandComponent } from './band/band.component';
     TitleCasePipe,
     GenreComponent,
     KebabCasePipe,
-    BandComponent
+    BandComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

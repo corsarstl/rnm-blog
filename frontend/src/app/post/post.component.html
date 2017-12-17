@@ -1,0 +1,19 @@
+<h2>{{ post.title }}</h2>
+
+<img src="{{ post.image }}" class="img-fluid" alt="post image">
+
+<h4>Genre: <a routerLink="/genres/{{ postUrl.genreSlug }}">{{ postUrl.genreSlug | titleCase }}</a></h4>
+<h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.band.name }}</a></h5>
+<h6 *ngIf="post.tags.length > 0">Tags: <span *ngFor="let tag of post.tags">{{ tag.name }} | </span></h6>
+<hr>
+{{ post.content }}
+<hr>
+
+<div class="card mb-3" *ngFor="let comment of post.comments">
+  <div class="card-header">
+    <p>{{ comment.created_at | date:'short'}} by <strong>{{ comment.user.name }}</strong></p>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ comment.body }}</p>
+  </div>
+</div>

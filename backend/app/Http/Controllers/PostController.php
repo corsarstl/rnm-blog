@@ -56,18 +56,18 @@ class PostController extends Controller
      *
      * @param $genreSlug
      * @param $bandSlug
-     * @param $id
-     * @param $titleSlug
+     * @param $postId
+     * @param $postSlug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($genreSlug, $bandSlug, $id, $titleSlug)
+    public function show($genreSlug, $bandSlug, $postId, $postSlug)
     {
-        $post = Post::with(['band', 'comments' => function($q) {
+        $post = Post::with(['band', 'tags', 'comments' => function($q) {
             $q->orderBy('id', 'desc')
                 ->with('user')
                 ->get();
         }])
-            ->where('id', $id)
+            ->where('id', $postId)
             ->first();
 
 //        $postToShow = [];

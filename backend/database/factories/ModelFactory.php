@@ -28,7 +28,7 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
 
     return [
         'title'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-        'content'    => $faker->text($maxNbChars = 1000),
+        'content'    => $faker->realText($maxNbChars = 3000, $indexSize = 2),
         'image' => function () {
             $imageId = Faker\Factory::create()->numberBetween($min = 1, $max = 20);
             $imageName = $imageId . '.jpg';
@@ -45,7 +45,7 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
 
     return [
-        'body' => $faker->paragraph($nbSentences = 2, $variableNbSentences = true),
+        'body' => $faker->paragraph($nbSentences = 5, $variableNbSentences = true),
         'post_id' => function () {
             return \App\Models\Post::all()->random()->id;
         },

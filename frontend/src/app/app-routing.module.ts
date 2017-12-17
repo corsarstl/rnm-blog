@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { GenreComponent } from './genre/genre.component';
 import { BandComponent } from './band/band.component';
+import { PostComponent } from './post/post.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'genres/:genreSlug', component: GenreComponent },
   { path: ':genreSlug/:bandSlug', component: BandComponent },
+  { path: ':genreSlug/:bandSlug/:postId/:postSlug', component: PostComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

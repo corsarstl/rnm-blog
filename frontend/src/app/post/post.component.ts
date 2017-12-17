@@ -2,50 +2,64 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../shared/services/post.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Post } from './post';
 
 @Component({
-  selector: 'rnm-band',
-  templateUrl: './band.component.html',
-  styleUrls: ['./band.component.css']
+  selector: 'rnm-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css']
 })
-export class BandComponent implements OnInit {
-  bandUrl: {
-    genreSlug: string,
-    bandSlug: string
+export class PostComponent implements OnInit {
+  postUrl: {
+    genreSlug: string;
+    bandSlug: string;
+    postId: number;
+    postSlug: string;
   };
-  bandName: string;
-  // Posts fetched from server.
-  posts = [];
+
+  post: Post;
   errors = [];
+
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.bandUrl = {
+    this.postUrl = {
       genreSlug: this.route.snapshot.params['genreSlug'],
-      bandSlug: this.route.snapshot.params['bandSlug']
+      bandSlug: this.route.snapshot.params['bandSlug'],
+      postId: this.route.snapshot.params['postId'],
+      postSlug: this.route.snapshot.params['postSlug'],
     };
 
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.bandUrl.bandSlug = params['bandSlug'];
-          this.getPostsByBand(this.bandUrl.genreSlug, this.bandUrl.bandSlug);
+          this.postUrl.postId = params['postId'];
+
+          this.getSinglePost(
+            this.postUrl.genreSlug,
+            this.postUrl.bandSlug,
+            this.postUrl.postId,
+            this.postUrl.postSlug);
         }
       );
+
+
   }
 
   /**
-   * Get all posts for selected band.
+   * Get single post.
    *
+   * @param genreSlug
    * @param bandSlug
+   * @param postId
+   * @param postSlug
    */
-  getPostsByBand(genreSlug, bandSlug) {
-    this.postService.postsByBand(genreSlug, bandSlug)
+  getSinglePost(genreSlug, bandSlug, postId, postSlug) {
+    this.postService.singlePost(genreSlug, bandSlug, postId, postSlug)
       .subscribe(data => {
-        this.posts = data['data'][0]['posts'];
-        this.bandName = data['data'][0]['name'];
-        console.log(this.posts);
+        this.post = data['data'];
+        console.log(this.post);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.

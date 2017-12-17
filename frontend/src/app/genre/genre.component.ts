@@ -9,7 +9,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./genre.component.css']
 })
 export class GenreComponent implements OnInit {
-  genre: {genreSlug: string};
+  genreUrl: {
+    genreSlug: string
+  };
   // Posts fetched from server.
   posts = [];
   errors = [];
@@ -18,15 +20,15 @@ export class GenreComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.genre = {
+    this.genreUrl = {
       genreSlug: this.route.snapshot.params['genreSlug']
     };
 
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.genre.genreSlug = params['genreSlug'];
-          this.getPostsByGenre(this.genre.genreSlug);
+          this.genreUrl.genreSlug = params['genreSlug'];
+          this.getPostsByGenre(this.genreUrl.genreSlug);
         }
       );
   }
@@ -37,7 +39,7 @@ export class GenreComponent implements OnInit {
    * @param genreSlug
    */
   getPostsByGenre(genreSlug) {
-    this.postService.getPostsByGenre(genreSlug)
+    this.postService.postsByGenre(genreSlug)
       .subscribe(data => {
         this.posts = data['data'][0]['posts'];
         console.log(this.posts);

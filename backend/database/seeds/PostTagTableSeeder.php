@@ -14,7 +14,7 @@ class PostTagTableSeeder extends Seeder
     public function run()
     {
         $data = [];
-        $limit = 400;
+        $limit = 1000;
         while ($limit) {
             $post = Post::all()->random(1)->first();
             $tag = Tag::all()->random(1)->first();
