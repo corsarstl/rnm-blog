@@ -19,6 +19,7 @@ import { GenreComponent } from './genre/genre.component';
 import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
 import { BandComponent } from './band/band.component';
 import { PostComponent } from './post/post.component';
+import { SliderComponent } from './slider/slider.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PostComponent } from './post/post.component';
     GenreComponent,
     KebabCasePipe,
     BandComponent,
-    PostComponent
+    PostComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
