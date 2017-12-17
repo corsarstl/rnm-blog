@@ -22,7 +22,7 @@
 }
 .carousel .item img {
     max-width: 100%;
-    margin: 0 auto; /* Align slide image horizontally center in Bootstrap v3 */
+    margin: 0 auto;
 }
 .carousel .carousel-control {
     width: 50px;
@@ -37,22 +37,16 @@
 .carousel .carousel-control i {
     font-size: 41px;
 }
-.carousel-caption h3, .carousel-caption p {
+.carousel-caption p {
     color: #fff;
     display: inline-block;
     font-family: 'Oswald', sans-serif;
     text-shadow: none;
     margin-bottom: 20px;
 }
-.carousel-caption h3 {
-    background: rgba(0,0,0,0.9);
-    padding: 12px 24px;
-    font-size: 40px;
-    text-transform: uppercase;
-}
 .carousel-caption p {
-    background: #df0d1f;
-    padding: 10px 20px;
+    background: rgba(223,13,31,0.7);
+    padding: 5px 10px;
     font-size: 20px;
     font-weight: 300;
 }

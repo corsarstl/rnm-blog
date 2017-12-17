@@ -25,6 +25,17 @@ export class PostService {
   }
 
   /**
+   * Get 3 latest posts for slider.
+   *
+   * @returns {Observable<any>}
+   */
+  postsForSlider(): Observable<any> {
+    const url = `${this.apiUrl}/slider`;
+    return this.httpClient.get(url)
+      .do(res => res = this.posts);
+  }
+
+  /**
    * Get all posts for selected genre.
    *
    * @param genreSlug

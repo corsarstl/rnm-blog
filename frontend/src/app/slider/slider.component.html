@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <!--slider-->
     <div class="col-md-12 mt-4">
       <div id="sliderIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -10,41 +9,22 @@
         </ol>
 
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100"
-                 src="https://d3nkp9h6zk1y70.cloudfront.net/images/posts/15.jpg"
-                 alt="First slide">
-            <div class="carousel-caption">
-              <h3>Band 1</h3>
-              <p>Pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget cursus dolor.</p>
-              <div class="carousel-action">
-                <a href="#" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
-          </div>
+          <div *ngFor="let post of posts; let i = index"
+               class="{{ i > 0 ? 'carousel-item' : 'carousel-item active'}}">
 
-          <div class="carousel-item">
             <img class="d-block w-100"
-                 src="https://d3nkp9h6zk1y70.cloudfront.net/images/posts/19.jpg"
-                 alt="Second slide">
-            <div class="carousel-caption">
-              <h3>Band 1</h3>
-              <p>Pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget cursus dolor.</p>
-              <div class="carousel-action">
-                <a href="#" class="btn btn-primary">Learn More</a>
-              </div>
-            </div>
-          </div>
+                 src="{{ post.image }}"
+                 alt="post slide">
 
-          <div class="carousel-item">
-            <img class="d-block w-100"
-                 src="https://d3nkp9h6zk1y70.cloudfront.net/images/posts/20.jpg"
-                 alt="Third slide">
             <div class="carousel-caption">
-              <h3>Band 1</h3>
-              <p>Pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget cursus dolor.</p>
+
+              <p>{{ post.title }}</p>
+
               <div class="carousel-action">
-                <a href="#" class="btn btn-primary">Learn More</a>
+
+                <a routerLink="/{{ post.band.genre.slug }}/{{ post.band.slug }}/{{ post.id }}/{{ post.title | kebabCase }}"
+                   class="btn btn-primary">Learn More
+                </a>
               </div>
             </div>
           </div>
@@ -61,3 +41,5 @@
         </a>
       </div>
     </div>
+  </div>
+</div>

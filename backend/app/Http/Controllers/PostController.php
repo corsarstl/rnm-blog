@@ -52,6 +52,25 @@ class PostController extends Controller
     }
 
     /**
+     * Display a list of 3 latest posts for slider.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexForSlider()
+    {
+        $posts = Post::with(['band.genre'])
+            ->orderBy('id', 'desc')
+            ->take(3)
+            ->get();
+
+        foreach ($posts as $post) {
+            $post['image'] = Post::POST_IMAGE_URL. $post->image;
+        }
+
+        return response()->json(['data' => $posts]);
+    }
+
+    /**
      * Show the post with request id.
      *
      * @param $genreSlug
