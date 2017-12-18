@@ -20,7 +20,8 @@ import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
 import { BandComponent } from './band/band.component';
 import { PostComponent } from './post/post.component';
 import { SliderComponent } from './slider/slider.component';
-import { PopularPostsComponent } from './hot-posts/hot-posts.component';
+import { PopularTagsComponent } from './popular-tags/popular-tags.component';
+import { HotPostsComponent } from './hot-posts/hot-posts.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PopularPostsComponent } from './hot-posts/hot-posts.component';
     BandComponent,
     PostComponent,
     SliderComponent,
-    PopularPostsComponent
+    HotPostsComponent,
+    PopularTagsComponent
   ],
   imports: [
     BrowserModule,

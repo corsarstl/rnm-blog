@@ -23,7 +23,6 @@ class TagController extends Controller
             ->join('post_tag as pt', 't.id', 'pt.tag_id')
             ->groupBy('tagId', 'tagName')
             ->orderBy('postsCount', 'desc')
-            ->take(15)
             ->get();
 
         return response()->json(['data' => $tags]);

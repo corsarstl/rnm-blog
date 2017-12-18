@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { PopularTag } from './popular-tag';
 import { PostService } from '../shared/services/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { HotPost } from './hot-post';
 
 @Component({
-  selector: 'rnm-hot-posts',
-  templateUrl: './hot-posts.component.html',
-  styleUrls: ['./hot-posts.component.css']
+  selector: 'rnm-popular-tags',
+  templateUrl: './popular-tags.component.html',
+  styleUrls: ['./popular-tags.component.css']
 })
-export class HotPostsComponent implements OnInit {
-  hotPosts: HotPost[] = [];
+export class PopularTagsComponent implements OnInit {
+  popularTags: PopularTag[] = [];
   errors = [];
 
   constructor(private postService: PostService) {
   }
 
   ngOnInit() {
-    this.getHotPosts();
+    this.getPopularTags();
   }
 
   /**
-   * Get a list of 5 popular posts with most number of comments.
+   * Get a list of tags with the number of related posts.
    */
-  getHotPosts() {
-    this.postService.hotPosts()
+  getPopularTags() {
+    this.postService.getPopularTags()
       .subscribe(data => {
-        this.hotPosts = data['data'];
-        console.log(this.hotPosts);
+        this.popularTags = data['data'];
+        console.log(this.popularTags);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
