@@ -53,6 +53,33 @@ class PostController extends Controller
     }
 
     /**
+     * Display a list of posts for selected tag.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexByTag(Request $request)
+    {
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'b.slug as bandSlug',
+                'g.slug as genreSlug'
+            )
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->join('post_tag as pt', 'p.id', 'pt.post_id')
+            ->join('tags as t', 't.id', 'pt.tag_id')
+            ->where('t.id', $request->tagId)
+            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->orderBy('postId', 'desc')
+            ->get();
+
+        return response()->json(['data' => $posts]);
+    }
+
+    /**
      * Display a list of 3 latest posts for slider.
      *
      * @return \Illuminate\Http\JsonResponse

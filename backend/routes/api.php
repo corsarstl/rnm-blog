@@ -21,12 +21,14 @@ Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
 Route::get('home', 'HomeController@latest5PostsPerGenre');
 
 Route::get('genres/{genreSlug}', 'PostController@indexByGenre');
+Route::get('tags/{tagId}/{tagSlug}', 'PostController@indexByTag');
 Route::get('{genreSlug}/{bandSlug}', 'PostController@indexByBand');
 Route::get('{genreSlug}/{bandSlug}/{postId}/{postSlug}', 'PostController@show');
 Route::get('slider', 'PostController@indexForSlider');
 Route::get('hotPosts', 'PostController@hotPosts');
 
 Route::get('popularTags', 'TagController@popularTags');
+
 
 
 
