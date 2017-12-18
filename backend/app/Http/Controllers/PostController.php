@@ -15,18 +15,18 @@ class PostController extends Controller
     /**
      * Display a list of posts for selected genre.
      *
-     * @param $genreSlug
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function indexByGenre($genreSlug)
+    public function indexByGenre(Request $request)
     {
         $posts = Genre::with([
-            'posts' => function ($query) {
-                $query->with('band')
+            'posts' => function ($q) {
+                $q->with('band')
                     ->orderBy('id', 'desc')
                     ->get();
             }])
-            ->where('slug', $genreSlug)
+            ->where('slug', $request->genreSlug)
             ->get();
 
         return response()->json(['data' => $posts]);
@@ -35,18 +35,17 @@ class PostController extends Controller
     /**
      * Display a list of posts for selected band.
      *
-     * @param $genreSlug
-     * @param $bandSlug
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function indexByBand($genreSlug, $bandSlug)
+    public function indexByBand(Request $request)
     {
         $posts = Band::with([
-            'posts' => function ($query) {
-                $query->orderBy('id', 'desc')
+            'posts' => function ($q) {
+                $q->orderBy('id', 'desc')
                       ->get();
             }])
-            ->where('slug', $bandSlug)
+            ->where('slug', $request->bandSlug)
             ->get();
 
         return response()->json(['data' => $posts]);
@@ -136,20 +135,17 @@ class PostController extends Controller
     /**
      * Show the post with request id.
      *
-     * @param $genreSlug
-     * @param $bandSlug
-     * @param $postId
-     * @param $postSlug
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($genreSlug, $bandSlug, $postId, $postSlug)
+    public function show(Request $request)
     {
         $post = Post::with(['band', 'tags', 'comments' => function($q) {
             $q->orderBy('id', 'desc')
                 ->with('user')
                 ->get();
         }])
-            ->where('id', $postId)
+            ->where('id', $request->postId)
             ->first();
 
 //        $postToShow = [];
