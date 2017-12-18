@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -66,6 +67,36 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $post['image'] = Post::POST_IMAGE_URL. $post->image;
         }
+
+        return response()->json(['data' => $posts]);
+    }
+
+    public function popularPosts()
+    {
+//        $posts = Post::withCount('comments')
+//            ->orderBy('comments_count', 'desc')
+//            ->take(5)
+//            ->get(['id', 'title', 'comments_count']);
+
+//        $posts = Post::withCount(['band', 'comments'])
+//            ->orderBy('comments_count', 'desc')
+//            ->take(5)
+//            ->get('title');
+
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'b.slug as bandSlug',
+                'g.slug as genreSlug',
+                DB::raw('COUNT(c.id) as commentsCount'))
+            ->join('comments as c', 'p.id', 'c.post_id')
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->orderBy('commentsCount', 'desc')
+            ->take(5)
+            ->get();
 
         return response()->json(['data' => $posts]);
     }

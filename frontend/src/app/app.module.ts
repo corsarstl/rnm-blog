@@ -21,7 +21,6 @@ import { BandComponent } from './band/band.component';
 import { PostComponent } from './post/post.component';
 import { SliderComponent } from './slider/slider.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
