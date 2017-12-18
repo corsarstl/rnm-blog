@@ -64,8 +64,8 @@ export class PostService {
    *
    * @returns {Observable<any>}
    */
-  popularPosts(): Observable<any> {
-    const url = `${this.apiUrl}/popularPosts`;
+  hotPosts(): Observable<any> {
+    const url = `${this.apiUrl}/hotPosts`;
     return this.httpClient.get(url)
       .do(res => res = this.posts);
   }

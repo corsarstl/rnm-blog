@@ -1,7 +1,7 @@
 <div class="col-md-12 mt-4 card">
-  <h3><u>Popular posts</u></h3>
+  <h3><u>Hot posts</u></h3>
 
-  <ul *ngFor="let post of popularPosts">
+  <ul *ngFor="let post of hotPosts">
     <li>
       <a routerLink="/{{ post.genreSlug }}/{{ post.bandSlug }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
         {{ post.postTitle }}

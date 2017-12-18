@@ -76,7 +76,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function popularPosts()
+    public function hotPosts()
     {
 //        $posts = Post::withCount('comments')
 //            ->orderBy('comments_count', 'desc')

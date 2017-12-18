@@ -1,4 +1,4 @@
-export class PopularPost {
+export class HotPost {
   postId: number;
   postTitle: string;
   bandSlug: string;
