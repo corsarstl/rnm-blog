@@ -26,7 +26,7 @@ Route::get('{genreSlug}/{bandSlug}/{postId}/{postSlug}', 'PostController@show');
 Route::get('slider', 'PostController@indexForSlider');
 Route::get('hotPosts', 'PostController@hotPosts');
 
-Route::get('tagsByPostsCount', 'TagController@tagsByPostsCount');
+Route::get('popularTags', 'TagController@popularTags');
 
 
 
