@@ -1,0 +1,12 @@
+<div class="col-md-12 mt-4 card">
+  <h3><u>Popular posts</u></h3>
+
+  <ul *ngFor="let post of popularPosts">
+    <li>
+      <a routerLink="/{{ post.genreSlug }}/{{ post.bandSlug }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
+        {{ post.postTitle }}
+      </a>
+      <span><i class="fas fa-comments"></i>{{ post.commentsCount }}</span>
+    </li>
+  </ul>
+</div>

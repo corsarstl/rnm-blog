@@ -60,6 +60,17 @@ export class PostService {
   }
 
   /**
+   * Get a list of 5 popular posts with most number of comments.
+   *
+   * @returns {Observable<any>}
+   */
+  popularPosts(): Observable<any> {
+    const url = `${this.apiUrl}/popularPosts`;
+    return this.httpClient.get(url)
+      .do(res => res = this.posts);
+  }
+  
+  /**
    * Get single post.
    *
    * @param genreSlug

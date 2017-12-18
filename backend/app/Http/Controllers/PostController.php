@@ -71,6 +71,11 @@ class PostController extends Controller
         return response()->json(['data' => $posts]);
     }
 
+    /**
+     * Display a list of 5 popular posts with most number of comments.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function popularPosts()
     {
 //        $posts = Post::withCount('comments')

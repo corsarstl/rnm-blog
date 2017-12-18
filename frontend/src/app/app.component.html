@@ -1,12 +1,15 @@
 <rnm-navbar></rnm-navbar>
+
 <div class="container">
     <div class="row">
         <rnm-slider></rnm-slider>
     </div>
+
     <div class="row mt-4">
         <div class="col-md-9">
             <router-outlet></router-outlet>
         </div>
+
         <div class="col-md-3 mt-4">
             <div class="row">
                 <div class="col-md-12">
@@ -30,17 +33,10 @@
                         </div>
                     </div>
                 </div>
+
                 <!--recent articles-->
-                <div class="col-md-12 mt-4 card">
-                    <h3>Recent articles</h3>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                </div>
+                <rnm-popular-posts></rnm-popular-posts>
+
                 <!--popular tags with article count-->
                 <div class="col-md-12 mt-4 card">
                     <h3>Tags</h3>
@@ -54,17 +50,7 @@
                     <p>some tag (30)</p>
                     <p>some tag (30)</p>
                 </div>
-                <!--hot posts having most number of comments-->
-                <div class="col-md-12 mt-4 card">
-                    <h3>Hot topics</h3>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                    <p>A explicabo voluptates at sed nemo et.</p>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
-
