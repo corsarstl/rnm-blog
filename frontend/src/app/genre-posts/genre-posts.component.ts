@@ -40,7 +40,7 @@ export class GenrePostsComponent implements OnInit {
   getPostsByGenre(genreSlug) {
     this.postService.postsByGenre(genreSlug)
       .subscribe(data => {
-        this.posts = data['data'][0]['posts'];
+        this.posts = data['data'];
         console.log(this.posts);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

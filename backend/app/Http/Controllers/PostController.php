@@ -20,13 +20,18 @@ class PostController extends Controller
      */
     public function indexByGenre(Request $request)
     {
-        $posts = Genre::with([
-            'posts' => function ($q) {
-                $q->with('band')
-                    ->orderBy('id', 'desc')
-                    ->get();
-            }])
-            ->where('slug', $request->genreSlug)
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'b.slug as bandSlug',
+                'g.slug as genreSlug'
+            )
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->where('g.slug', $request->genreSlug)
+            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->orderBy('postId', 'desc')
             ->get();
 
         return response()->json(['data' => $posts]);
@@ -40,12 +45,18 @@ class PostController extends Controller
      */
     public function indexByBand(Request $request)
     {
-        $posts = Band::with([
-            'posts' => function ($q) {
-                $q->orderBy('id', 'desc')
-                      ->get();
-            }])
-            ->where('slug', $request->bandSlug)
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'b.slug as bandSlug',
+                'g.slug as genreSlug'
+            )
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->where('b.slug', $request->bandSlug)
+            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->orderBy('postId', 'desc')
             ->get();
 
         return response()->json(['data' => $posts]);

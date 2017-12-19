@@ -14,7 +14,6 @@ export class BandPostsComponent implements OnInit {
     bandSlug: string
   };
   bandName: string;
-  // Posts fetched from server.
   posts = [];
   errors = [];
   constructor(private postService: PostService,
@@ -43,8 +42,7 @@ export class BandPostsComponent implements OnInit {
   getPostsByBand(genreSlug, bandSlug) {
     this.postService.postsByBand(genreSlug, bandSlug)
       .subscribe(data => {
-        this.posts = data['data'][0]['posts'];
-        this.bandName = data['data'][0]['name'];
+        this.posts = data['data'];
         console.log(this.posts);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

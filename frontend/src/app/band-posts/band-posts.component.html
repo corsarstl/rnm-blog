@@ -1,9 +1,3 @@
-<h2>{{ bandName }}</h2>
+<h2>{{ bandUrl.bandSlug | titleCase }}</h2>
 
-<ul *ngFor="let post of posts">
-  <li>
-    <a routerLink="/{{ bandUrl.genreSlug }}/{{ bandName | kebabCase }}/{{ post.id }}/{{ post.title | kebabCase }}">
-      {{ post.title }}
-    </a>
-  </li>
-</ul>
+<rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
