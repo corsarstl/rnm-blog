@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { GenrePostsComponent } from './genre-posts/genre-posts.component';
 import { BandPostsComponent } from './band-posts/band-posts.component';
 import { PostComponent } from './post/post.component';
+import { TagPostsComponent } from './tag-posts/tag-posts.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'genres/:genreSlug', component: GenrePostsComponent },
+  { path: 'tags/:tagId/:tagSlug', component: TagPostsComponent },
   { path: ':genreSlug/:bandSlug', component: BandPostsComponent },
   { path: ':genreSlug/:bandSlug/:postId/:postSlug', component: PostComponent },
   { path: '**', component: PageNotFoundComponent }

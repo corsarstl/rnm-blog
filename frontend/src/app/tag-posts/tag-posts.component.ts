@@ -4,13 +4,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'rnm-genre-posts',
-  templateUrl: './genre-posts.component.html',
-  styleUrls: ['./genre-posts.component.css']
+  selector: 'rnm-tag-posts',
+  templateUrl: './tag-posts.component.html',
+  styleUrls: ['./tag-posts.component.css']
 })
-export class GenrePostsComponent implements OnInit {
-  genreUrl: {
-    genreSlug: string
+export class TagPostsComponent implements OnInit {
+  tagUrl: {
+    tagId: number;
+    tagSlug: string;
   };
   posts = [];
   errors = [];
@@ -19,28 +20,30 @@ export class GenrePostsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.genreUrl = {
-      genreSlug: this.route.snapshot.params['genreSlug']
+    this.tagUrl = {
+      tagId: this.route.snapshot.params['tagId'],
+      tagSlug: this.route.snapshot.params['tagSlug']
     };
 
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.genreUrl.genreSlug = params['genreSlug'];
-          this.getPostsByGenre(this.genreUrl.genreSlug);
+          this.tagUrl.tagId = params['tagId'];
+          this.getPostsByTag(this.tagUrl.tagId, this.tagUrl.tagSlug);
         }
       );
   }
 
   /**
-   * Get all posts for selected genre.
+   * Get all posts for selected tag.
    *
-   * @param genreSlug
+   * @param tagId
+   * @param tagSlug
    */
-  getPostsByGenre(genreSlug) {
-    this.postService.postsByGenre(genreSlug)
+  getPostsByTag(tagId, tagSlug) {
+    this.postService.postsByTag(tagId, tagSlug)
       .subscribe(data => {
-        this.posts = data['data'][0]['posts'];
+        this.posts = data['data'];
         console.log(this.posts);
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -62,5 +65,4 @@ export class GenrePostsComponent implements OnInit {
         }
       });
   }
-
 }

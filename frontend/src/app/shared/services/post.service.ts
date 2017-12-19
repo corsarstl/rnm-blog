@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { Post } from '../../post/post';
+import { PostDetails } from '../../post/post-details';
 import { HotPost } from '../../hot-posts/hot-post';
 import { PopularTag } from '../../popular-tags/popular-tag';
 
@@ -11,7 +11,7 @@ import { PopularTag } from '../../popular-tags/popular-tag';
 export class PostService {
   private apiUrl = 'http://rnmblog.com/api';
   posts = [];
-  post: Post;
+  post: PostDetails;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -52,11 +52,25 @@ export class PostService {
   /**
    * Get all posts for selected band.
    *
+   * @param genreSlug
    * @param bandSlug
    * @returns {Observable<any>}
    */
   postsByBand(genreSlug, bandSlug): Observable<any> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
+    return this.httpClient.get(url)
+      .do(res => res = this.posts);
+  }
+
+  /**
+   * Get all posts for selected tag.
+   *
+   * @param tagId
+   * @param tagSlug
+   * @returns {Observable<any>}
+   */
+  postsByTag(tagId, tagSlug): Observable<any> {
+    const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
     return this.httpClient.get(url)
       .do(res => res = this.posts);
   }
