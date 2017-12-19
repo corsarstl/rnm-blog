@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->integer('band_id');
             $table->timestamps();
+            $table->index('band_id');
         });
     }
 

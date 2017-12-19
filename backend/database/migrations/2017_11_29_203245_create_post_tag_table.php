@@ -16,6 +16,8 @@ class CreatePostTagTable extends Migration
         Schema::create('post_tag', function (Blueprint $table) {
             $table->integer('post_id');
             $table->integer('tag_id');
+            $table->index('post_id');
+            $table->index('tag_id');
         });
     }
 

@@ -18,6 +18,8 @@ class CreateBandsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('genre_id');
+            $table->index('slug');
+            $table->index('genre_id');
         });
     }
 
