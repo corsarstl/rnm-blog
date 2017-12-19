@@ -5,8 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { GenreComponent } from './genre/genre.component';
-import { BandComponent } from './band/band.component';
+import { GenrePostsComponent } from './genre-posts/genre-posts.component';
+import { BandPostsComponent } from './band-posts/band-posts.component';
 import { PostComponent } from './post/post.component';
 
 const appRoutes: Routes = [
@@ -14,8 +14,8 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'genres/:genreSlug', component: GenreComponent },
-  { path: ':genreSlug/:bandSlug', component: BandComponent },
+  { path: 'genres/:genreSlug', component: GenrePostsComponent },
+  { path: ':genreSlug/:bandSlug', component: BandPostsComponent },
   { path: ':genreSlug/:bandSlug/:postId/:postSlug', component: PostComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

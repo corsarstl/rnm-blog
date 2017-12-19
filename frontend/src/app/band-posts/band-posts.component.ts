@@ -4,11 +4,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'rnm-band',
-  templateUrl: './band.component.html',
-  styleUrls: ['./band.component.css']
+  selector: 'rnm-band-posts',
+  templateUrl: './band-posts.component.html',
+  styleUrls: ['./band-posts.component.css']
 })
-export class BandComponent implements OnInit {
+export class BandPostsComponent implements OnInit {
   bandUrl: {
     genreSlug: string,
     bandSlug: string

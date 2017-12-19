@@ -4,11 +4,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'rnm-genre',
-  templateUrl: './genre.component.html',
-  styleUrls: ['./genre.component.css']
+  selector: 'rnm-genre-posts',
+  templateUrl: './genre-posts.component.html',
+  styleUrls: ['./genre-posts.component.css']
 })
-export class GenreComponent implements OnInit {
+export class GenrePostsComponent implements OnInit {
   genreUrl: {
     genreSlug: string
   };

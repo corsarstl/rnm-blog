@@ -15,9 +15,9 @@ import { AuthService } from './shared/services/auth.service';
 import { NavbarService } from './navbar/navbar.service';
 import { TitleCasePipe } from './shared/pipes/title-case.pipe';
 import { PostService } from './shared/services/post.service';
-import { GenreComponent } from './genre/genre.component';
+import { GenrePostsComponent } from './genre-posts/genre-posts.component';
 import { KebabCasePipe } from './shared/pipes/kebab-case.pipe';
-import { BandComponent } from './band/band.component';
+import { BandPostsComponent } from './band-posts/band-posts.component';
 import { PostComponent } from './post/post.component';
 import { SliderComponent } from './slider/slider.component';
 import { PopularTagsComponent } from './popular-tags/popular-tags.component';
@@ -32,9 +32,9 @@ import { HotPostsComponent } from './hot-posts/hot-posts.component';
     RegisterComponent,
     NavbarComponent,
     TitleCasePipe,
-    GenreComponent,
+    GenrePostsComponent,
     KebabCasePipe,
-    BandComponent,
+    BandPostsComponent,
     PostComponent,
     SliderComponent,
     HotPostsComponent,
