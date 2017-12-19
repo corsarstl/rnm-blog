@@ -37,7 +37,7 @@ class TagsTableSeeder extends Seeder
             'Brooklyn',
             'Artist',
             'Singer Life',
-            'Vocals ',
+            'Vocals',
             'Guitar',
             'Guitar Solo',
             'New Artist',

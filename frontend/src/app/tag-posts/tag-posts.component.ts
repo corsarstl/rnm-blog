@@ -29,6 +29,8 @@ export class TagPostsComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.tagUrl.tagId = params['tagId'];
+          this.tagUrl.tagSlug = params['tagSlug'];
+
           this.getPostsByTag(this.tagUrl.tagId, this.tagUrl.tagSlug);
         }
       );

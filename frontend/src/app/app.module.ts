@@ -23,6 +23,7 @@ import { SliderComponent } from './slider/slider.component';
 import { PopularTagsComponent } from './popular-tags/popular-tags.component';
 import { HotPostsComponent } from './hot-posts/hot-posts.component';
 import { TagPostsComponent } from './tag-posts/tag-posts.component';
+import { PostsListComponent } from './posts-list/posts-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TagPostsComponent } from './tag-posts/tag-posts.component';
     SliderComponent,
     HotPostsComponent,
     PopularTagsComponent,
-    TagPostsComponent
+    TagPostsComponent,
+    PostsListComponent
   ],
   imports: [
     BrowserModule,
