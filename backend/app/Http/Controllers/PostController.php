@@ -24,13 +24,13 @@ class PostController extends Controller
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
-                'b.slug as bandSlug',
+                'b.name as bandName',
                 'g.slug as genreSlug'
             )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('g.slug', $request->genreSlug)
-            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->groupBy('postId', 'postTitle', 'bandName', 'genreSlug')
             ->orderBy('postId', 'desc')
             ->get();
 
@@ -49,13 +49,13 @@ class PostController extends Controller
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
-                'b.slug as bandSlug',
+                'b.name as bandName',
                 'g.slug as genreSlug'
             )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('b.slug', $request->bandSlug)
-            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->groupBy('postId', 'postTitle', 'bandName', 'genreSlug')
             ->orderBy('postId', 'desc')
             ->get();
 
@@ -74,7 +74,7 @@ class PostController extends Controller
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
-                'b.slug as bandSlug',
+                'b.name as bandName',
                 'g.slug as genreSlug'
             )
             ->join('bands as b', 'b.id', 'p.band_id')
@@ -82,7 +82,7 @@ class PostController extends Controller
             ->join('post_tag as pt', 'p.id', 'pt.post_id')
             ->join('tags as t', 't.id', 'pt.tag_id')
             ->where('t.id', $request->tagId)
-            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
+            ->groupBy('postId', 'postTitle', 'bandName', 'genreSlug')
             ->orderBy('postId', 'desc')
             ->get();
 

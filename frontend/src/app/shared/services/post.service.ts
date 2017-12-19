@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { PostDetails } from '../../post/post-details';
 import { HotPost } from '../../hot-posts/hot-post';
 import { PopularTag } from '../../popular-tags/popular-tag';
+import { PostsListItem } from '../../posts-list/posts-list-item';
 
 @Injectable()
 export class PostService {
@@ -41,12 +42,13 @@ export class PostService {
    * Get all posts for selected genre.
    *
    * @param genreSlug
-   * @returns {Observable<any>}
+   * @returns {Observable<PostsListItem[]>}
    */
-  postsByGenre(genreSlug): Observable<any> {
+  postsByGenre(genreSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
     return this.httpClient.get(url)
-      .do(res => res = this.posts);
+      .map(res => res as PostsListItem[]);
+
   }
 
   /**
@@ -54,12 +56,13 @@ export class PostService {
    *
    * @param genreSlug
    * @param bandSlug
-   * @returns {Observable<any>}
+   * @returns {Observable<PostsListItem[]>}
    */
-  postsByBand(genreSlug, bandSlug): Observable<any> {
+  postsByBand(genreSlug, bandSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
     return this.httpClient.get(url)
-      .do(res => res = this.posts);
+      .map(res => res as PostsListItem[]);
+
   }
 
   /**
@@ -67,12 +70,13 @@ export class PostService {
    *
    * @param tagId
    * @param tagSlug
-   * @returns {Observable<any>}
+   * @returns {Observable<PostsListItem[]>}
    */
-  postsByTag(tagId, tagSlug): Observable<any> {
+  postsByTag(tagId, tagSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
     return this.httpClient.get(url)
-      .do(res => res = this.posts);
+      .map(res => res as PostsListItem[]);
+
   }
 
   /**

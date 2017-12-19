@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../shared/services/post.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PostsListItem } from '../posts-list/posts-list-item';
 
 @Component({
   selector: 'rnm-band-posts',
@@ -13,9 +14,9 @@ export class BandPostsComponent implements OnInit {
     genreSlug: string,
     bandSlug: string
   };
-  bandName: string;
-  posts = [];
+  posts: PostsListItem[] = [];
   errors = [];
+
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
 

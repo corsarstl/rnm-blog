@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../shared/services/post.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PostsListItem } from '../posts-list/posts-list-item';
 
 @Component({
   selector: 'rnm-genre-posts',
@@ -12,7 +13,7 @@ export class GenrePostsComponent implements OnInit {
   genreUrl: {
     genreSlug: string
   };
-  posts = [];
+  posts: PostsListItem[] = [];
   errors = [];
 
   constructor(private postService: PostService,
