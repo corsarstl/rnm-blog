@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../shared/services/post.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SliderPost } from './slider-post';
 
 @Component({
   selector: 'rnm-slider',
@@ -8,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
-  posts = [];
+  imageUrl = this.postService.imageUrl;
+  posts: SliderPost[] = [];
   errors = [];
 
   constructor(private postService: PostService) { }

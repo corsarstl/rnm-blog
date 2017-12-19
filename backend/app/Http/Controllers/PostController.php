@@ -96,14 +96,20 @@ class PostController extends Controller
      */
     public function indexForSlider()
     {
-        $posts = Post::with(['band.genre'])
-            ->orderBy('id', 'desc')
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'p.image as postImage',
+                'b.slug as bandSlug',
+                'g.slug as genreSlug'
+            )
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->groupBy('postId', 'postTitle', 'postImage', 'bandSlug', 'genreSlug')
+            ->orderBy('postId', 'desc')
             ->take(3)
             ->get();
-
-        foreach ($posts as $post) {
-            $post['image'] = Post::POST_IMAGE_URL. $post->image;
-        }
 
         return response()->json(['data' => $posts]);
     }

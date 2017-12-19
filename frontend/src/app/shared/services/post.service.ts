@@ -7,10 +7,12 @@ import { PostDetails } from '../../post/post-details';
 import { HotPost } from '../../hot-posts/hot-post';
 import { PopularTag } from '../../popular-tags/popular-tag';
 import { PostsListItem } from '../../posts-list/posts-list-item';
+import { SliderPost } from '../../slider/slider-post';
 
 @Injectable()
 export class PostService {
   private apiUrl = 'http://rnmblog.com/api';
+  imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
   posts = [];
   post: PostDetails;
 
@@ -30,12 +32,12 @@ export class PostService {
   /**
    * Get 3 latest posts for slider.
    *
-   * @returns {Observable<any>}
+   * @returns {Observable<SliderPost[]>}
    */
-  postsForSlider(): Observable<any> {
+  postsForSlider(): Observable<SliderPost[]> {
     const url = `${this.apiUrl}/slider`;
     return this.httpClient.get(url)
-      .do(res => res = this.posts);
+      .map(res => res as SliderPost[]);
   }
 
   /**

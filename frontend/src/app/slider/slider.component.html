@@ -11,17 +11,18 @@
            class="{{ i > 0 ? 'carousel-item' : 'carousel-item active'}}">
 
         <img class="d-block w-100"
-             src="{{ post.image }}"
+             src="{{ imageUrl }}{{ post.postImage }}"
              alt="post slide">
 
         <div class="carousel-caption">
 
-          <p>{{ post.title }}</p>
+          <p>{{ post.postTitle }}</p>
 
           <div class="carousel-action">
 
-            <a routerLink="/{{ post.band.genre.slug }}/{{ post.band.slug }}/{{ post.id }}/{{ post.title | kebabCase }}"
-               class="btn btn-primary">Learn More
+            <a routerLink="/{{ post.genreSlug }}/{{ post.bandSlug }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}"
+               class="btn btn-primary">
+              Learn More
             </a>
           </div>
         </div>
