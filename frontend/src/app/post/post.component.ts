@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../shared/services/post.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Post } from './post';
+import { PostDetails } from './post-details';
 
 @Component({
   selector: 'rnm-post',
@@ -17,7 +17,7 @@ export class PostComponent implements OnInit {
     postSlug: string;
   };
 
-  post: Post;
+  post: PostDetails;
   errors = [];
 
   constructor(private postService: PostService,
