@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { PostDetails } from '../../post/post-details';
 import { HotPost } from '../../hot-posts/hot-post';
 import { PopularTag } from '../../popular-tags/popular-tag';
 import { PostsListItem } from '../../posts-list/posts-list-item';
@@ -14,7 +13,7 @@ export class PostService {
   private apiUrl = 'http://rnmblog.com/api';
   imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
   posts = [];
-  post: PostDetails;
+  post;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -112,6 +111,6 @@ export class PostService {
   singlePost(genreSlug, bandSlug, postId, postSlug): Observable<any> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
     return this.httpClient.get(url)
-      .do(res => res = this.post);
+      .do(res => this.post = res);
   }
 }

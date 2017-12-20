@@ -178,9 +178,9 @@ class PostController extends Controller
             ->orderBy('commentId', 'desc')
             ->get();
 
-        $post['postInfo'] = $postInfo;
-        $post['postTags'] = $tags;
-        $post['postComments'] = $comments;
+        $post['info'] = $postInfo[0];
+        $post['tags'] = $tags;
+        $post['comments'] = $comments;
 
         return response()->json(['data' => $post]);
     }

@@ -1,22 +1,21 @@
 export class PostDetails {
-  id: number;
-  title: string;
-  content: string;
-  image: string;
-  band: {
-    name: string;
+  info: {
+    postId: number;
+    postTitle: string;
+    postContent: string;
+    postImage: string;
+    bandName: string;
+    genreName: string;
   };
   tags: {
-    id: number;
-    name: string;
-  }[];
-  // tags: string[];
+    tagId: number;
+    tagName: string;
+  } [];
   comments: {
-    id: number;
-    body: string;
-    created_at: string;
-    user: {
-      name: string;
-    }
-  }[];
+    commentId: number;
+    commentBody: string;
+    commentCreatedAt: string;
+    userId: number;
+    userName: string;
+  } [];
 }

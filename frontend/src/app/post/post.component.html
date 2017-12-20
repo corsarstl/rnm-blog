@@ -1,19 +1,31 @@
-<h2>{{ post.title }}</h2>
+<h2>{{ post.info.postTitle }}</h2>
 
-<img src="{{ post.image }}" class="img-fluid" alt="post image">
+<img src="{{ imageUrl }}{{ post.info.postImage }}" class="img-fluid" alt="post image">
 
-<h4>Genre: <a routerLink="/genres/{{ postUrl.genreSlug }}">{{ postUrl.genreSlug | titleCase }}</a></h4>
-<h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.band.name }}</a></h5>
-<h6 *ngIf="post.tags.length > 0">Tags: <span *ngFor="let tag of post.tags">{{ tag.name }} | </span></h6>
+<h4>Genre: <a routerLink="/genres/{{ postUrl.genreSlug }}">{{ post.info.genreName | titleCase }}</a></h4>
+<h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.info.bandName }}</a></h5>
+
+<div *ngIf="post.tags.length > 0">
+  <h6>
+    Tags:
+    <span *ngFor="let tag of post.tags">
+    <a routerLink="/tags/{{ tag.tagId }}/{{ tag.tagName | kebabCase }}">
+      {{ tag.tagName }}
+    </a>
+    |
+  </span>
+  </h6>
+</div>
+
 <hr>
-{{ post.content }}
+{{ post.info.postContent }}
 <hr>
 
 <div class="card mb-3" *ngFor="let comment of post.comments">
   <div class="card-header">
-    <p>{{ comment.created_at | date:'short'}} by <strong>{{ comment.user.name }}</strong></p>
+    <p>{{ comment.commentCreatedAt | date:'short'}} by <strong>{{ comment.userName }}</strong></p>
   </div>
   <div class="card-body">
-    <p class="card-text">{{ comment.body }}</p>
+    <p class="card-text">{{ comment.commentBody }}</p>
   </div>
 </div>

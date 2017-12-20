@@ -10,6 +10,8 @@ import { PostDetails } from './post-details';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  imageUrl = this.postService.imageUrl;
+
   postUrl: {
     genreSlug: string;
     bandSlug: string;
