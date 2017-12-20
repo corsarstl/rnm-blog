@@ -4,4 +4,11 @@ PHP Academy course project
 Bugs:
 1. Frontend=>register.component.html=>line 143:
 'Passwords don't match' is not shown, if ValidatePasswordConfirmation fails.
-2. Frontend=>navbar.component.html=>line 5: Username is not displayed in navbar after user register or login.
+2. When show single post get error: ERROR TypeError: Cannot read property 'some value' of undefined 
+at Object.View_PostComponent_0._co as updateDirectives. 
+
+Possible solutions to asynchronous method: 
+
+https://reformatcode.com/code/typescript/typeerror-cannot-read-property-39taxtypeid39-of-undefined-at-objectviewfulledittaxcomponent0co-as-updatedirectives
+
+https://reformatcode.com/code/typescript/quoterror-uncaught-in-promise-typeerror-cannot-read-property-39length39-of-undefinedquot
