@@ -7,6 +7,7 @@ export class PostDetails {
     name: string;
   };
   tags: {
+    id: number;
     name: string;
   }[];
   // tags: string[];

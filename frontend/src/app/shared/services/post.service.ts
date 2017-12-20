@@ -50,7 +50,6 @@ export class PostService {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
     return this.httpClient.get(url)
       .map(res => res as PostsListItem[]);
-
   }
 
   /**
@@ -64,7 +63,6 @@ export class PostService {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
     return this.httpClient.get(url)
       .map(res => res as PostsListItem[]);
-
   }
 
   /**
@@ -78,7 +76,6 @@ export class PostService {
     const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
     return this.httpClient.get(url)
       .map(res => res as PostsListItem[]);
-
   }
 
   /**
@@ -89,7 +86,6 @@ export class PostService {
   hotPosts(): Observable<HotPost[]> {
     const url = `${this.apiUrl}/hotPosts`;
     return this.httpClient.get(url)
-      // .do(res => res = this.posts);
       .map(res => res as HotPost[]);
   }
 
