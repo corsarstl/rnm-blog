@@ -1,69 +1,81 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-            <h3>Login</h3>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
 
-            <form [formGroup]="loginForm"
-                  (ngSubmit)="login()"
-                  novalidate>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
 
-                <div class="alert alert-danger" *ngIf="dataInvalid">
-                    <p *ngFor="let error of formErrors">{{ error }}</p>
-                </div>
+            <div class="modal-body">
 
-                <!--FormControlName - Email-->
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email"
-                           class="form-control"
-                           [ngClass]="{'is-invalid':loginForm.get('email').invalid &&
+                <form [formGroup]="loginForm"
+                      (ngSubmit)="login()"
+                      novalidate>
+
+                    <div class="alert alert-danger" *ngIf="dataInvalid">
+                        <p *ngFor="let error of formErrors">{{ error }}</p>
+                    </div>
+
+                    <!--FormControlName - Email-->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email"
+                               class="form-control"
+                               [ngClass]="{'is-invalid':loginForm.get('email').invalid &&
                                                     loginForm.get('email').touched}"
-                           id="email"
-                           name="email"
-                           formControlName="email"
-                           placeholder="Your email here."
-                           required>
+                               id="email"
+                               name="email"
+                               formControlName="email"
+                               placeholder="Your email here."
+                               required>
 
-                    <span *ngIf="loginForm.get('email').errors?.required &&
+                        <span *ngIf="loginForm.get('email').errors?.required &&
                                  loginForm.get('email').touched"
-                          class="invalid-feedback">
+                              class="invalid-feedback">
                         Email is required.
                     </span>
-                </div>
-                <!--End of FormControlName - Email-->
+                    </div>
+                    <!--End of FormControlName - Email-->
 
-                <!--FormControlName - Password-->
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password"
-                           class="form-control"
-                           [ngClass]="{'is-invalid':loginForm.get('password').invalid &&
+                    <!--FormControlName - Password-->
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password"
+                               class="form-control"
+                               [ngClass]="{'is-invalid':loginForm.get('password').invalid &&
                                                     loginForm.get('password').touched}"
-                           id="password"
-                           name="password"
-                           formControlName="password"
-                           placeholder="Type your password.">
+                               id="password"
+                               name="password"
+                               formControlName="password"
+                               placeholder="Type your password.">
 
-                    <span *ngIf="loginForm.get('password').errors?.required &&
+                        <span *ngIf="loginForm.get('password').errors?.required &&
                                  loginForm.get('password').touched"
-                          class="invalid-feedback">
+                              class="invalid-feedback">
                         Password is required.
                     </span>
-                </div>
-                <!--End of FormControlName - Password-->
+                    </div>
+                    <!--End of FormControlName - Password-->
+
+                    <div class="form-group">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-lg"
+                                [disabled]="loginForm.invalid">
+                            Login
+                        </button>
+                    </div>
+                </form>
 
                 <div class="form-group">
-                    <button type="submit"
-                            class="btn btn-success"
-                            [disabled]="loginForm.invalid">
-                        Login
-                    </button>
+                    <p class="text-center">Don't have an account? </p>
+                    <p class="text-center">Please register <a routerLink="/register">here</a>.</p>
                 </div>
-            </form>
-
-            <div class="form-group">
-                <p>Don't have an account? Please register <a routerLink="/register">here</a>.</p>
             </div>
+
+            <!--<div class="modal-footer">-->
+                <!--<a href="#">Forgot Password?</a>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

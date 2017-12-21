@@ -59,16 +59,17 @@
                 </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Login">
-                    <a routerLink="/login"
-                       class="nav-link"
+                    <a href="#myModal" class="trigger-btn nav-link" data-toggle="modal"
+                       (click)="showLoginForm()"
                        *ngIf="!authService.isLoggedIn">
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Register">
-                    <a routerLink="/register"
+                    <a href="#myModal" class="trigger-btn nav-link" data-toggle="modal"
                        class="nav-link"
+                       (click)="showRegisterForm()"
                        *ngIf="!authService.isLoggedIn">
                         <i class="fas fa-user-plus"></i>
                     </a>
@@ -86,3 +87,7 @@
         </div>
     </nav>
 </div>
+
+<rnm-login *ngIf="loginForm"></rnm-login>
+
+<rnm-register *ngIf="registerForm"></rnm-register>

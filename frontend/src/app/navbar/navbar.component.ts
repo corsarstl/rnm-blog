@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
   menuItems: MenuItem[] = [];
   userName = '';
+  loginForm = false;
+  registerForm = false;
+
 
   constructor(private authService: AuthService,
               private navbarService: NavbarService,
@@ -32,6 +35,14 @@ export class NavbarComponent implements OnInit {
       .subscribe(data => {
         this.menuItems = data['data'];
       });
+  }
+
+  showLoginForm() {
+    this.loginForm = true;
+  }
+
+  showRegisterForm() {
+    this.registerForm = true;
   }
 
   /**
