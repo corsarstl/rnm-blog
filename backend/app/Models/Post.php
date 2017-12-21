@@ -49,6 +49,26 @@ class Post extends Model
     }
 
     /**
+     * Get 5 latest posts for each genre.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function showLatest5PostsPerGenre()
+    {
+        $posts = Genre::with([
+            'posts' => function($query) {
+                $query->with('band')
+                    ->take(30)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }])
+            ->orderBy('name')
+            ->get();
+
+        return $posts;
+    }
+
+    /**
      * Display a list of posts for selected genre.
      *
      * @param $genreSlug

@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   getMenuItems() {
     this.navbarService.getMenuItems()
       .subscribe(data => {
-        this.menuItems = data['menuItems'];
+        this.menuItems = data['data'];
       }, (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.

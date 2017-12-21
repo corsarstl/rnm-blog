@@ -32,4 +32,18 @@ class Genre extends Model
     {
         return $this->hasManyThrough('App\Models\Post', 'App\Models\Band');
     }
+
+    /**
+     * Get all genres with corresponding bands for menu in navbar.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function showGenresBandsForMenu()
+    {
+        $genres = Genre::with(['bands' => function($q) {
+            $q->orderBy('name')->get();
+        }])->orderBy('name')->get();
+
+        return $genres;
+    }
 }
