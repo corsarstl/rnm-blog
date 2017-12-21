@@ -79,25 +79,4 @@ export class AuthService {
       console.log(res);
     });
   }
-
-  /**
-   * Close modal with login form.
-   */
-  closeLoginForm() {
-    this.showLoginForm = false;
-    this.showRegisterForm = true;
-  }
-
-  // removeModalBackdrop() {
-  //   let elem: any = document.getElementsByClassName('modal-backdrop').outerHTML = '';
-  //   // elem.parentElement.removeChild(elem);
-  // }
-
-
-  /**
-   * Close modal with register form.
-   */
-  closeRegisterForm() {
-    this.showRegisterForm = false;
-  }
 }
