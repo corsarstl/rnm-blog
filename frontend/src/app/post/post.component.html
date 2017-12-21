@@ -6,15 +6,15 @@
 <h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.info.bandName }}</a></h5>
 
 <div *ngIf="post.tags.length > 0">
-  <h6>
+  <h5>
     Tags:
     <span *ngFor="let tag of post.tags">
-    <a routerLink="/tags/{{ tag.tagId }}/{{ tag.tagName | kebabCase }}">
-      {{ tag.tagName }}
-    </a>
-    |
-  </span>
-  </h6>
+      <a routerLink="/tags/{{ tag.tagId }}/{{ tag.tagName | kebabCase }}"
+         class="badge badge-info">
+        {{ tag.tagName }}
+      </a>
+    </span>
+  </h5>
 </div>
 
 <hr>

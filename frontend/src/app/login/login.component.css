@@ -3,7 +3,7 @@ body {
 }
 .modal-login {
     color: #636363;
-    width: 350px;
+    width: 400px;
 }
 .modal-login .modal-content {
     padding: 20px;
@@ -19,11 +19,8 @@ body {
     text-align: center;
     font-size: 26px;
 }
-.modal-login  .form-group {
+.modal-login .form-group {
     position: relative;
-}
-.modal-login .form-control {
-    padding-left: 40px;
 }
 .modal-login .form-control:focus {
     border-color: #00ce81;
@@ -60,8 +57,4 @@ body {
 }
 .modal-login .modal-footer a {
     color: #999;
-}
-.trigger-btn {
-    display: inline-block;
-    margin: 100px auto;
 }

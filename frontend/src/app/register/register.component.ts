@@ -17,8 +17,6 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   dataInvalid = false;
   formErrors = [];
-  // For future loader component
-  // formSubmitting = false;
 
   constructor (public authService: AuthService,
                public router: Router,
@@ -72,7 +70,6 @@ export class RegisterComponent implements OnInit {
     }
     return null;
   }
-
 
   /**
    * Get registration data and redirect to home page.

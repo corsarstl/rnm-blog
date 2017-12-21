@@ -13,8 +13,6 @@ import { TagPostsComponent } from './tag-posts/tag-posts.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'genres/:genreSlug', component: GenrePostsComponent },
   { path: 'tags/:tagId/:tagSlug', component: TagPostsComponent },
   { path: ':genreSlug/:bandSlug', component: BandPostsComponent },

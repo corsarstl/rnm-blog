@@ -13,9 +13,6 @@ export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
   menuItems: MenuItem[] = [];
   userName = '';
-  loginForm = false;
-  registerForm = false;
-
 
   constructor(private authService: AuthService,
               private navbarService: NavbarService,
@@ -37,17 +34,22 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  showLoginForm() {
-    this.loginForm = true;
+  /**
+   * Show modal with login form.
+   */
+  openLoginForm() {
+    this.authService.showLoginForm = true;
   }
 
-  showRegisterForm() {
-    this.registerForm = true;
+  /**
+   * Show modal with register form.
+   */
+  openRegisterForm() {
+    this.authService.showRegisterForm = true;
   }
 
   /**
    * Log user out. Delete all info about user on client.
-   *
    */
   logout() {
     this.authService.logout();

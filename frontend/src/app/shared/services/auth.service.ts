@@ -16,6 +16,9 @@ export class AuthService {
   // Name of current logged in user.
   userName = '';
 
+  showLoginForm = false;
+  showRegisterForm = false;
+
   constructor(private httpClient: HttpClient) {
     if (this.authData != null) {
       if (this.authData.token) {
@@ -40,6 +43,7 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res));
+        // this.showRegisterForm = false;
       });
   }
 
@@ -57,12 +61,13 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res));
+        // this.showLoginForm = false;
+        // this.removeModalBackdrop();
       });
   }
 
   /**
    * Log user out. Delete all info about user on client.
-   *
    */
   logout(): void {
     const url = `${this.apiUrl}/logout`;
@@ -73,5 +78,26 @@ export class AuthService {
       localStorage.clear();
       console.log(res);
     });
+  }
+
+  /**
+   * Close modal with login form.
+   */
+  closeLoginForm() {
+    this.showLoginForm = false;
+    this.showRegisterForm = true;
+  }
+
+  // removeModalBackdrop() {
+  //   let elem: any = document.getElementsByClassName('modal-backdrop').outerHTML = '';
+  //   // elem.parentElement.removeChild(elem);
+  // }
+
+
+  /**
+   * Close modal with register form.
+   */
+  closeRegisterForm() {
+    this.showRegisterForm = false;
   }
 }
