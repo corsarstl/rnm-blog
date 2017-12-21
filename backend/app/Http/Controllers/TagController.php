@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,15 +16,7 @@ class TagController extends Controller
      */
     public function popularTags()
     {
-        $tags = DB::table('tags as t')
-            ->select(
-                't.id as tagId',
-                't.name as tagName',
-                DB::raw('COUNT(pt.post_id) as postsCount'))
-            ->join('post_tag as pt', 't.id', 'pt.tag_id')
-            ->groupBy('tagId', 'tagName')
-            ->orderBy('postsCount', 'desc')
-            ->get();
+        $tags = Tag::showPopularTags();
 
         return response()->json(['data' => $tags]);
     }
