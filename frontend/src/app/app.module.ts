@@ -24,6 +24,7 @@ import { PopularTagsComponent } from './popular-tags/popular-tags.component';
 import { HotPostsComponent } from './hot-posts/hot-posts.component';
 import { TagPostsComponent } from './tag-posts/tag-posts.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { ErrorsService } from './shared/services/errors.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PostsListComponent } from './posts-list/posts-list.component';
   providers: [
     AuthService,
     NavbarService,
-    PostService
+    PostService,
+    ErrorsService
   ],
   bootstrap: [ AppComponent ]
 })

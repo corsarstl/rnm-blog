@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import { HotPost } from '../../hot-posts/hot-post';
 import { PopularTag } from '../../popular-tags/popular-tag';
 import { PostsListItem } from '../../posts-list/posts-list-item';
 import { SliderPost } from '../../slider/slider-post';
+import { ErrorsService } from './errors.service';
 
 @Injectable()
 export class PostService {
@@ -15,7 +17,8 @@ export class PostService {
   posts = [];
   post;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private errorsService: ErrorsService) {}
 
   /**
    * Get 5 latest posts for each genre for home page.
@@ -25,7 +28,8 @@ export class PostService {
   latest5PostsPerGenre(): Observable<any> {
     const url = `${this.apiUrl}/home`;
     return this.httpClient.get(url)
-      .do(res => res = this.posts);
+      .do(res => this.post = res)
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -36,7 +40,8 @@ export class PostService {
   postsForSlider(): Observable<SliderPost[]> {
     const url = `${this.apiUrl}/slider`;
     return this.httpClient.get(url)
-      .map(res => res as SliderPost[]);
+      .map(res => res as SliderPost[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -48,7 +53,8 @@ export class PostService {
   postsByGenre(genreSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
     return this.httpClient.get(url)
-      .map(res => res as PostsListItem[]);
+      .map(res => res as PostsListItem[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -61,7 +67,8 @@ export class PostService {
   postsByBand(genreSlug, bandSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
     return this.httpClient.get(url)
-      .map(res => res as PostsListItem[]);
+      .map(res => res as PostsListItem[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -74,7 +81,8 @@ export class PostService {
   postsByTag(tagId, tagSlug): Observable<PostsListItem[]> {
     const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
     return this.httpClient.get(url)
-      .map(res => res as PostsListItem[]);
+      .map(res => res as PostsListItem[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -85,7 +93,8 @@ export class PostService {
   hotPosts(): Observable<HotPost[]> {
     const url = `${this.apiUrl}/hotPosts`;
     return this.httpClient.get(url)
-      .map(res => res as HotPost[]);
+      .map(res => res as HotPost[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -96,7 +105,8 @@ export class PostService {
   getPopularTags(): Observable<PopularTag[]> {
     const url = `${this.apiUrl}/popularTags`;
     return this.httpClient.get(url)
-      .map(res => res as PopularTag[]);
+      .map(res => res as PopularTag[])
+      .catch(this.errorsService.handleError);
   }
 
   /**
@@ -111,6 +121,7 @@ export class PostService {
   singlePost(genreSlug, bandSlug, postId, postSlug): Observable<any> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
     return this.httpClient.get(url)
-      .do(res => this.post = res);
+      .do(res => this.post = res)
+      .catch(this.errorsService.handleError);
   }
 }

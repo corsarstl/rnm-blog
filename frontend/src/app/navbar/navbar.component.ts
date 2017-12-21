@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../shared/services/auth.service';
 import { NavbarService } from './navbar.service';
 import { MenuItem } from './menu-item';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'rnm-navbar',
@@ -13,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
   menuItems: MenuItem[] = [];
-  errors = [];
   userName = '';
 
   constructor(private authService: AuthService,
@@ -33,24 +31,6 @@ export class NavbarComponent implements OnInit {
     this.navbarService.getMenuItems()
       .subscribe(data => {
         this.menuItems = data['data'];
-      }, (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          this.errors.push(err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          if (err.status === 0) {
-            this.errors.push('Please check your backend server.');
-          } else {
-            const errors = err.error;
-            for (const key in errors) {
-              if (errors.hasOwnProperty(key)) {
-                this.errors.push(errors[key]);
-              }
-            }
-          }
-        }
       });
   }
 
