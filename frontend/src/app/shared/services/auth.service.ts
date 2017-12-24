@@ -7,8 +7,6 @@ import 'rxjs/add/operator/do';
 export class AuthService {
   private apiUrl = 'http://rnmblog.com/api';
   isLoggedIn = false;
-  // Redirect url after registration and login.
-  userRedirectUrl = 'home';
   // Data containing user name, email, id and valid token.
   authData = JSON.parse(localStorage.getItem('authData'));
   // Id of current logged in user.
@@ -43,7 +41,6 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res));
-        // this.showRegisterForm = false;
       });
   }
 
@@ -61,8 +58,6 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res));
-        // this.showLoginForm = false;
-        // this.removeModalBackdrop();
       });
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { NavbarService } from './navbar.service';
 import { MenuItem } from './menu-item';
@@ -15,8 +14,7 @@ export class NavbarComponent implements OnInit {
   userName = '';
 
   constructor(private authService: AuthService,
-              private navbarService: NavbarService,
-              private router: Router) {
+              private navbarService: NavbarService) {
     this.userName = this.authService.userName;
   }
 
@@ -53,6 +51,5 @@ export class NavbarComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
-    this.router.navigate([this.authService.userRedirectUrl]);
   }
 }

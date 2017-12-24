@@ -37,7 +37,13 @@
                         <span *ngIf="loginForm.get('email').errors?.required &&
                                  loginForm.get('email').touched"
                               class="invalid-feedback">
-                        Email is required.
+                            Email is required.
+                        </span>
+
+                        <span *ngIf="loginForm.get('email').errors?.pattern &&
+                                 loginForm.get('email').touched"
+                              class="invalid-feedback">
+                            Email is not a valid email address.
                         </span>
                     </div>
                     <!--End of FormControlName - Email-->
@@ -67,25 +73,16 @@
                                 class="btn btn-primary btn-block btn-lg"
                                 data-toggle="modal"
                                 data-target="#myLoginForm"
-                                data-backdrop="static"
-                                data-keyboard="false"
                                 [disabled]="loginForm.invalid">
                             Login
                         </button>
                     </div>
                 </form>
-
-                <div class="form-group">
-                    <p class="text-center">Don't have an account? </p>
-                    <p class="text-center">Please register
-                        <i class="fas fa-user-plus"></i>
-                    </p>
-                </div>
             </div>
 
             <!--<div class="modal-footer">-->
                 <!--<a href="#">Forgot Password?</a>-->
-            <!--</div> (click)="hideLoginForm()"-->
+            <!--</div>-->
         </div>
     </div>
 </div>

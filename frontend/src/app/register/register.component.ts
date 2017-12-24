@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
@@ -19,7 +18,6 @@ export class RegisterComponent implements OnInit {
   formErrors = [];
 
   constructor (public authService: AuthService,
-               public router: Router,
                private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -44,14 +42,6 @@ export class RegisterComponent implements OnInit {
         'password_confirmation': ['', Validators.required]},
         {validator: this.ValidatePasswordConfirmation.bind(this)})
     });
-
-    if (this.authService.isLoggedIn) {
-      // Get the redirect URL from auth service
-      // If no redirect has been set, use the default
-      const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'home';
-      // Redirect the user
-      this.router.navigate([redirect]);
-    }
   }
 
   /**
@@ -72,19 +62,12 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Get registration data and redirect to home page.
+   * Get registration data.
    * If fail, return errors for handling.
    */
   register() {
-    this.formErrors = [];
     this.authService.register(this.registerForm.value).subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from auth service
-        // If no redirect has been set, use the default
-        const redirect = this.authService.userRedirectUrl ? this.authService.userRedirectUrl : 'home';
-        // Redirect the user
-        this.router.navigate([redirect]);                         // Use promise and add ".then removeLoader"
-      }
+      this.authService.showRegisterForm = false;
     }, (err: HttpErrorResponse) => {
       this.dataInvalid = true;
       if (err.error instanceof Error) {
