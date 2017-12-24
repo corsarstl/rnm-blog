@@ -15,4 +15,4 @@ https://reformatcode.com/code/typescript/typeerror-cannot-read-property-39taxtyp
 
 https://reformatcode.com/code/typescript/quoterror-uncaught-in-promise-typeerror-cannot-read-property-39length39-of-undefinedquot
 
-***. Register and Login modals don't close, when submit (register or login) button is hit. Also need to switch between modals within them.
+***. Register and Login modals backend errors are displayed in closed modals.
