@@ -34,10 +34,10 @@ class ApiController extends Controller
             $user = auth()->user();
             $token = $user->createToken('login')->accessToken;
 
-            return response()->json([
+            return response()->json(['data' => [
                 'user'  => $user,
                 'token' => $token
-            ], 200);
+            ]], 200);
         }
 
         return response()->json(['message' => 'Please, check your credentials.'], 422);

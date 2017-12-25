@@ -29,9 +29,7 @@ Route::get('hotPosts', 'PostController@hotPosts');
 
 Route::get('popularTags', 'TagController@popularTags');
 
-
-
-
-
-
-
+// Comments resource routes
+Route::post('comments', 'CommentController@store');
+Route::put('comments/{commentId}', 'CommentController@update');
+Route::delete('comments/{commentId}', 'CommentController@destroy');

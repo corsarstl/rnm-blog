@@ -32,4 +32,19 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Post');
     }
+
+    /**
+     * Store a newly created comment.
+     *
+     * @param $request
+     */
+    public function storeComment($request)
+    {
+        $this->body = $request->commentBody;
+        $this->post_id = $request->postId;
+        $this->user_id = $request->userId;
+
+        $this->save();
+    }
 }
+

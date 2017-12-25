@@ -40,7 +40,7 @@ export class AuthService {
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;
-        localStorage.setItem('authData', JSON.stringify(res));
+        localStorage.setItem('authData', JSON.stringify(res['data']));
       });
   }
 
@@ -57,7 +57,7 @@ export class AuthService {
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;
-        localStorage.setItem('authData', JSON.stringify(res));
+        localStorage.setItem('authData', JSON.stringify(res['data']));
       });
   }
 
