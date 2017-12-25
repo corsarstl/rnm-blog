@@ -58,13 +58,18 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment.
      *
      * @param  int $commentId
      * @return \Illuminate\Http\Response
      */
     public function destroy($commentId)
     {
-        //
+        $comment = Comment::findOrFail($commentId);
+        $comment->delete();
+
+        $message = 'Your comment has been deleted';
+
+        return response()->json(['data' => $message]);
     }
 }
