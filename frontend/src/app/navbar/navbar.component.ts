@@ -11,12 +11,9 @@ import { MenuItem } from './menu-item';
 export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
   menuItems: MenuItem[] = [];
-  userName = '';
 
   constructor(private authService: AuthService,
-              private navbarService: NavbarService) {
-    this.userName = this.authService.userName;
-  }
+              private navbarService: NavbarService) { }
 
   ngOnInit() {
     this.getMenuItems();
