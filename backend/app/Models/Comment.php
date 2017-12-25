@@ -37,8 +37,9 @@ class Comment extends Model
      * Store a newly created comment.
      *
      * @param $request
+     * @return void
      */
-    public function storeComment($request)
+    public function create($request)
     {
         $this->body = $request->commentBody;
         $this->post_id = $request->postId;
