@@ -21,11 +21,4 @@
 {{ post.info.postContent }}
 <hr>
 
-<div class="card mb-3" *ngFor="let comment of post.comments">
-  <div class="card-header">
-    <p>{{ comment.commentCreatedAt | date:'short'}} by <strong>{{ comment.userName }}</strong></p>
-  </div>
-  <div class="card-body">
-    <p class="card-text">{{ comment.commentBody }}</p>
-  </div>
-</div>
+<rnm-comments-list [postId]="post.info.postId"></rnm-comments-list>

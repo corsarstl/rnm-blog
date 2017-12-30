@@ -25,6 +25,8 @@ import { HotPostsComponent } from './hot-posts/hot-posts.component';
 import { TagPostsComponent } from './tag-posts/tag-posts.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { ErrorsService } from './shared/services/errors.service';
+import { CommentComponent } from './post/comments/comment/comment.component';
+import { CommentsListComponent } from './post/comments/comments-list/comments-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ErrorsService } from './shared/services/errors.service';
     HotPostsComponent,
     PopularTagsComponent,
     TagPostsComponent,
-    PostsListComponent
+    PostsListComponent,
+    CommentComponent,
+    CommentsListComponent
   ],
   imports: [
     BrowserModule,
