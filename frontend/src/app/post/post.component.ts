@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../shared/services/post.service';
 import { PostDetails } from './post-details';
+import { CommentService } from './comments/comment.service';
 
 @Component({
   selector: 'rnm-post',
@@ -40,7 +41,8 @@ export class PostComponent implements OnInit {
             this.postUrl.genreSlug,
             this.postUrl.bandSlug,
             this.postUrl.postId,
-            this.postUrl.postSlug);
+            this.postUrl.postSlug
+          );
         }
       );
   }

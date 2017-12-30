@@ -11,7 +11,9 @@ export class CommentsListComponent implements OnInit {
   @Input() postId: number;
   comments: Comment[] = [];
 
-  constructor(private commentService: CommentService) { }
+  constructor(private commentService: CommentService) {
+    console.log(`Post id = ${this.postId}`);
+  }
 
   ngOnInit() {
     this.getComments(this.postId);
@@ -26,6 +28,7 @@ export class CommentsListComponent implements OnInit {
     this.commentService.getComments(postId)
       .subscribe(data => {
         this.comments = data['data'];
+        console.log('Comments for the post:');
         console.log(this.comments);
       });
   }

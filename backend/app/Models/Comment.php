@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Comment extends Model
 {
@@ -46,6 +47,30 @@ class Comment extends Model
         $this->user_id = $request->userId;
 
         $this->save();
+    }
+
+    /**
+     * Show all comments for selected post.
+     *
+     * @param $postId
+     * @return mixed
+     */
+    public static function getComments($postId)
+    {
+        $comments = DB::table('comments as c')
+            ->select(
+                'c.id as commentId',
+                'c.body as commentBody',
+                'c.created_at as commentCreatedAt',
+                'u.id as userId',
+                'u.name as userName')
+            ->join('users as u', 'u.id', 'c.user_id')
+            ->where('c.post_id', $postId)
+            ->groupBy('commentId')
+            ->orderBy('commentId', 'desc')
+            ->get();
+
+        return $comments;
     }
 }
 

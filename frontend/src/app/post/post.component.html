@@ -1,24 +1,26 @@
-<h2>{{ post.info.postTitle }}</h2>
+<div *ngIf="post">
+  <h2>{{ post.info.postTitle }}</h2>
 
-<img src="{{ imageUrl }}{{ post.info.postImage }}" class="img-fluid" alt="post image">
+  <img src="{{ imageUrl }}{{ post.info.postImage }}" class="img-fluid" alt="post image">
 
-<h4>Genre: <a routerLink="/genres/{{ postUrl.genreSlug }}">{{ post.info.genreName | titleCase }}</a></h4>
-<h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.info.bandName }}</a></h5>
+  <h4>Genre: <a routerLink="/genres/{{ postUrl.genreSlug }}">{{ post.info.genreName | titleCase }}</a></h4>
+  <h5>Band: <a routerLink="/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.info.bandName }}</a></h5>
 
-<div *ngIf="post.tags.length > 0">
-  <h5>
-    Tags:
-    <span *ngFor="let tag of post.tags">
+  <div *ngIf="post.tags.length > 0">
+    <h5>
+      Tags:
+      <span *ngFor="let tag of post.tags">
       <a routerLink="/tags/{{ tag.tagId }}/{{ tag.tagName | kebabCase }}"
          class="badge badge-info">
         {{ tag.tagName }}
       </a>
     </span>
-  </h5>
+    </h5>
+  </div>
+
+  <hr>
+  {{ post.info.postContent }}
+  <hr>
+
+  <rnm-comments-list [postId]="post.info.postId"></rnm-comments-list>
 </div>
-
-<hr>
-{{ post.info.postContent }}
-<hr>
-
-<rnm-comments-list [postId]="post.info.postId"></rnm-comments-list>

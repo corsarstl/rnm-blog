@@ -27,6 +27,7 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 import { ErrorsService } from './shared/services/errors.service';
 import { CommentComponent } from './post/comments/comment/comment.component';
 import { CommentsListComponent } from './post/comments/comments-list/comments-list.component';
+import { CommentService } from './post/comments/comment.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CommentsListComponent } from './post/comments/comments-list/comments-li
     AuthService,
     NavbarService,
     PostService,
-    ErrorsService
+    ErrorsService,
+    CommentService
   ],
   bootstrap: [ AppComponent ]
 })

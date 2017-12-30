@@ -9,9 +9,22 @@ class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('index');
     }
 
+    /**
+     * Show all comments for selected post.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
+    {
+        $comments = Comment::getComments($request->postId);
+
+        return response()->json(['data' => $comments]);
+    }
+    
     /**
      * Store a newly created comment.
      *
