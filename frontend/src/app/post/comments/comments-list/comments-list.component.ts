@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Comment } from './comment.model';
 import { CommentService } from '../comment.service';
 
@@ -7,7 +7,7 @@ import { CommentService } from '../comment.service';
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.css']
 })
-export class CommentsListComponent implements OnInit {
+export class CommentsListComponent implements OnChanges {
   @Input() postId: number;
   comments: Comment[] = [];
 
@@ -15,8 +15,10 @@ export class CommentsListComponent implements OnInit {
     console.log(`Post id = ${this.postId}`);
   }
 
-  ngOnInit() {
-    this.getComments(this.postId);
+  ngOnChanges(changes: SimpleChanges) {
+    const currentPostId = this.postId;
+    console.log(`Post id changed to ${currentPostId}`);
+    this.getComments(currentPostId);
   }
 
   /**
