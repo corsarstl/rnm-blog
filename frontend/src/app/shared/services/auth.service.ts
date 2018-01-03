@@ -10,9 +10,10 @@ export class AuthService {
   // Data containing user name, email, id and valid token.
   authData = JSON.parse(localStorage.getItem('authData'));
   // Id of current logged in user.
-  userId = '';
+  userId: number;
   // Name of current logged in user.
   userName = '';
+  userToken: string;
 
   showLoginForm = false;
   showRegisterForm = false;
@@ -24,6 +25,7 @@ export class AuthService {
       }
       this.userId = this.authData.user.id;
       this.userName = this.authData.user.name;
+      this.userToken = this.authData.token;
     }
   }
 

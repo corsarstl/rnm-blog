@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Comment } from './comment.model';
+import { Comment } from '../comment/comment.model';
 import { CommentService } from '../comment.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'rnm-comments-list',
@@ -11,7 +12,8 @@ export class CommentsListComponent implements OnChanges {
   @Input() postId: number;
   comments: Comment[] = [];
 
-  constructor(private commentService: CommentService) {
+  constructor(private commentService: CommentService,
+              private authService: AuthService) {
     console.log(`Post id = ${this.postId}`);
   }
 

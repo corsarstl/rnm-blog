@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Comment } from '../comments-list/comment.model';
+import { Comment } from './comment.model';
 
 @Component({
   selector: 'rnm-comment',

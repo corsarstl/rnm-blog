@@ -34,7 +34,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'commentBody' => 'required|min:2',
+            'commentBody' => 'required|min:1',
             'postId'      => 'required',
             'userId'      => 'required'
         ]);

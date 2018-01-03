@@ -1,3 +1,16 @@
-<div class="card mb-3" *ngFor="let commentToDisplay of comments">
+<div *ngIf="!this.authService.isLoggedIn"
+     class="alert alert-warning alert-dismissible fade show mt-3"
+     role="alert">
+    <p>Please, log in or register to leave a comment.</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<rnm-comment-new *ngIf="this.authService.isLoggedIn"
+[postIdForNewComment]="postId"></rnm-comment-new>
+
+<div class="card mb-3 mt-3"
+     *ngFor="let commentToDisplay of comments">
     <rnm-comment [comment]="commentToDisplay"></rnm-comment>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.loginForm.value).subscribe(() => {
-      this.authService.showLoginForm = false;
+    this.authService.login(this.loginForm.value)
+      .subscribe(() => {
+        this.authService.showLoginForm = false;
     },
       (err: HttpErrorResponse) => {
       this.dataInvalid = true;

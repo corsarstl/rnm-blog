@@ -11,11 +11,4 @@ export class PostDetails {
     tagId: number;
     tagName: string;
   } [];
-  comments: {
-    commentId: number;
-    commentBody: string;
-    commentCreatedAt: string;
-    userId: number;
-    userName: string;
-  } [];
 }

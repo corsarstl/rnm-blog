@@ -1,0 +1,34 @@
+<div class="list-group-item mt-3">
+  <form [formGroup]="newCommentForm"
+        (ngSubmit)="onAddNewComment()"
+        novalidate>
+    
+    <div class="form-group">
+      <label for="commentBody">Share your thoughts:</label>
+      <textarea name="commentBody"
+                id="commentBody"
+                cols="10"
+                rows="5"
+                class="form-control"
+                formControlName="commentBody"
+                placeholder="Your comment here...">
+      </textarea>
+
+      <input type="hidden"
+             formControlName="postId"
+             name="postId">
+
+      <input type="hidden"
+             formControlName="userId"
+             name="userId">
+    </div>
+
+    <div class="form-group">
+      <button type="submit"
+              class="btn btn-primary"
+              [disabled]="newCommentForm.invalid">
+        Add comment
+      </button>
+    </div>
+  </form>
+</div>

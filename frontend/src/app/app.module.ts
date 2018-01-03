@@ -28,6 +28,7 @@ import { ErrorsService } from './shared/services/errors.service';
 import { CommentComponent } from './post/comments/comment/comment.component';
 import { CommentsListComponent } from './post/comments/comments-list/comments-list.component';
 import { CommentService } from './post/comments/comment.service';
+import { CommentNewComponent } from './post/comments/comment-new/comment-new.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CommentService } from './post/comments/comment.service';
     TagPostsComponent,
     PostsListComponent,
     CommentComponent,
-    CommentsListComponent
+    CommentsListComponent,
+    CommentNewComponent
   ],
   imports: [
     BrowserModule,
