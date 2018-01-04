@@ -32,12 +32,16 @@ export class CommentNewComponent implements OnInit {
     });
   }
 
+  /**
+   * Add new comment to the post.
+   */
   onAddNewComment() {
     this.commentService.addNewComment(this.newCommentForm.value)
       .subscribe(() => {
         console.log('Your comment was published!');
         this.newCommentForm.patchValue({'commentBody': ''});
         // need to trigger event to reload comments-list to show added comment
+        this.commentService.newCommentCreated.emit();
       });
   }
 }

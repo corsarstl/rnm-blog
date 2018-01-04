@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorsService } from '../../shared/services/errors.service';
@@ -6,6 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 
 @Injectable()
 export class CommentService {
+  @Output() newCommentCreated = new EventEmitter();
   private apiUrl = 'http://rnmblog.com/api/comments';
   token: string;
 
@@ -29,6 +30,12 @@ export class CommentService {
       .catch(this.errorsService.handleError);
   }
 
+  /**
+   * Add new comment to the post.
+   *
+   * @param data
+   * @returns {Observable<any>}
+   */
   addNewComment(data: any): Observable<any> {
     const url = this.apiUrl;
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
