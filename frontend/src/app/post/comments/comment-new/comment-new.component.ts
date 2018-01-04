@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CommentService } from '../comment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,20 +8,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './comment-new.component.html',
   styleUrls: ['./comment-new.component.css']
 })
-export class CommentNewComponent implements OnInit {
+export class CommentNewComponent implements OnInit, OnChanges {
   @Input() postIdForNewComment: number;
   loggedInUserId: number;
   newCommentForm: FormGroup;
 
   constructor(private authService: AuthService,
               private commentService: CommentService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+    this.loggedInUserId = this.authService.userId;
+  }
 
   ngOnInit() {
-    this.loggedInUserId = this.authService.userId;
     console.log(this.postIdForNewComment);
     console.log(this.loggedInUserId);
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
     this.newCommentForm = this.fb.group({
       'commentBody': ['', [
         Validators.required,
@@ -41,7 +44,7 @@ export class CommentNewComponent implements OnInit {
         console.log('Your comment was published!');
         this.newCommentForm.patchValue({'commentBody': ''});
         // need to trigger event to reload comments-list to show added comment
-        this.commentService.newCommentCreated.emit();
+        this.commentService.newCommentCreated.next();
       });
   }
 }
