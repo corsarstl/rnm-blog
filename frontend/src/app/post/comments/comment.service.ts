@@ -8,13 +8,19 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class CommentService {
   newCommentCreated = new Subject();
-  private apiUrl = 'http://rnmblog.com/api/comments';
+  toggleCommentEditMode = new Subject();
+  refreshComments = new Subject();
   token: string;
+  commentIdToEdit: number;
+  commentBodyToEdit: string;
+  private apiUrl = 'http://rnmblog.com/api/comments';
+  private headers: HttpHeaders;
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService,
               private errorsService: ErrorsService) {
     this.token = this.authService.userToken;
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
   }
 
   /**
@@ -38,9 +44,17 @@ export class CommentService {
    * @returns {Observable<any>}
    */
   addNewComment(data: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    const headers = this.headers;
 
     return this.httpClient.post(this.apiUrl, data, {headers})
+      .catch(this.errorsService.handleError);
+  }
+
+  updateComment(data: any): Observable<any> {
+    const url = `${this.apiUrl}/${data.commentId}`;
+    const headers = this.headers;
+
+    return this.httpClient.put(url, data, {headers})
       .catch(this.errorsService.handleError);
   }
 }

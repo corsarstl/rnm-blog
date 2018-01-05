@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Comment } from '../comment/comment.model';
 import { CommentService } from '../comment.service';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -9,14 +9,22 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.css']
 })
-export class CommentsListComponent implements OnChanges, OnDestroy {
+export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() postId: number;
   comments: Comment[] = [];
   newCommentCreatedSubscription: Subscription;
+  refreshCommentsSubscription: Subscription;
 
   constructor(private commentService: CommentService,
               private authService: AuthService) {
     console.log(`Post id = ${this.postId}`);
+  }
+
+  ngOnInit() {
+    this.refreshCommentsSubscription = this.commentService.refreshComments
+      .subscribe(() => {
+        this.getComments(this.postId);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -33,6 +41,7 @@ export class CommentsListComponent implements OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this.newCommentCreatedSubscription.unsubscribe();
+    this.refreshCommentsSubscription.unsubscribe();
   }
 
   /**

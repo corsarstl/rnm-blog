@@ -29,6 +29,7 @@ import { CommentComponent } from './post/comments/comment/comment.component';
 import { CommentsListComponent } from './post/comments/comments-list/comments-list.component';
 import { CommentService } from './post/comments/comment.service';
 import { CommentNewComponent } from './post/comments/comment-new/comment-new.component';
+import { CommentEditComponent } from './post/comments/comment-edit/comment-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CommentNewComponent } from './post/comments/comment-new/comment-new.com
     PostsListComponent,
     CommentComponent,
     CommentsListComponent,
-    CommentNewComponent
+    CommentNewComponent,
+    CommentEditComponent
   ],
   imports: [
     BrowserModule,

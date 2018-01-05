@@ -1,6 +1,22 @@
-<div class="card-header">
-  <p>{{ comment.commentCreatedAt | date:'short'}} by <strong>{{ comment.userName }}</strong></p>
+<div (click)="onCommentSelect()">
+  <div class="card-header">
+    <p>
+      <i class="fas fa-user-circle"></i>
+      <strong>{{ comment.userName }}</strong>
+      wrote at
+      <i class="fas fa-clock"></i>
+      {{ comment.commentCreatedAt | date:'short'}}
+    </p>
+  </div>
+  <div class="card-body">
+    <p class="card-text"
+       id="{{ comment.commentId }}"
+    *ngIf="showCommentBody">{{ comment.commentBody }}</p>
+
+    <rnm-comment-edit *ngIf="showEditComponent"></rnm-comment-edit>
+  </div>
 </div>
-<div class="card-body">
-  <p class="card-text">{{ comment.commentBody }}</p>
-</div>
+
+
+
+

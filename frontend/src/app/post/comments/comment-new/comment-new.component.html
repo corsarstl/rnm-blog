@@ -1,4 +1,4 @@
-<div class="list-group-item mt-3">
+<div class="form-control mt-3">
   <form [formGroup]="newCommentForm"
         (ngSubmit)="onAddNewComment()"
         novalidate>
@@ -8,7 +8,7 @@
       <textarea name="commentBody"
                 id="commentBody"
                 cols="10"
-                rows="5"
+                rows="4"
                 class="form-control"
                 formControlName="commentBody"
                 placeholder="Your comment here...">
@@ -23,7 +23,7 @@
              name="userId">
     </div>
 
-    <div class="form-group">
+    <div class="form-group right">
       <button type="submit"
               class="btn btn-primary"
               [disabled]="newCommentForm.invalid">

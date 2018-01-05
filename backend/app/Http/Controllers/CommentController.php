@@ -57,7 +57,7 @@ class CommentController extends Controller
     public function update(Request $request, $commentId)
     {
         $this->validate(request(), [
-            'newCommentBody' => 'required|min:2'
+            'newCommentBody' => 'required|min:1'
         ]);
 
         $comment = Comment::findOrFail($commentId);
