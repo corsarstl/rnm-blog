@@ -30,6 +30,8 @@ import { CommentsListComponent } from './post/comments/comments-list/comments-li
 import { CommentService } from './post/comments/comment.service';
 import { CommentNewComponent } from './post/comments/comment-new/comment-new.component';
 import { CommentEditComponent } from './post/comments/comment-edit/comment-edit.component';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,12 @@ import { CommentEditComponent } from './post/comments/comment-edit/comment-edit.
     NavbarService,
     PostService,
     ErrorsService,
-    CommentService
+    CommentService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    }
   ],
   bootstrap: [ AppComponent ]
 })

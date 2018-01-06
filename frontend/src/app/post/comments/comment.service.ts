@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorsService } from '../../shared/services/errors.service';
-import { AuthService } from '../../shared/services/auth.service';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -10,18 +9,12 @@ export class CommentService {
   newCommentCreated = new Subject();
   toggleCommentEditMode = new Subject();
   refreshComments = new Subject();
-  token: string;
   commentIdToEdit: number;
   commentBodyToEdit: string;
   private apiUrl = 'http://rnmblog.com/api/comments';
-  private headers: HttpHeaders;
 
   constructor(private httpClient: HttpClient,
-              private authService: AuthService,
-              private errorsService: ErrorsService) {
-    this.token = this.authService.userToken;
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-  }
+              private errorsService: ErrorsService) { }
 
   /**
    * Get all comments for selected post.
@@ -44,17 +37,33 @@ export class CommentService {
    * @returns {Observable<any>}
    */
   addNewComment(data: any): Observable<any> {
-    const headers = this.headers;
-
-    return this.httpClient.post(this.apiUrl, data, {headers})
+    return this.httpClient.post(this.apiUrl, data)
       .catch(this.errorsService.handleError);
   }
 
+  /**
+   * Update the content of the comment in db.
+   *
+   * @param data
+   * @returns {Observable<any>}
+   */
   updateComment(data: any): Observable<any> {
     const url = `${this.apiUrl}/${data.commentId}`;
-    const headers = this.headers;
 
-    return this.httpClient.put(url, data, {headers})
+    return this.httpClient.put(url, data)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Delete selected comment from db.
+   *
+   * @param commentId
+   * @returns {Observable<any>}
+   */
+  deleteComment(commentId: any): Observable<any> {
+    const url = `${this.apiUrl}/${commentId}`;
+
+    return this.httpClient.delete(url)
       .catch(this.errorsService.handleError);
   }
 }

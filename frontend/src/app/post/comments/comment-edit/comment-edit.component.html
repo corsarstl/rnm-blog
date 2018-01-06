@@ -14,6 +14,7 @@
               formControlName="newCommentBody"
               *ngIf="editMode"></textarea>
   </div>
+
   <div class="form-group float-right">
     <button type="button"
             class="btn btn-warning"
@@ -21,6 +22,7 @@
             (click)="onUpdate()">
       Update
     </button>
+
     <button type="button"
             class="btn btn-success"
             [disabled]="editForm.invalid"
@@ -28,21 +30,26 @@
             (click)="onSave()">
       Save
     </button>
+
     <button type="button"
             class="btn btn-warning"
             [disabled]="editForm.invalid"
-            *ngIf="editMode">
+            *ngIf="editMode"
+            (click)="onReset()">
       Reset
     </button>
+
     <button type="button"
             class="btn btn-danger"
             *ngIf="editMode"
             (click)="onCancel()">
       Cancel
     </button>
+
     <button type="submit"
             class="btn btn-danger"
-            *ngIf="!editMode">
+            *ngIf="!editMode"
+            (click)="onDelete()">
       Delete
     </button>
   </div>

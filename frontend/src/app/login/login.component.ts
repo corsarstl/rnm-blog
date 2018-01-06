@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   dataInvalid = false;
   formErrors = [];
 
-  constructor(public authService: AuthService,
+  constructor(private authService: AuthService,
               private fb: FormBuilder) { }
 
   ngOnInit() {

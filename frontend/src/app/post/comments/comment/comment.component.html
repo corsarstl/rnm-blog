@@ -10,8 +10,7 @@
   </div>
   <div class="card-body">
     <p class="card-text"
-       id="{{ comment.commentId }}"
-    *ngIf="showCommentBody">{{ comment.commentBody }}</p>
+       *ngIf="showCommentBody">{{ comment.commentBody }}</p>
 
     <rnm-comment-edit *ngIf="showEditComponent"></rnm-comment-edit>
   </div>

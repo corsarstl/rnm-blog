@@ -11,10 +11,6 @@ export class AuthService {
   authData = JSON.parse(localStorage.getItem('authData'));
   // Id of current logged in user.
   userId: number;
-  // Name of current logged in user.
-  userName = '';
-  userToken: string;
-
   showLoginForm = false;
   showRegisterForm = false;
 
@@ -24,8 +20,7 @@ export class AuthService {
         this.isLoggedIn = true;
       }
       this.userId = this.authData.user.id;
-      this.userName = this.authData.user.name;
-      this.userToken = this.authData.token;
+      console.log(this.userId);
     }
   }
 
@@ -43,6 +38,7 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res['data']));
+        this.setUserId();
       });
   }
 
@@ -60,6 +56,7 @@ export class AuthService {
       .do(res => {
         this.isLoggedIn = true;
         localStorage.setItem('authData', JSON.stringify(res['data']));
+        this.setUserId();
       });
   }
 
@@ -72,8 +69,18 @@ export class AuthService {
       id: this.userId
     }).subscribe(res => {
       this.isLoggedIn = false;
+      this.userId = 0;
       localStorage.clear();
       console.log(res);
     });
+  }
+
+  /**
+   * Set logged in user id.
+   */
+  private setUserId() {
+    const authData = JSON.parse(localStorage.getItem('authData'));
+    this.userId = authData.user.id;
+    console.log(this.userId);
   }
 }

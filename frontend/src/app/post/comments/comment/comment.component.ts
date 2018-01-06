@@ -23,19 +23,10 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.hideCommentBody = this.commentService.toggleCommentEditMode
-      // .subscribe((editFormData) => {
-      //   if (editFormData['commentId'] === this.comment.commentId) {
-               .subscribe((commentId) => {
+      .subscribe((commentId) => {
         if (commentId === this.comment.commentId) {
-
-          // console.log(`Listener: hiding body for comment #${editFormData['commentId']}`);
           console.log(`Listener: hiding body for comment #${commentId}`);
           this.showCommentBody = !this.showCommentBody;
-          this.commentService.refreshComments.next();
-          // console.log(`New body for comment#${editFormData['commentId']} is ${editFormData['newCommentBody']}`);
-          // console.log(`New body for comment#${editFormData['commentId']} is ${editFormData['newCommentBody']}`);
-          // this.setNewCommentBody(editFormData['newCommentBody']);
-          // document.getElementById(editFormData['commentId']).innerHTML = editFormData['newCommentBody'];
         }
       });
   }
@@ -44,21 +35,20 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.hideCommentBody.unsubscribe();
   }
 
+  /**
+   * Show form for comment editing.
+   * Set values of commentId and commentBody to prepopulate edit form with values of selected comment.
+   */
   onCommentSelect() {
+    this.loggedInUserId = this.authService.userId;
+
     if (this.comment.userId === this.loggedInUserId) {
       this.showEditComponent = true;
+      this.commentService.commentIdToEdit = this.comment.commentId;
+      this.commentService.commentBodyToEdit = this.comment.commentBody;
 
-      if (this.commentService.commentIdToEdit !== this.comment.commentId) {
-        this.commentService.commentIdToEdit = this.comment.commentId;
-        this.commentService.commentBodyToEdit = this.comment.commentBody;
-
-        console.log(this.commentService.commentIdToEdit);
-        console.log(this.commentService.commentBodyToEdit);
-      }
+      console.log(this.commentService.commentIdToEdit);
+      console.log(this.commentService.commentBodyToEdit);
     }
   }
-
-  // setNewCommentBody(data: string) {
-  //   this.comment.commentBody = data;
-  // }
 }

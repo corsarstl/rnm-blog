@@ -22,34 +22,65 @@ export class CommentEditComponent implements OnInit {
 
     this.editForm = this.fb.group({
       'commentId': [this.commentId, Validators.required],
-      'newCommentBody': [this.commentBody, [Validators.required, Validators.minLength(1)]]
+      'newCommentBody': [this.commentBody, [
+        Validators.required,
+        Validators.minLength(1)]]
     });
   }
 
+  /**
+   * Make available additional buttons for editing.
+   * Show edit form.
+   */
   onUpdate() {
     this.editMode = true;
     this.commentService.toggleCommentEditMode.next(this.commentId);
     console.log(`Enter edit mode on comment ${this.commentId}. Hiding comment body...`);
   }
 
+  /**
+   * Save update comment to db.
+   * Updates comments for current post.
+   */
   onSave() {
     this.commentService.updateComment(this.editForm.value)
       .subscribe(() => {
-      // const editFormData = this.editForm.value;
         console.log('Your comment was updated!');
-        // console.log(this.editForm.value);
-        // console.log(editFormData);
         this.editMode = false;
-        // this.commentService.toggleCommentEditMode.next(editFormData);
         this.commentService.toggleCommentEditMode.next(this.commentId);
-
-        // this.newCommentForm.patchValue({'commentBody': ''});
-        // need to trigger event to reload comments-list to show added comment
-        // this.commentService.newCommentCreated.next();
+        this.commentService.refreshComments.next();
       });
   }
 
+  /**
+   * Clear textarea for editing comment.
+   */
+  onReset() {
+    this.editForm.patchValue({'newCommentBody': ''});
+  }
+
+  /**
+   * Hide additional buttons for editing.
+   * Updates comments for current post.
+   */
   onCancel() {
     this.editMode = false;
+    this.commentService.refreshComments.next();
+  }
+
+  /**
+   * Delete selected comment from db.
+   * Updates comments for current post.
+   */
+  onDelete() {
+    const confirmation = confirm('Are you sure?');
+
+    if (confirmation) {
+      this.commentService.deleteComment(this.editForm.get('commentId').value)
+        .subscribe(() => {
+          console.log(`Comment #${this.editForm.get('commentId').value} was deleted.`);
+          this.commentService.refreshComments.next();
+        });
+    }
   }
 }
