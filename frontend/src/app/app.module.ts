@@ -32,6 +32,7 @@ import { CommentNewComponent } from './post/comments/comment-new/comment-new.com
 import { CommentEditComponent } from './post/comments/comment-edit/comment-edit.component';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LatestPostsComponent } from './latest-posts/latest-posts.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     CommentComponent,
     CommentsListComponent,
     CommentNewComponent,
-    CommentEditComponent
+    CommentEditComponent,
+    LatestPostsComponent
   ],
   imports: [
     BrowserModule,
