@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { HotPost } from '../../hot-posts/hot-post';
-import { PopularTag } from '../../popular-tags/popular-tag';
-import { PostsListItem } from '../../posts-list/posts-list-item';
-import { SliderPost } from '../../slider/slider-post';
+import { HotPost } from '../components/hot-posts/hot-post';
+import { PopularTag } from '../components/popular-tags/popular-tag.model';
+import { PostsListItem } from '../../blog/news/posts/posts-list/posts-list-item';
+import { SliderPost } from '../../blog/home/slider/slider-post';
 import { ErrorsService } from './errors.service';
 
 @Injectable()

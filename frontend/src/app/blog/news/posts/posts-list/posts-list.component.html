@@ -1,0 +1,7 @@
+<ul *ngFor="let post of postsToDisplay">
+  <li>
+    <a routerLink="/blog/news/{{ post.genreSlug }}/{{ post.bandName | kebabCase }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
+      {{ post.postTitle }}
+    </a>
+  </li>
+</ul>

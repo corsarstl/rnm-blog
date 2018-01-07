@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ErrorsService } from '../shared/services/errors.service';
-import { MenuItem } from './menu-item';
+import { MenuItem } from './menu-item.model';
 
 @Injectable()
 export class NavbarService {
