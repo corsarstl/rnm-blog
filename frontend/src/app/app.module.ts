@@ -8,20 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './blog/home/home.module';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './blog/home/home.component';
 import { GenrePostsComponent } from './blog/news/posts/genre-posts.component';
 import { BandPostsComponent } from './blog/news/posts/band-posts.component';
 import { PostComponent } from './blog/news/posts/post/post.component';
-import { SliderComponent } from './blog/home/slider/slider.component';
 import { TagPostsComponent } from './blog/news/posts/tag-posts.component';
 import { PostsListComponent } from './blog/news/posts/posts-list/posts-list.component';
 import { CommentComponent } from './blog/news/posts/post/comments/comment/comment.component';
 import { CommentsListComponent } from './blog/news/posts/post/comments/comments-list/comments-list.component';
 import { CommentNewComponent } from './blog/news/posts/post/comments/comment-new/comment-new.component';
 import { CommentEditComponent } from './blog/news/posts/post/comments/comment-edit/comment-edit.component';
-import { LatestPostsComponent } from './blog/home/latest-posts/latest-posts.component';
 import { BlogComponent } from './blog/blog.component';
 import { NewsComponent } from './blog/news/news.component';
 
@@ -29,18 +27,15 @@ import { NewsComponent } from './blog/news/news.component';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomeComponent,
     GenrePostsComponent,
     BandPostsComponent,
     PostComponent,
-    SliderComponent,
     TagPostsComponent,
     PostsListComponent,
     CommentComponent,
     CommentsListComponent,
     CommentNewComponent,
     CommentEditComponent,
-    LatestPostsComponent,
     BlogComponent,
     NewsComponent
   ],
@@ -53,6 +48,7 @@ import { NewsComponent } from './blog/news/news.component';
     CoreModule,
     SharedModule,
     AuthModule,
+    HomeModule
   ],
   bootstrap: [ AppComponent ]
 })
