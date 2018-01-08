@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { NavbarService } from './navbar.service';
+
 import { MenuItem } from './menu-item.model';
+import { AuthService } from '../../shared/services/auth.service';
+import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'rnm-navbar',
