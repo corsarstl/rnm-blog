@@ -19,4 +19,4 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent
   ]
 })
-export class AuthModule {}
+export class AuthModule { }
