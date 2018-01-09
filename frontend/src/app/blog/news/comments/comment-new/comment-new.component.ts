@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommentService } from '../comment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../../../../shared/services/auth.service';
+import { AuthService } from '../../../../shared/services/auth.service';
 
 @Component({
   selector: 'rnm-comment-new',

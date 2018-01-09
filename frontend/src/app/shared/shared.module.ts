@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
@@ -20,6 +21,7 @@ import { TitleCasePipe } from './pipes/title-case.pipe';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AppRoutingModule
   ],
   exports: [
