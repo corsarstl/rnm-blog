@@ -6,10 +6,10 @@ import { PostsListItem } from './posts-list/posts-list-item';
 @Component({
   selector: 'rnm-band-posts',
   template: `
-      <h2>{{ posts[0]?.bandName }}</h2>
+      <h1 class="text-center">{{ posts[0]?.bandName }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
-  styles: []
+  styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']
 })
 export class BandPostsComponent implements OnInit {
   bandUrl: {

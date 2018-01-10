@@ -6,10 +6,10 @@ import { PostsListItem } from './posts-list/posts-list-item';
 @Component({
   selector: 'rnm-genre-posts',
   template: `
-      <h2>{{ genreUrl.genreSlug | titleCase }}</h2>
+      <h1 class="text-center">{{ genreUrl.genreSlug | titleCase }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
-  styles: []
+  styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']
 })
 export class GenrePostsComponent implements OnInit {
   genreUrl: {

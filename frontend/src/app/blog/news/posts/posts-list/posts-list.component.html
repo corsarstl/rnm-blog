@@ -1,7 +1,24 @@
-<ul *ngFor="let post of postsToDisplay">
-  <li>
-    <a routerLink="/blog/news/{{ post.genreSlug }}/{{ post.bandName | kebabCase }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
-      {{ post.postTitle }}
-    </a>
-  </li>
-</ul>
+<div *ngFor="let post of postsToDisplay" class="border border-dark rounded mt-4 p-3 dropshadow">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="text-center">{{ post.postTitle }}</h4>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-5 col-md-12 mt-2">
+        <a routerLink="/blog/news/{{ post.genreSlug }}/{{ post.bandName | kebabCase }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
+          <img src="{{ imagePath }}{{ post.postImage }}" class="img-fluid mx-auto p-2 grow" alt="image for {{ post.postTitle }}">
+        </a>
+      </div>
+      <div class="col-lg-7 col-md-12 mt-2">
+        <p>
+          <i class="fas fa-quote-left"></i>
+          <em>{{ post.postContent }} ...</em>
+          <i class="fas fa-quote-right"></i>
+        </p>
+        <a class="btn btn-outline-dark btn-sm float-right"
+           routerLink="/blog/news/{{ post.genreSlug }}/{{ post.bandName | kebabCase }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}"
+           role="button">Read more...</a>
+      </div>
+  </div>
+</div>

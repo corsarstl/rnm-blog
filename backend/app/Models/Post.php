@@ -80,6 +80,8 @@ class Post extends Model
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
+                'p.content as postContent',
+                'p.image as postImage',
                 'b.name as bandName',
                 'g.slug as genreSlug')
             ->join('bands as b', 'b.id', 'p.band_id')
@@ -87,6 +89,10 @@ class Post extends Model
             ->where('g.slug', $genreSlug)
             ->orderBy('postId', 'desc')
             ->get();
+
+        foreach ($posts as $post) {
+            $post->postContent = self::createPostContentPreview($post->postContent);
+        }
 
         return $posts;
     }
@@ -103,6 +109,8 @@ class Post extends Model
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
+                'p.content as postContent',
+                'p.image as postImage',
                 'b.name as bandName',
                 'g.slug as genreSlug')
             ->join('bands as b', 'b.id', 'p.band_id')
@@ -110,6 +118,10 @@ class Post extends Model
             ->where('b.slug', $bandSlug)
             ->orderBy('postId', 'desc')
             ->get();
+
+        foreach ($posts as $post) {
+            $post->postContent = self::createPostContentPreview($post->postContent);
+        }
 
         return $posts;
     }
@@ -126,6 +138,8 @@ class Post extends Model
             ->select(
                 'p.id as postId',
                 'p.title as postTitle',
+                'p.content as postContent',
+                'p.image as postImage',
                 'b.name as bandName',
                 'g.slug as genreSlug')
             ->join('bands as b', 'b.id', 'p.band_id')
@@ -135,6 +149,10 @@ class Post extends Model
             ->where('t.id', $tagId)
             ->orderBy('postId', 'desc')
             ->get();
+
+        foreach ($posts as $post) {
+            $post->postContent = self::createPostContentPreview($post->postContent);
+        }
 
         return $posts;
     }
@@ -233,5 +251,19 @@ class Post extends Model
         $post['tags'] = $tags;
 
         return $post;
+    }
+
+    private static function createPostContentPreview(string $content)
+    {
+        $contentArray = str_split($content);
+        $contentPreviewArray = [];
+
+        for ($i = 0; $i < 320; $i++) {
+            $contentPreviewArray[] = $contentArray[$i];
+        }
+
+        $contentPreviewString = implode('', $contentPreviewArray);
+
+        return $contentPreviewString;
     }
 }

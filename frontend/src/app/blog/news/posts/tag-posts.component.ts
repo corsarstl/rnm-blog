@@ -6,10 +6,10 @@ import { PostsListItem } from './posts-list/posts-list-item';
 @Component({
   selector: 'rnm-tag-posts',
   template: `
-      <h2>All posts with tag <strong>{{ tagUrl.tagSlug | titleCase }}</strong></h2>
+      <h1 class="text-center">{{ tagUrl.tagSlug | titleCase }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
-  styles: []
+  styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']
 })
 export class TagPostsComponent implements OnInit {
   tagUrl: {

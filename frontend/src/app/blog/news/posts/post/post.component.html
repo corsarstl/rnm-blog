@@ -1,14 +1,25 @@
 <div *ngIf="post">
-  <h2>{{ post.info.postTitle }}</h2>
+  <h2 class="text-center">{{ post.info.postTitle }}</h2>
 
-  <img src="{{ imageUrl }}{{ post.info.postImage }}" class="img-fluid" alt="post image">
+  <img src="{{ imageUrl }}{{ post.info.postImage }}" class="img-fluid img-thumbnail" alt="post image">
 
-  <h4>Genre: <a routerLink="/blog/news/genres/{{ postUrl.genreSlug }}">{{ post.info.genreName | titleCase }}</a></h4>
-  <h5>Band: <a routerLink="/blog/news/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}">{{ post.info.bandName }}</a></h5>
+  <h4 class="text-center mt-2">
+    <span>
+      <a routerLink="/blog/news/genres/{{ postUrl.genreSlug }}"
+         class="badge badge-dark">
+        {{ post.info.genreName | titleCase }}
+      </a>
+    </span>
+    <span>
+      <a routerLink="/blog/news/{{ postUrl.genreSlug }}/{{ postUrl.bandSlug }}"
+         class="badge badge-warning">
+        {{ post.info.bandName }}
+      </a>
+    </span>
+  </h4>
 
   <div *ngIf="post.tags.length > 0">
-    <h5>
-      Tags:
+    <h5 class="text-center">
       <span *ngFor="let tag of post.tags">
       <a routerLink="/blog/news/tags/{{ tag.tagId }}/{{ tag.tagName | kebabCase }}"
          class="badge badge-info">
