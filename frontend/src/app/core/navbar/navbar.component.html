@@ -67,12 +67,13 @@
 
             <ul class="nav navbar-nav navbar-right ml-auto">
                 <li class="navbar-form-wrapper">
-                    <form class="navbar-form form-inline navbar-right">
+                    <form class="navbar-form form-inline navbar-right"
+                          (keydown)="onQuickSearch($event)" novalidate>
                         <div class="input-group search-box">
                             <input type="text"
                                    id="search"
                                    class="form-control"
-                                   placeholder="Search Here...">
+                                   placeholder="quick search...">
                             <span class="input-group-addon">
                                 <i class="fas fa-search"></i>
                             </span>

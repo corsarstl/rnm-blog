@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from './menu-item.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { NavbarService } from './navbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rnm-navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
   menuItems: MenuItem[] = [];
 
   constructor(private authService: AuthService,
-              private navbarService: NavbarService) { }
+              private navbarService: NavbarService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getMenuItems();
@@ -49,5 +51,16 @@ export class NavbarComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
+  }
+
+  onQuickSearch(event: any) {
+
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      console.log(event.target.value);
+      // event.target.value.reset();
+
+      this.router.navigate(['/blog/news/search']);
+    }
   }
 }

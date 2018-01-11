@@ -15,11 +15,13 @@ import { PostService } from '../shared/services/post.service';
 import { ErrorsService } from '../shared/services/errors.service';
 import { CommentService } from '../blog/news/comments/comment.service';
 import { AuthInterceptorService } from '../shared/services/auth-interceptor.service';
+import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    QuickSearchComponent
   ],
   imports: [
     CommonModule,
