@@ -21,6 +21,9 @@ Route::post('logout', 'ApiController@logout');
 Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
 Route::get('home', 'HomeController@latestPostsForHome');
 
+//Search routes
+Route::get('quickSearch/{searchTerm}', 'SearchController@quickSearch');
+
 // Comments routes
 Route::get('comments/{postId}', 'CommentController@index');
 Route::post('comments', 'CommentController@store');
