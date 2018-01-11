@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PostsListItem } from './posts-list-item';
+import { PostsListItem } from './posts-list-item.model';
 import { PostService } from '../../../../shared/services/post.service';
 
 @Component({

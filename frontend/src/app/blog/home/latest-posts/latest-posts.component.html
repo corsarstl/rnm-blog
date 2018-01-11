@@ -1,17 +1,30 @@
-<h2>Latest news from your favorite genres:</h2>
+<h1>Latest news from your favorite genres</h1>
 
-<div class="card mt-3" *ngFor="let genre of latest5PostsPerGenre">
-  <div class="card-header">
-    <a routerLink="/blog/news/genres/{{ genre.name | kebabCase }}">
-      {{ genre.name | titleCase }}
-    </a>
+<div class="container-fluid"
+     *ngFor="let genre of latestPostsForHomepage">
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <h2 class="mt-2">
+        <a routerLink="/blog/news/genres/{{ genre.slug }}">
+        {{ genre.name | titleCase }}</a>
+      </h2>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6" *ngFor="let post of genre.posts">
+          <div class="row">
+            <div class="img-flash m-2">
+              <figure>
+                <a routerLink="/blog/news/{{ genre.slug }}/{{ post.bandName | kebabCase }}/{{ post.postId }}/{{ post.postTitle | kebabCase }}">
+                  <img src="{{ imagePath }}{{ post.postImage }}"
+                       class="rounded img-responsive img-fluid"
+                       alt="{{ post.postTitle }}">
+                </a>
+              </figure>
+              <p class="text-center">{{ post.postTitle }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-    <!--<rnm-posts-list [postsToDisplay]="genre.posts"></rnm-posts-list>-->
-  <ul *ngFor="let post of genre.posts">
-    <li>
-      <a routerLink="/blog/news/{{ genre.name | kebabCase }}/{{ post.band.slug }}/{{ post.id }}/{{ post.title | kebabCase }}">
-        {{ post.title }}
-      </a>
-    </li>
-  </ul>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
-import { HotPost } from './hot-post';
+import { HotPost } from './hot-post.model';
 
 @Component({
   selector: 'rnm-hot-posts',

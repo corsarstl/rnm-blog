@@ -4,11 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { HotPost } from '../components/hot-posts/hot-post';
+import { HotPost } from '../components/hot-posts/hot-post.model';
 import { PopularTag } from '../components/popular-tags/popular-tag.model';
-import { PostsListItem } from '../../blog/news/posts/posts-list/posts-list-item';
-import { SliderPost } from '../../blog/home/slider/slider-post';
+import { PostsListItem } from '../../blog/news/posts/posts-list/posts-list-item.model';
+import { SliderPost } from '../../blog/home/slider/slider-post.model';
 import { ErrorsService } from './errors.service';
+import { LatestPostsForHomepage } from '../../blog/home/latest-posts/latest-posts-for-homepage.model';
 
 @Injectable()
 export class PostService {
@@ -21,15 +22,15 @@ export class PostService {
               private errorsService: ErrorsService) {}
 
   /**
-   * Get 5 latest posts for each genre for home page.
+   * Get 4 latest posts for each genre for home page.
    *
    * @returns {Observable<any>}
    */
-  latest5PostsPerGenre(): Observable<any> {
+  latestPostsForHomepage(): Observable<LatestPostsForHomepage[]> {
     const url = `${this.apiUrl}/home`;
 
     return this.httpClient.get(url)
-      .do(res => this.post = res)
+      .map(res => res as LatestPostsForHomepage[])
       .catch(this.errorsService.handleError);
   }
 

@@ -49,26 +49,6 @@ class Post extends Model
     }
 
     /**
-     * Get 5 latest posts for each genre.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public static function showLatest5PostsPerGenre()
-    {
-        $posts = Genre::with([
-            'posts' => function($query) {
-                $query->with('band')
-                    ->take(30)
-                    ->orderBy('id', 'desc')
-                    ->get();
-            }])
-            ->orderBy('name')
-            ->get();
-
-        return $posts;
-    }
-
-    /**
      * Display a list of posts for selected genre.
      *
      * @param $genreSlug
@@ -200,6 +180,48 @@ class Post extends Model
             ->groupBy('postId')
             ->orderBy('commentsCount', 'desc')
             ->take(5)
+            ->get();
+
+        return $posts;
+    }
+
+//    public static function showLatest5PostsPerGenre()
+//    {
+//        $posts = Genre::with([
+//            'posts' => function($query) {
+//                $query->with('band')
+//                    ->take(30)
+//                    ->orderBy('id', 'desc')
+//                    ->get();
+//            }])
+//            ->orderBy('name')
+//            ->get();
+//
+//        return $posts;
+//    }
+
+    /**
+     * Get 4 latest posts per genre for homepage.
+     *
+     * @param $genreId
+     * @return mixed
+     */
+    public static function show4LatestPostsForGenre($genreId)
+    {
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'p.image as postImage',
+                'b.name as bandName',
+                'g.id as genreId',
+                'g.name as genreName')
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->where('g.id', $genreId)
+            ->groupBy('postId')
+            ->orderBy('postId', 'desc')
+            ->take(4)
             ->get();
 
         return $posts;

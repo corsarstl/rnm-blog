@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -22,14 +20,18 @@ class HomeController extends Controller
     }
 
     /**
-     * Get 5 latest posts for each genre.
+     * Get 4 latest posts for each genre.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function latest5PostsPerGenre()
+    public function latestPostsForHome()
     {
-        $posts = Post::showLatest5PostsPerGenre();
+        $genres = Genre::all();
 
-        return response()->json(['data'=> $posts]);
+        foreach ($genres as $genre) {
+            $genre['posts'] = Post::show4LatestPostsForGenre($genre->id);
+        }
+
+        return response()->json(['data'=> $genres]);
     }
 }

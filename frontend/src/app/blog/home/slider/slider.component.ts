@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../shared/services/post.service';
-import { SliderPost } from './slider-post';
+import { SliderPost } from './slider-post.model';
 
 @Component({
   selector: 'rnm-slider',

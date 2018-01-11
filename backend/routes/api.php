@@ -19,7 +19,7 @@ Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
 
 Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
-Route::get('home', 'HomeController@latest5PostsPerGenre');
+Route::get('home', 'HomeController@latestPostsForHome');
 
 // Comments routes
 Route::get('comments/{postId}', 'CommentController@index');

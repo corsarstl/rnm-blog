@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
-import { PostsListItem } from './posts-list/posts-list-item';
+import { PostsListItem } from './posts-list/posts-list-item.model';
 
 @Component({
   selector: 'rnm-genre-posts',

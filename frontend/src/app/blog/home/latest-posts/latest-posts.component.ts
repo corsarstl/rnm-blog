@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../shared/services/post.service';
+import { LatestPostsForHomepage } from './latest-posts-for-homepage.model';
 
 @Component({
   selector: 'rnm-latest-posts',
   templateUrl: './latest-posts.component.html',
-  styles: []
+  styleUrls: ['./latest-posts.component.css']
 })
 export class LatestPostsComponent implements OnInit {
-  latest5PostsPerGenre = [];
+  imagePath = this.postService.imageUrl;
+  latestPostsForHomepage: LatestPostsForHomepage[] = [];
 
   constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.getLatest5PostsPerGenre();
+    this.getLatestPostsForHomepage();
   }
 
   /**
-   * Get 5 latest posts for each genre.
+   * Get 4 latest posts per genre for homepage.
    */
-  getLatest5PostsPerGenre() {
-    this.postService.latest5PostsPerGenre()
+  getLatestPostsForHomepage() {
+    this.postService.latestPostsForHomepage()
       .subscribe(data => {
-        this.latest5PostsPerGenre = data['data'];
-        console.log(this.latest5PostsPerGenre);
+        this.latestPostsForHomepage = data['data'];
+        console.log(this.latestPostsForHomepage);
       });
   }
 }
