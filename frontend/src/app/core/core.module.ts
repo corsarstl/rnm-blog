@@ -16,15 +16,21 @@ import { ErrorsService } from '../shared/services/errors.service';
 import { CommentService } from '../blog/news/comments/comment.service';
 import { AuthInterceptorService } from '../shared/services/auth-interceptor.service';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchService } from '../shared/services/search.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     PageNotFoundComponent,
-    QuickSearchComponent
+    QuickSearchComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
     AuthModule
@@ -38,6 +44,7 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
     PostService,
     ErrorsService,
     CommentService,
+    SearchService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

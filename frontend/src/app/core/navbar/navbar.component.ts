@@ -4,6 +4,7 @@ import { MenuItem } from './menu-item.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { NavbarService } from './navbar.service';
 import { Router } from '@angular/router';
+import { SearchService } from '../../shared/services/search.service';
 
 @Component({
   selector: 'rnm-navbar',
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private navbarService: NavbarService,
+              private searchService: SearchService,
               private router: Router) { }
 
   ngOnInit() {
@@ -53,12 +55,19 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
 
+  /**
+   * Pass navbar input data to quick search component as initial one.
+   * Navigate to quick search component.
+   *
+   * @param event
+   */
   onQuickSearch(event: any) {
-
     if (event.keyCode === 13) {
       event.preventDefault();
-      console.log(event.target.value);
-      // event.target.value.reset();
+
+      this.searchService.searchTermFromNavbar = event.target.value;
+
+      (<HTMLInputElement>document.getElementById('navbarSearchInput')).value = '';
 
       this.router.navigate(['/blog/news/search']);
     }

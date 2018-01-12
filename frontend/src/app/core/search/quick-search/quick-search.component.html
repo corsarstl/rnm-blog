@@ -1,1 +1,51 @@
-<h2>Quick search</h2>
+<h2 class="text-center mb-4">Quick search by title</h2>
+
+<div class="col-md-7 offset-md-3">
+    <form [formGroup]="quickSearchForm"
+          (keyup)="getResults()"
+          novalidate>
+
+        <div class="form-group row">
+            <input type="text"
+                   name="searchTerm"
+                   id="searchTerm"
+                   class="form-control"
+                   formControlName="searchTerm"
+                   placeholder="min 3 characters...">
+        </div>
+    </form>
+
+    <div *ngIf="results.length !== 0">
+
+        <p class="text-center">Search results: <strong>{{ results.length }}</strong></p>
+
+        <div *ngFor="let result of results"
+             class="mt-3">
+
+            <p>
+                <a routerLink="/blog/news/{{ result.genreName | kebabCase }}/{{ result.bandName | kebabCase }}/{{ result.postId }}/{{ result.postTitle | kebabCase }}">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                {{ result.postTitle }}
+            </p>
+
+            <h5>
+                <a routerLink="/blog/news/genres/{{ result.genreName | kebabCase }}"
+                   class="badge badge-pill badge-success">
+                    {{ result.genreName | titleCase }}
+                </a>
+                <a routerLink="/blog/news/{{ result.genreName | kebabCase }}/{{ result.bandName | kebabCase }}"
+                   class="badge badge-pill badge-info">
+                    {{ result.bandName }}
+                </a>
+            </h5>
+
+            <hr *ngIf="results.length > 2">
+        </div>
+    </div>
+
+    <h4 *ngIf="results.length === 0"
+        class="my-5">
+        Sorry, no results for your request ...
+    </h4>
+</div>

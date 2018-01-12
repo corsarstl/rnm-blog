@@ -8,13 +8,13 @@ import { TagPostsComponent } from './news/posts/tag-posts.component';
 import { BandPostsComponent } from './news/posts/band-posts.component';
 import { PostComponent } from './news/posts/post/post.component';
 import { BlogComponent } from './blog.component';
-import { QuickSearchComponent } from '../core/search/quick-search/quick-search.component';
+import { SearchComponent } from '../core/search/search.component';
 
 const blogRoutes: Routes = [
   { path: 'blog', component: BlogComponent, children: [
     { path: 'home', component: HomeComponent },
     { path: 'news', component: NewsComponent, children: [
-      { path: 'search', component: QuickSearchComponent },
+      { path: 'search', component: SearchComponent },
       { path: 'genres/:genreSlug', component: GenrePostsComponent },
       { path: 'tags/:tagId/:tagSlug', component: TagPostsComponent },
       { path: ':genreSlug/:bandSlug', component: BandPostsComponent },
