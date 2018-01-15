@@ -68,7 +68,7 @@ class Post extends Model
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('g.slug', $genreSlug)
             ->orderBy('postId', 'desc')
-            ->get();
+            ->paginate(10);
 
         foreach ($posts as $post) {
             $post->postContent = self::createPostContentPreview($post->postContent);
@@ -97,7 +97,7 @@ class Post extends Model
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('b.slug', $bandSlug)
             ->orderBy('postId', 'desc')
-            ->get();
+            ->paginate(10);
 
         foreach ($posts as $post) {
             $post->postContent = self::createPostContentPreview($post->postContent);
@@ -128,7 +128,7 @@ class Post extends Model
             ->join('tags as t', 't.id', 'pt.tag_id')
             ->where('t.id', $tagId)
             ->orderBy('postId', 'desc')
-            ->get();
+            ->paginate(10);
 
         foreach ($posts as $post) {
             $post->postContent = self::createPostContentPreview($post->postContent);

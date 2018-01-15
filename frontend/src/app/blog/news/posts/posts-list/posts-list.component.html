@@ -1,4 +1,4 @@
-<div *ngFor="let post of postsToDisplay" class="border border-dark rounded mt-4 p-3 dropshadow">
+<div *ngFor="let post of postsToDisplay['data']" class="border border-dark rounded mt-4 p-3 dropshadow">
   <div class="row">
     <div class="col-md-12">
       <h4 class="text-center">{{ post.postTitle }}</h4>
@@ -22,3 +22,10 @@
       </div>
   </div>
 </div>
+
+<rnm-pagination [currentPage]="postsToDisplay['current_page']"
+                [path]="postsToDisplay['path']"
+                [lastPage]="postsToDisplay['last_page']"
+                [nextPageUrl]="postsToDisplay['next_page_url']"
+                [prevPageUrl]="postsToDisplay['prev_page_url']">
+</rnm-pagination>

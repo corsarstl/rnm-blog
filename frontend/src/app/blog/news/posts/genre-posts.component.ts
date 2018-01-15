@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
-import { PostsListItem } from './posts-list/posts-list-item.model';
+import { PaginatedPosts } from './posts-list/paginated-posts.model';
 
 @Component({
   selector: 'rnm-genre-posts',
@@ -15,7 +15,7 @@ export class GenrePostsComponent implements OnInit {
   genreUrl: {
     genreSlug: string
   };
-  posts: PostsListItem[] = [];
+  posts: PaginatedPosts[] = [];
 
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
@@ -42,7 +42,7 @@ export class GenrePostsComponent implements OnInit {
   getPostsByGenre(genreSlug) {
     this.postService.postsByGenre(genreSlug)
       .subscribe(data => {
-        this.posts = data['data'];
+        this.posts = data['posts'];
         console.log(this.posts);
       });
   }

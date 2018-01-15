@@ -10,12 +10,14 @@ import { PopularTagsComponent } from './components/popular-tags/popular-tags.com
 
 import { KebabCasePipe } from './pipes/kebab-case.pipe';
 import { TitleCasePipe } from './pipes/title-case.pipe';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     HotPostsComponent,
     NewsletterSubscriptionComponent,
     PopularTagsComponent,
+    PaginationComponent,
     KebabCasePipe,
     TitleCasePipe
   ],
@@ -28,6 +30,7 @@ import { TitleCasePipe } from './pipes/title-case.pipe';
     HotPostsComponent,
     NewsletterSubscriptionComponent,
     PopularTagsComponent,
+    PaginationComponent,
     KebabCasePipe,
     TitleCasePipe
   ]

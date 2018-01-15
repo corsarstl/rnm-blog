@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
-import { PostsListItem } from './posts-list/posts-list-item.model';
+import { PaginatedPosts } from './posts-list/paginated-posts.model';
 
 @Component({
   selector: 'rnm-band-posts',
   template: `
-      <h1 class="text-center">{{ posts[0]?.bandName }}</h1>
+      <h1 class="text-center">{{ posts['data'] && posts['data'][0].bandName }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
   styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']
@@ -16,7 +16,7 @@ export class BandPostsComponent implements OnInit {
     genreSlug: string,
     bandSlug: string
   };
-  posts: PostsListItem[] = [];
+  posts: PaginatedPosts[] = [];
 
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
@@ -44,7 +44,7 @@ export class BandPostsComponent implements OnInit {
   getPostsByBand(genreSlug, bandSlug) {
     this.postService.postsByBand(genreSlug, bandSlug)
       .subscribe(data => {
-        this.posts = data['data'];
+        this.posts = data['posts'];
         console.log(this.posts);
       });
   }

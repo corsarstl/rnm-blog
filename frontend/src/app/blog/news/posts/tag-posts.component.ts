@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
-import { PostsListItem } from './posts-list/posts-list-item.model';
+import { PaginatedPosts } from './posts-list/paginated-posts.model';
 
 @Component({
   selector: 'rnm-tag-posts',
@@ -16,7 +16,7 @@ export class TagPostsComponent implements OnInit {
     tagId: number;
     tagSlug: string;
   };
-  posts: PostsListItem[] = [];
+  posts: PaginatedPosts[] = [];
 
   constructor(private postService: PostService,
               private route: ActivatedRoute) { }
@@ -47,7 +47,7 @@ export class TagPostsComponent implements OnInit {
   getPostsByTag(tagId, tagSlug) {
     this.postService.postsByTag(tagId, tagSlug)
       .subscribe(data => {
-        this.posts = data['data'];
+        this.posts = data['posts'];
         console.log(this.posts);
       });
   }

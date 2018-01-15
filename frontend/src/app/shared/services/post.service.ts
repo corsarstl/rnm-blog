@@ -6,17 +6,18 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HotPost } from '../components/hot-posts/hot-post.model';
 import { PopularTag } from '../components/popular-tags/popular-tag.model';
-import { PostsListItem } from '../../blog/news/posts/posts-list/posts-list-item.model';
 import { SliderPost } from '../../blog/home/slider/slider-post.model';
 import { ErrorsService } from './errors.service';
 import { LatestPostsForHomepage } from '../../blog/home/latest-posts/latest-posts-for-homepage.model';
+import { PaginatedPosts } from '../../blog/news/posts/posts-list/paginated-posts.model';
+import { PostDetails } from '../../blog/news/posts/post/post-details.model';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class PostService {
+  navigatedToNewPage = new Subject();
   private apiUrl = 'http://rnmblog.com/api';
   imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
-  posts = [];
-  post;
 
   constructor(private httpClient: HttpClient,
               private errorsService: ErrorsService) {}
@@ -51,14 +52,13 @@ export class PostService {
    * Get all posts for selected genre.
    *
    * @param genreSlug
-   * @returns {Observable<PostsListItem[]>}
+   * @returns {Observable<PaginatedPosts[]>}
    */
-  postsByGenre(genreSlug): Observable<PostsListItem[]> {
+
+  postsByGenre(genreSlug): Observable<PaginatedPosts[]> {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
 
-    return this.httpClient.get(url)
-      .map(res => res as PostsListItem[])
-      .catch(this.errorsService.handleError);
+    return this.getPosts(url);
   }
 
   /**
@@ -66,14 +66,12 @@ export class PostService {
    *
    * @param genreSlug
    * @param bandSlug
-   * @returns {Observable<PostsListItem[]>}
+   * @returns {Observable<PaginatedPosts[]>}
    */
-  postsByBand(genreSlug, bandSlug): Observable<PostsListItem[]> {
+  postsByBand(genreSlug, bandSlug): Observable<PaginatedPosts[]> {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
 
-    return this.httpClient.get(url)
-      .map(res => res as PostsListItem[])
-      .catch(this.errorsService.handleError);
+    return this.getPosts(url);
   }
 
   /**
@@ -81,14 +79,22 @@ export class PostService {
    *
    * @param tagId
    * @param tagSlug
-   * @returns {Observable<PostsListItem[]>}
+   * @returns {Observable<PaginatedPosts[]>}
    */
-  postsByTag(tagId, tagSlug): Observable<PostsListItem[]> {
+  postsByTag(tagId, tagSlug): Observable<PaginatedPosts[]> {
     const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
 
-    return this.httpClient.get(url)
-      .map(res => res as PostsListItem[])
-      .catch(this.errorsService.handleError);
+    return this.getPosts(url);
+  }
+
+  /**
+   * Update posts after navigation to first, last, prev, next or selected pages.
+   *
+   * @param url
+   * @returns {Observable<PaginatedPosts[]>}
+   */
+  updatePosts(url): Observable<PaginatedPosts[]> {
+    return this.getPosts(url);
   }
 
   /**
@@ -130,7 +136,19 @@ export class PostService {
     const url = `${this.apiUrl}/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
 
     return this.httpClient.get(url)
-      .do(res => this.post = res)
+      .do(res => res as PostDetails[])
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get posts for genre, band, tags or when updating components with posts.
+   *
+   * @param {string} url
+   * @returns {Observable<any | any>}
+   */
+  private getPosts(url: string) {
+    return this.httpClient.get(url)
+      .map(res => res as PaginatedPosts[])
       .catch(this.errorsService.handleError);
   }
 }

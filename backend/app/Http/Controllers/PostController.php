@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByGenre($request->genreSlug);
 
-        return response()->json(['data' => $posts]);
+        return response()->json(['posts' => $posts]);
     }
 
     /**
@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByBand($request->bandSlug);
 
-        return response()->json(['data' => $posts]);
+        return response()->json(['posts' => $posts]);
     }
 
     /**
@@ -44,7 +44,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByTag($request->tagId);
 
-        return response()->json(['data' => $posts]);
+        return response()->json(['posts' => $posts]);
     }
 
     /**
