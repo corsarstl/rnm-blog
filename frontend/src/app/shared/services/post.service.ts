@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+import { ErrorsService } from './errors.service';
+
 import { HotPost } from '../components/hot-posts/hot-post.model';
 import { PopularTag } from '../components/popular-tags/popular-tag.model';
 import { SliderPost } from '../../blog/home/slider/slider-post.model';
-import { ErrorsService } from './errors.service';
 import { LatestPostsForHomepage } from '../../blog/home/latest-posts/latest-posts-for-homepage.model';
 import { PaginatedPosts } from '../../blog/news/posts/posts-list/paginated-posts.model';
 import { PostDetails } from '../../blog/news/posts/post/post-details.model';
-import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class PostService {

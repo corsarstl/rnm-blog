@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { SearchResult } from '../../core/search/search-result.model';
-import { ErrorsService } from './errors.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+
+import { ErrorsService } from './errors.service';
+import { SearchResult } from '../../core/search/search-result.model';
 
 @Injectable()
 export class SearchService {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { SearchService } from '../../../shared/services/search.service';
 import { SearchResult } from '../search-result.model';
 

@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { CommentService } from '../comment.service';
-import { AuthService } from '../../../../shared/services/auth.service';
 import { Subscription } from 'rxjs/Subscription';
+
+import { AuthService } from '../../../../shared/services/auth.service';
+import { CommentService } from '../comment.service';
 import { PaginatedComments } from './paginated-comments.model';
 
 @Component({

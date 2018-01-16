@@ -1,8 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Comment } from './comment.model';
-import { CommentService } from '../comment.service';
 import { Subscription } from 'rxjs/Subscription';
+
 import { AuthService } from '../../../../shared/services/auth.service';
+import { CommentService } from '../comment.service';
+import { Comment } from './comment.model';
 
 @Component({
   selector: 'rnm-comment',

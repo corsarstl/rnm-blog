@@ -1,7 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
 import { PostService } from '../../../../shared/services/post.service';
 import { PaginatedPosts } from './paginated-posts.model';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'rnm-posts-list',

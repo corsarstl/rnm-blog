@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PopularTag } from './popular-tag.model';
+
 import { PostService } from '../../services/post.service';
+import { PopularTag } from './popular-tag.model';
 
 @Component({
   selector: 'rnm-popular-tags',

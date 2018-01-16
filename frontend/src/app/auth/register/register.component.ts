@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from '../../shared/services/auth.service';
 
 const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;

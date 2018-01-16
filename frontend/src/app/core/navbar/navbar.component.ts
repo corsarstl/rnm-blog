@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { MenuItem } from './menu-item.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { NavbarService } from './navbar.service';
-import { Router } from '@angular/router';
 import { SearchService } from '../../shared/services/search.service';
+import { MenuItem } from './menu-item.model';
 
 @Component({
   selector: 'rnm-navbar',
