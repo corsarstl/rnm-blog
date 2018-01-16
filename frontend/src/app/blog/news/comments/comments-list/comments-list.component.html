@@ -11,6 +11,16 @@
 [postIdForNewComment]="postId"></rnm-comment-new>
 
 <div class="card mb-3 mt-3"
-     *ngFor="let commentToDisplay of comments">
+     *ngFor="let commentToDisplay of comments['data']">
     <rnm-comment [comment]="commentToDisplay"></rnm-comment>
 </div>
+
+<rnm-pagination *ngIf="comments['total'] > 5"
+                [currentPage]="comments['current_page']"
+                [path]="comments['path']"
+                [lastPage]="comments['last_page']"
+                [itemsPerPage]="comments['per_page']"
+                [totalItems]="comments['total']"
+                [nextPageUrl]="comments['next_page_url']"
+                [prevPageUrl]="comments['prev_page_url']">
+</rnm-pagination>

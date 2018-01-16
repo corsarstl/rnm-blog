@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { Comment } from '../comment/comment.model';
 import { CommentService } from '../comment.service';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { Subscription } from 'rxjs/Subscription';
+import { PaginatedComments } from './paginated-comments.model';
 
 @Component({
   selector: 'rnm-comments-list',
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() postId: number;
-  comments: Comment[] = [];
+  comments: PaginatedComments[] = [];
   newCommentCreatedSubscription: Subscription;
   refreshCommentsSubscription: Subscription;
 
@@ -22,14 +22,18 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.refreshCommentsSubscription = this.commentService.refreshComments
-      .subscribe(() => {
-        this.getComments(this.postId);
+      .subscribe((url) => {
+        if (url !== undefined) {
+          this.updateComments(url);
+        } else {
+          this.showComments(this.postId);
+        }
       });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(`Post id changed to ${this.postId}`);
-    this.getComments(this.postId);
+    this.showComments(this.postId);
 
     if (this.newCommentCreatedSubscription !== undefined) {
       this.newCommentCreatedSubscription.unsubscribe();
@@ -49,10 +53,24 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
    *
    * @param postId
    */
-  getComments(postId) {
-    this.commentService.getComments(postId)
+  showComments(postId) {
+    this.commentService.showComments(postId)
       .subscribe(data => {
-        this.comments = data['data'];
+        this.comments = data['comments'];
+        console.log('Comments for the post:');
+        console.log(this.comments);
+      });
+  }
+
+  /**
+   * Update comments after navigation to first, last, prev, next or selected pages.
+   *
+   * @param postId
+   */
+  updateComments(url) {
+    this.commentService.updateComments(url)
+      .subscribe(data => {
+        this.comments = data['comments'];
         console.log('Comments for the post:');
         console.log(this.comments);
       });
@@ -65,7 +83,7 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
     this.newCommentCreatedSubscription = this.commentService.newCommentCreated
       .subscribe(() => {
         console.log(`Listener: Comment was added for post#${this.postId} `);
-        this.getComments(this.postId);
+        this.showComments(this.postId);
       });
   }
 }

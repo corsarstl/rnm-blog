@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PostService } from '../../services/post.service';
+import { CommentService } from '../../../blog/news/comments/comment.service';
 
 @Component({
   selector: 'rnm-pagination',
@@ -16,7 +17,8 @@ export class PaginationComponent {
   @Input() prevPageUrl: string;
   @Input() nextPageUrl: string;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,
+              private commentService: CommentService) { }
 
   /**
    * Get numbers of pages to display between prev and next buttons.
@@ -60,7 +62,10 @@ export class PaginationComponent {
   onFirst() {
     const url = this.path;
 
-    this.postService.navigatedToNewPage.next(url);
+    if (this.currentPage !== 1) {
+      this.postService.navigatedToNewPage.next(url);
+      this.commentService.refreshComments.next(url);
+    }
   }
 
   /**
@@ -69,7 +74,10 @@ export class PaginationComponent {
   onPrev() {
     const url = this.prevPageUrl;
 
-    this.postService.navigatedToNewPage.next(url);
+    if (this.currentPage !== 1) {
+      this.postService.navigatedToNewPage.next(url);
+      this.commentService.refreshComments.next(url);
+    }
   }
 
   /**
@@ -82,6 +90,7 @@ export class PaginationComponent {
     const url = `${path}?page=${offset}`;
 
     this.postService.navigatedToNewPage.next(url);
+    this.commentService.refreshComments.next(url);
   }
 
   /**
@@ -90,7 +99,10 @@ export class PaginationComponent {
   onNext() {
     const url = this.nextPageUrl;
 
-    this.postService.navigatedToNewPage.next(url);
+    if (this.currentPage !== this.lastPage) {
+      this.postService.navigatedToNewPage.next(url);
+      this.commentService.refreshComments.next(url);
+    }
   }
 
   /**
@@ -101,6 +113,9 @@ export class PaginationComponent {
     const path = this.path;
     const url = `${path}?page=${offset}`;
 
-    this.postService.navigatedToNewPage.next(url);
+    if (this.currentPage !== this.lastPage) {
+      this.postService.navigatedToNewPage.next(url);
+      this.commentService.refreshComments.next(url);
+    }
   }
 }

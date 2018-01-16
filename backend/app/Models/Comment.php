@@ -66,9 +66,8 @@ class Comment extends Model
                 'u.name as userName')
             ->join('users as u', 'u.id', 'c.user_id')
             ->where('c.post_id', $postId)
-            ->groupBy('commentId')
             ->orderBy('commentId', 'desc')
-            ->get();
+            ->paginate(5);
 
         return $comments;
     }

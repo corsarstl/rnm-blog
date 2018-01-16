@@ -54,7 +54,6 @@ export class PostService {
    * @param genreSlug
    * @returns {Observable<PaginatedPosts[]>}
    */
-
   postsByGenre(genreSlug): Observable<PaginatedPosts[]> {
     const url = `${this.apiUrl}/genres/${genreSlug}`;
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorsService } from '../../../shared/services/errors.service';
 import { Subject } from 'rxjs/Subject';
+import { PaginatedComments } from './comments-list/paginated-comments.model';
 
 @Injectable()
 export class CommentService {
@@ -20,14 +21,20 @@ export class CommentService {
    * Get all comments for selected post.
    *
    * @param postId
-   * @returns {Observable<Comment[]>}
    */
-  getComments(postId): Observable<Comment[]> {
+  showComments(postId) {
     const url = `${this.apiUrl}/${postId}`;
 
-    return this.httpClient.get(url)
-      .map(res => res as Comment[])
-        .catch(this.errorsService.handleError);
+    return this.getComments(url);
+  }
+
+  /**
+   * Update comments after navigation to first, last, prev, next or selected pages.
+   *
+   * @param url
+   */
+  updateComments(url) {
+    return this.getComments(url);
   }
 
   /**
@@ -64,6 +71,18 @@ export class CommentService {
     const url = `${this.apiUrl}/${commentId}`;
 
     return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get all comments for passed url.
+   *
+   * @param url
+   * @returns {Observable<PaginatedComments[]>}
+   */
+  private getComments(url): Observable<PaginatedComments[]> {
+    return this.httpClient.get(url)
+      .map(res => res as PaginatedComments[])
       .catch(this.errorsService.handleError);
   }
 }

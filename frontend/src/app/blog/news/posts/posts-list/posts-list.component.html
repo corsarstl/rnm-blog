@@ -23,7 +23,8 @@
   </div>
 </div>
 
-<rnm-pagination [currentPage]="postsToDisplay['current_page']"
+<rnm-pagination *ngIf="postsToDisplay['total'] > 10"
+                [currentPage]="postsToDisplay['current_page']"
                 [path]="postsToDisplay['path']"
                 [lastPage]="postsToDisplay['last_page']"
                 [itemsPerPage]="postsToDisplay['per_page']"

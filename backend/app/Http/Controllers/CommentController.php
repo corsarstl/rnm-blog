@@ -22,7 +22,7 @@ class CommentController extends Controller
     {
         $comments = Comment::getComments($request->postId);
 
-        return response()->json(['data' => $comments]);
+        return response()->json(['comments' => $comments]);
     }
     
     /**
