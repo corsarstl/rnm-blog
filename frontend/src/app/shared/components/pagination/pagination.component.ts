@@ -11,6 +11,8 @@ export class PaginationComponent {
   @Input() currentPage: number;
   @Input() path: string;
   @Input() lastPage: number;
+  @Input() itemsPerPage: number;
+  @Input() totalItems: number;
   @Input() prevPageUrl: string;
   @Input() nextPageUrl: string;
 
@@ -19,25 +21,34 @@ export class PaginationComponent {
   /**
    * Get numbers of pages to display between prev and next buttons.
    *
-   * @returns {Array}
+   * @returns {number[]}
    */
-  getPages() {
+  getPages(): number[] {
+    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
     const currentPage = this.currentPage;
     const lastPage = this.lastPage;
     const pages = [];
 
+    switch (totalPages) {
+      case 1:
+        pages.push(1);
+        return pages;
+      case 2:
+        pages.push(1, 2);
+        return pages;
+      case 3:
+        pages.push(1, 2, 3);
+        return pages;
+      default:
+        break;
+    }
+
     if (currentPage === 1) {
-      pages.push(currentPage);
-      pages.push(currentPage + 1);
-      pages.push(currentPage + 2);
+      pages.push(currentPage, currentPage + 1, currentPage + 2);
     } else if (currentPage === lastPage) {
-      pages.push(currentPage - 2);
-      pages.push(currentPage - 1);
-      pages.push(currentPage);
+      pages.push(currentPage - 2, currentPage - 1, currentPage);
     } else {
-      pages.push(currentPage - 1);
-      pages.push(currentPage);
-      pages.push(currentPage + 1);
+      pages.push(currentPage - 1, currentPage, currentPage + 1);
     }
 
     return pages;
