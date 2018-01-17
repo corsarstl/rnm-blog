@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -17,11 +18,18 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgProgressModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
     AuthModule,
     BlogModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgProgressInterceptor,
+      multi: true }
   ],
   bootstrap: [ AppComponent ]
 })
