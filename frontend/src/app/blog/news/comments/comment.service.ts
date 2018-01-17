@@ -22,8 +22,9 @@ export class CommentService {
    * Get all comments for selected post.
    *
    * @param postId
+   * @returns {Observable<PaginatedComments[]>}
    */
-  showComments(postId) {
+  showComments(postId): Observable<PaginatedComments[]>  {
     const url = `${this.apiUrl}/${postId}`;
 
     return this.getComments(url);
@@ -33,8 +34,9 @@ export class CommentService {
    * Update comments after navigation to first, last, prev, next or selected pages.
    *
    * @param url
+   * @returns {Observable<PaginatedComments[]>}
    */
-  updateComments(url) {
+  updateComments(url): Observable<PaginatedComments[]>  {
     return this.getComments(url);
   }
 

@@ -11,15 +11,15 @@
                    id="searchTerm"
                    class="form-control"
                    formControlName="searchTerm"
-                   placeholder="min 3 characters...">
+                   placeholder="min 2 characters...">
         </div>
     </form>
 
     <div *ngIf="results.length !== 0">
 
-        <p class="text-center">Search results: <strong>{{ results.length }}</strong></p>
+        <p class="text-center">Search results: <strong>{{ results['total'] }}</strong></p>
 
-        <div *ngFor="let result of results"
+        <div *ngFor="let result of results.data"
              class="mt-3">
 
             <p>
@@ -40,12 +40,22 @@
                 </a>
             </h5>
 
-            <hr *ngIf="results.length > 2">
+            <hr *ngIf="results.data && results.data.length > 2">
         </div>
     </div>
 
-    <h4 *ngIf="results.length === 0"
+    <h4 *ngIf="(results.data && results.data.length === 0) || !results.data"
         class="my-5">
         Sorry, no results for your request ...
     </h4>
+
+    <rnm-pagination *ngIf="results['total'] > 10"
+                    [currentPage]="results['current_page']"
+                    [path]="results['path']"
+                    [lastPage]="results['last_page']"
+                    [itemsPerPage]="results['per_page']"
+                    [totalItems]="results['total']"
+                    [nextPageUrl]="results['next_page_url']"
+                    [prevPageUrl]="results['prev_page_url']">
+    </rnm-pagination>
 </div>

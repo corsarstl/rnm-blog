@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SearchService } from '../../../shared/services/search.service';
-import { SearchResult } from '../search-result.model';
+import { PaginatedSearchResults } from '../paginated-search-results.model';
 
 @Component({
   selector: 'rnm-quick-search',
   templateUrl: './quick-search.component.html',
-  styleUrls: ['./quick-search.component.css']
+  styles: []
 })
-export class QuickSearchComponent implements OnInit {
+export class QuickSearchComponent implements OnInit, OnDestroy {
   quickSearchForm: FormGroup;
-  results: SearchResult[] = [];
+  // Subscription to update search results after navigation to first, last, prev, next or selected pages.
+  refreshResults: Subscription;
+  results: PaginatedSearchResults[] = [];
 
   constructor(private fb: FormBuilder,
               private searchService: SearchService) { }
@@ -22,6 +25,16 @@ export class QuickSearchComponent implements OnInit {
     });
 
     this.getResults();
+
+    this.refreshResults = this.searchService.refreshResults.subscribe(
+      (url) => {
+        this.searchService.updateResults(url).subscribe(
+          data => {
+            this.results = data['results'];
+            console.log(this.results);
+          });
+      }
+    );
   }
 
   /**
@@ -30,16 +43,19 @@ export class QuickSearchComponent implements OnInit {
   getResults() {
     const searchTerm = this.quickSearchForm.get('searchTerm').value;
 
-    if (searchTerm !== null && searchTerm.length > 2) {
+    if (searchTerm !== null && searchTerm.length > 1) {
       searchTerm.trim();
       searchTerm.toLowerCase();
 
-      this.searchService.quickSearch(searchTerm)
+      return this.searchService.quickSearch(searchTerm)
         .subscribe(data => {
-          this.results = data['data'];
+          this.results = data['results'];
           console.log(this.results);
-          this.searchService.searchTermFromNavbar = searchTerm;
         });
     }
+  }
+
+  ngOnDestroy() {
+    this.refreshResults.unsubscribe();
   }
 }

@@ -17,9 +17,9 @@ class SearchController extends Controller
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('p.title', 'like', "%$searchTerm%")
-            ->groupBy('postId')
-            ->get();
+            ->orderBy('postId', 'desc')
+            ->paginate(10);
 
-        return response()->json(['data' => $posts]);
+        return response()->json(['results' => $posts]);
     }
 }

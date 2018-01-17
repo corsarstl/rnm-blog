@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { PostService } from '../../services/post.service';
 import { CommentService } from '../../../blog/news/comments/comment.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'rnm-pagination',
@@ -19,7 +20,8 @@ export class PaginationComponent {
   @Input() nextPageUrl: string;
 
   constructor(private postService: PostService,
-              private commentService: CommentService) { }
+              private commentService: CommentService,
+              private searchService: SearchService) { }
 
   /**
    * Get numbers of pages to display between prev and next buttons.
@@ -66,6 +68,7 @@ export class PaginationComponent {
     if (this.currentPage !== 1) {
       this.postService.navigatedToNewPage.next(url);
       this.commentService.refreshComments.next(url);
+      this.searchService.refreshResults.next(url);
     }
   }
 
@@ -78,6 +81,7 @@ export class PaginationComponent {
     if (this.currentPage !== 1) {
       this.postService.navigatedToNewPage.next(url);
       this.commentService.refreshComments.next(url);
+      this.searchService.refreshResults.next(url);
     }
   }
 
@@ -92,6 +96,7 @@ export class PaginationComponent {
 
     this.postService.navigatedToNewPage.next(url);
     this.commentService.refreshComments.next(url);
+    this.searchService.refreshResults.next(url);
   }
 
   /**
@@ -103,6 +108,7 @@ export class PaginationComponent {
     if (this.currentPage !== this.lastPage) {
       this.postService.navigatedToNewPage.next(url);
       this.commentService.refreshComments.next(url);
+      this.searchService.refreshResults.next(url);
     }
   }
 
@@ -117,6 +123,7 @@ export class PaginationComponent {
     if (this.currentPage !== this.lastPage) {
       this.postService.navigatedToNewPage.next(url);
       this.commentService.refreshComments.next(url);
+      this.searchService.refreshResults.next(url);
     }
   }
 }
