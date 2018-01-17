@@ -19,13 +19,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchComponent } from './search/search.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
+import { ToTopButtonComponent } from './to-top-button/to-top-button.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     PageNotFoundComponent,
     QuickSearchComponent,
-    SearchComponent
+    SearchComponent,
+    ToTopButtonComponent
   ],
   imports: [
     CommonModule,
