@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BlogRoutingModule } from './blog/blog-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
@@ -14,7 +15,8 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes),
-    BlogRoutingModule
+    BlogRoutingModule,
+    AdminRoutingModule
   ],
   exports: [
     RouterModule

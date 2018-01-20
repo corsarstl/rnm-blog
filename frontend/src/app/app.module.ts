@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { BlogModule } from './blog/blog.module';
+import { AdminModule } from './admin/admin.module';
 
 import { AppComponent } from './app.component';
 
@@ -23,13 +24,15 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AuthModule,
-    BlogModule
+    BlogModule,
+    AdminModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NgProgressInterceptor,
-      multi: true }
+      multi: true
+    }
   ],
   bootstrap: [ AppComponent ]
 })
