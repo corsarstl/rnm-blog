@@ -27,7 +27,7 @@
                         <input type="email"
                                class="form-control"
                                [ngClass]="{'is-invalid':loginForm.get('email').invalid &&
-                                                    loginForm.get('email').touched}"
+                                                        loginForm.get('email').touched}"
                                id="email"
                                name="email"
                                formControlName="email"
@@ -63,8 +63,8 @@
                         <span *ngIf="loginForm.get('password').errors?.required &&
                                  loginForm.get('password').touched"
                               class="invalid-feedback">
-                        Password is required.
-                    </span>
+                            Password is required.
+                        </span>
                     </div>
                     <!--End of FormControlName - Password-->
 

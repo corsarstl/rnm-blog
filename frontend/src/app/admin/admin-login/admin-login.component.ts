@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'rnm-admin-login',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
+  adminLoginForm: FormGroup;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.adminLoginForm = this.fb.group({
+      'email': ['', Validators.required],
+      'password': ['', Validators.required]
+    });
   }
-
 }
