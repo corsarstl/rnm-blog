@@ -28,10 +28,10 @@ class RegistrationRequest extends FormRequest
             'username'                        => 'required|string|min:3|max:20',
             'email'                           => 'required|email|max:30|unique:users',
             'passwords.password'              => [
-                                                    'required',
-                                                    'min:8',
-                                                    'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/',
-                                                    'confirmed'
+                'required',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/',
+                'confirmed'
             ],
             'passwords.password_confirmation' => 'required'
         ];
@@ -69,9 +69,10 @@ class RegistrationRequest extends FormRequest
     public function handle()
     {
         $user = User::create([
-            'name'     => $this->input('username'),
-            'email'    => $this->input('email'),
-            'password' => bcrypt($this->input('passwords.password'))
+            'name'           => $this->input('username'),
+            'email'          => $this->input('email'),
+            'password'       => bcrypt($this->input('passwords.password')),
+            'remember_token' => str_random(10)
         ]);
 
         $token = $user->createToken('login')->accessToken;

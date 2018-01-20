@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 Route::post('register', 'ApiController@register');
 Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
+Route::post('admin/login', 'ApiController@adminLogin');
 
 Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
 Route::get('home', 'HomeController@latestPostsForHome');
@@ -40,3 +41,4 @@ Route::get('hotPosts', 'PostController@hotPosts');
 
 // Tags routes
 Route::get('popularTags', 'TagController@popularTags');
+
