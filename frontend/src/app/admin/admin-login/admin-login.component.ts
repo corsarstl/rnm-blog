@@ -11,7 +11,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AdminLoginComponent implements OnInit {
   adminLoginForm: FormGroup;
-  adminIsLoggedIn = false;
   dataInvalid = false;
   formErrors = [];
 
@@ -37,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
   login() {
     this.adminAuthService.login(this.adminLoginForm.value)
       .subscribe(() => {
-        this.adminIsLoggedIn = true;
+        this.adminAuthService.adminIsLoggedIn = true;
         this.router.navigate(['../dashboard'], {relativeTo: this.route});
       },
         (err: HttpErrorResponse) => {

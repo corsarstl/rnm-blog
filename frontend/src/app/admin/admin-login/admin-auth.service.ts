@@ -5,9 +5,17 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AdminAuthService {
+  adminIsLoggedIn = false;
+  private authData = JSON.parse(localStorage.getItem('adminAuthData'));
   private loginApiUrl = 'http://rnmblog.com/api/admin/login';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    if (this.authData != null) {
+      if (this.authData.token) {
+        this.adminIsLoggedIn = true;
+      }
+    }
+  }
 
   /**
    * Send admin login data for verification.
@@ -22,7 +30,7 @@ export class AdminAuthService {
 
     return this.httpClient.post(url, data)
       .do(res => {
-        localStorage.setItem('authData', JSON.stringify(res['data']));
+        localStorage.setItem('adminAuthData', JSON.stringify(res['data']));
       });
   }
 
