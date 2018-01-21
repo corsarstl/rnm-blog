@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from '../../../shared/services/errors.service';
 import { PaginatedComments } from './comments-list/paginated-comments.model';

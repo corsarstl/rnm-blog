@@ -13,6 +13,7 @@ import { GenresComponent } from './admin-dashboard/genres/genres.component';
 import { BandsComponent } from './admin-dashboard/bands/bands.component';
 import { TagsComponent } from './admin-dashboard/tags/tags.component';
 import { PostsComponent } from './admin-dashboard/posts/posts.component';
+import { GenresService } from './admin-dashboard/genres/genres.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PostsComponent } from './admin-dashboard/posts/posts.component';
   ],
   providers: [
     AdminAuthService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    GenresService
   ]
 })
 export class AdminModule { }
