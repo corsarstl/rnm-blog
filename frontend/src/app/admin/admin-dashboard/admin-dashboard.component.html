@@ -2,14 +2,29 @@
   <div class="row mt-5">
     <div class="col-md-4">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
-           href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Genres</a>
-        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-           href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Bands</a>
-        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
-           href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Tags</a>
-        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-           href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Posts</a>
+        <a class="nav-link" id="v-pills-genres-tab" data-toggle="pill"
+           routerLink="/admin/dashboard/genres"
+           role="tab" aria-controls="v-pills-genres" aria-selected="true">
+          Genres
+        </a>
+
+        <a class="nav-link" id="v-pills-bands-tab" data-toggle="pill"
+           routerLink="/admin/dashboard/bands"
+           role="tab" aria-controls="v-pills-bands" aria-selected="false">
+          Bands
+        </a>
+
+        <a class="nav-link" id="v-pills-tags-tab" data-toggle="pill"
+           routerLink="/admin/dashboard/tags"
+           role="tab" aria-controls="v-pills-tags" aria-selected="false">
+          Tags
+        </a>
+
+        <a class="nav-link" id="v-pills-posts-tab" data-toggle="pill"
+           routerLink="/admin/dashboard/posts"
+           role="tab" aria-controls="v-pills-posts" aria-selected="false">
+          Posts
+        </a>
       </div>
 
       <button type="button"
@@ -18,24 +33,7 @@
       </button>
     </div>
     <div class="col-md-8">
-      <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-          Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-          Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-          Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-          Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-        </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-          2 Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-        </div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-          3 Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-        </div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-          4 Laravel is a PHP framework developed with PHP developer productivity in mind. Written and maintained by Taylor Otwell, the framework is very opinionated and strives to save developer time by favoring convention over configuration. The framework also aims to evolve with the web and has already incorporated several new features and ideas in the web development world—such as job queues, API authentication out of the box, real-time communication, and much more.
-        </div>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
