@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Send login data for verification.
+   * Get valid token and save it or display errors.
+   */
   login() {
     this.authService.login(this.loginForm.value)
       .subscribe(() => {

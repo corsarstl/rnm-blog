@@ -34,6 +34,7 @@ export class AuthService {
   register(data: any): Observable<any> {
     localStorage.clear();
     const url = `${this.apiUrl}/register`;
+
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;
@@ -52,6 +53,7 @@ export class AuthService {
   login(data: any): Observable<any> {
     localStorage.clear();
     const url = `${this.apiUrl}/login`;
+
     return this.httpClient.post(url, data)
       .do(res => {
         this.isLoggedIn = true;

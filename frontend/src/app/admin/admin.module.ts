@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AdminAuthService } from './admin-login/admin-auth.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,9 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     CoreModule,
     SharedModule
+  ],
+  providers: [
+    AdminAuthService
   ]
 })
 export class AdminModule { }
