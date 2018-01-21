@@ -40,7 +40,7 @@ export class CommentEditComponent implements OnInit {
   }
 
   /**
-   * Save update comment to db.
+   * Save updated comment to db.
    * Updates comments for current post.
    */
   onSave() {

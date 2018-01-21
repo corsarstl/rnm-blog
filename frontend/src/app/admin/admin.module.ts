@@ -14,6 +14,8 @@ import { BandsComponent } from './admin-dashboard/bands/bands.component';
 import { TagsComponent } from './admin-dashboard/tags/tags.component';
 import { PostsComponent } from './admin-dashboard/posts/posts.component';
 import { GenresService } from './admin-dashboard/genres/genres.service';
+import { GenreNewComponent } from './admin-dashboard/genres/genre-new/genre-new.component';
+import { GenreEditComponent } from './admin-dashboard/genres/genre-edit/genre-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { GenresService } from './admin-dashboard/genres/genres.service';
     BandsComponent,
     TagsComponent,
     PostsComponent,
+    GenreNewComponent,
+    GenreEditComponent,
   ],
   imports: [
     AppRoutingModule,

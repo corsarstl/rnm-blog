@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form [formGroup]="genreEditForm"
+            novalidate>
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{'is-invalid':genreEditForm.get('newGenreName').invalid &&
+                                          genreEditForm.get('newGenreName').touched}"
+                 name="newGenreName"
+                 formControlName="newGenreName">
+
+          <input type="hidden"
+                 class="form-control"
+                 name="genreId"
+                 formControlName="genreId">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-2">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="genreEditForm.invalid"
+              (click)="onSave()">
+        Save
+      </button>
+    </div>
+
+    <div class="col-md-2">
+      <button type="button"
+              class="btn btn-danger"
+              [disabled]="genreEditForm.invalid"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+

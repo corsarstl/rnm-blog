@@ -26,7 +26,7 @@ export class CommentService {
    * @param postId
    * @returns {Observable<PaginatedComments[]>}
    */
-  showComments(postId): Observable<PaginatedComments[]>  {
+  showComments(postId: number): Observable<PaginatedComments[]>  {
     const url = `${this.apiUrl}/${postId}`;
 
     return this.getComments(url);
@@ -38,7 +38,7 @@ export class CommentService {
    * @param url
    * @returns {Observable<PaginatedComments[]>}
    */
-  updateComments(url): Observable<PaginatedComments[]>  {
+  updateComments(url: string): Observable<PaginatedComments[]>  {
     return this.getComments(url);
   }
 
@@ -72,7 +72,7 @@ export class CommentService {
    * @param commentId
    * @returns {Observable<any>}
    */
-  deleteComment(commentId: any): Observable<any> {
+  deleteComment(commentId: number): Observable<any> {
     const url = `${this.apiUrl}/${commentId}`;
 
     return this.httpClient.delete(url)
