@@ -17,7 +17,6 @@ use Illuminate\Http\Request;
 Route::post('register', 'ApiController@register');
 Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
-Route::post('admin/login', 'ApiController@adminLogin');
 
 Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
 Route::get('home', 'HomeController@latestPostsForHome');
@@ -34,11 +33,22 @@ Route::delete('comments/{commentId}', 'CommentController@destroy');
 // Posts routes
 Route::get('genres/{genreSlug}', 'PostController@indexByGenre');
 Route::get('tags/{tagId}/{tagSlug}', 'PostController@indexByTag');
-Route::get('{genreSlug}/{bandSlug}', 'PostController@indexByBand');
-Route::get('{genreSlug}/{bandSlug}/{postId}/{postSlug}', 'PostController@show');
+Route::get('posts/{genreSlug}/{bandSlug}', 'PostController@indexByBand');
+Route::get('posts/{genreSlug}/{bandSlug}/{postId}/{postSlug}', 'PostController@show');
 Route::get('slider', 'PostController@indexForSlider');
 Route::get('hotPosts', 'PostController@hotPosts');
 
 // Tags routes
 Route::get('popularTags', 'TagController@popularTags');
 
+/*
+ * ***** ADMIN ROUTES *****
+ */
+
+Route::post('admin/login', 'ApiController@adminLogin');
+
+// Genres
+Route::get('admin/genres', 'GenreController@index');
+Route::post('admin/genres', 'GenreController@store');
+Route::put('admin/genres/{genreId}', 'GenreController@update');
+Route::delete('admin/genres/{genreId}', 'GenreController@destroy');

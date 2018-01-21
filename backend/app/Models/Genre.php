@@ -34,6 +34,36 @@ class Genre extends Model
     }
 
     /**
+     * Store a newly created genre.
+     *
+     * @param array $request
+     * @return void
+     */
+    public function create($request)
+    {
+        $this->name = $request->genreName;
+        $genreNameLowerCase = strtolower($request->genreName);
+        $this->slug = implode("-", explode(" ", $genreNameLowerCase));
+
+        $this->save();
+    }
+
+    /**
+     * Update the specified genre.
+     *
+     * @param array $request
+     * @return void
+     */
+    public function updateGenre($request)
+    {
+        $this->name = $request->newGenreName;
+        $genreNameLowerCase = strtolower($request->newGenreName);
+        $this->slug = implode("-", explode(" ", $genreNameLowerCase));
+
+        $this->save();
+    }
+
+    /**
      * Get all genres with corresponding bands for menu in navbar.
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]

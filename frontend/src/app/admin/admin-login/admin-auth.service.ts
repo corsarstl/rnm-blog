@@ -33,5 +33,4 @@ export class AdminAuthService {
         localStorage.setItem('adminAuthData', JSON.stringify(res['data']));
       });
   }
-
 }

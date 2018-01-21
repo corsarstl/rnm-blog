@@ -70,7 +70,7 @@ export class PostService {
    * @returns {Observable<PaginatedPosts[]>}
    */
   postsByBand(genreSlug, bandSlug): Observable<PaginatedPosts[]> {
-    const url = `${this.apiUrl}/${genreSlug}/${bandSlug}`;
+    const url = `${this.apiUrl}/posts/${genreSlug}/${bandSlug}`;
 
     return this.getPosts(url);
   }
@@ -134,7 +134,7 @@ export class PostService {
    * @returns {Observable<any>}
    */
   singlePost(genreSlug, bandSlug, postId, postSlug): Observable<any> {
-    const url = `${this.apiUrl}/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
+    const url = `${this.apiUrl}/posts/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
 
     return this.httpClient.get(url)
       .do(res => res as PostDetails[])
