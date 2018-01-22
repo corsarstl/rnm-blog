@@ -1,3 +1,26 @@
-<p>
-  tag-new works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-8">
+      <form [formGroup]="tagNewForm"
+            novalidate>
+
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{'is-invalid':tagNewForm.get('tagName').invalid &&
+                                          tagNewForm.get('tagName').touched}"
+                 name="tagName"
+                 formControlName="tagName">
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 col-sm-4 col-4">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="tagNewForm.invalid"
+              (click)="onAdd()">
+        Add new
+      </button>
+    </div>
+  </div>
+</div>

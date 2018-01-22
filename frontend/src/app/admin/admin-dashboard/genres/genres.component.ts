@@ -38,7 +38,7 @@ export class GenresComponent implements OnInit, OnDestroy {
 
   /**
    * Show genreEditForm.
-   * Pass initial or updated values to form and update genre list.
+   * Pass initial or updated values to form and update genres list.
    *
    * @param genreName
    * @param genreId

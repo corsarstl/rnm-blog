@@ -1,15 +1,66 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+import { TagsService } from '../tags.service';
 
 @Component({
   selector: 'rnm-tag-edit',
   templateUrl: './tag-edit.component.html',
   styleUrls: ['./tag-edit.component.css']
 })
-export class TagEditComponent implements OnInit {
+export class TagEditComponent implements OnInit, OnDestroy {
+  tagEditForm: FormGroup;
+  // Update initial editForm input values on click according to selected tag.
+  updateEditForm: Subscription;
 
-  constructor() { }
+  constructor(private tagsService: TagsService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.tagEditForm = this.fb.group({
+      'newTagName': [
+        this.tagsService.initialTagNameToEdit,
+        Validators.required
+      ],
+      'tagId': [
+        this.tagsService.initialTagIdToEdit,
+        Validators.required
+      ]
+    });
+
+    this.updateEditForm = this.tagsService.updateEditForm
+      .subscribe((newEditFormValues) => {
+        console.log(newEditFormValues['newTagName']);
+        console.log(newEditFormValues['newTagId']);
+
+        this.tagEditForm.patchValue({'newTagName': newEditFormValues['newTagName']});
+        this.tagEditForm.patchValue({'tagId': newEditFormValues['newTagId']});
+      });
   }
 
+  /**
+   * Save updated tag to db.
+   * Update list of tags.
+   */
+  onSave() {
+    this.tagsService.updateTag(this.tagEditForm.value)
+      .subscribe(() => {
+        console.log('Genre has been updated.');
+        this.tagsService.refreshTags.next();
+        this.tagEditForm.reset();
+      });
+  }
+
+  /**
+   * Reset form inputs.
+   * Update list of tags.
+   */
+  onCancel() {
+    this.tagEditForm.reset();
+    this.tagsService.refreshTags.next();
+  }
+
+  ngOnDestroy() {
+    this.updateEditForm.unsubscribe();
+  }
 }

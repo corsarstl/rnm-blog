@@ -1,3 +1,37 @@
-<p>
-  tag-edit works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form [formGroup]="tagEditForm"
+            novalidate>
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 [ngClass]="{'is-invalid':tagEditForm.get('newTagName').invalid &&
+                                          tagEditForm.get('newTagName').touched}"
+                 name="newTagName"
+                 formControlName="newTagName">
+
+          <input type="hidden"
+                 class="form-control"
+                 name="tagId"
+                 formControlName="tagId">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-4">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="tagEditForm.invalid"
+              (click)="onSave()">
+        Save
+      </button>
+      <button type="button"
+              class="btn btn-danger"
+              [disabled]="tagEditForm.invalid"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
