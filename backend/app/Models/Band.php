@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Band extends Model
 {
@@ -35,8 +36,48 @@ class Band extends Model
         return $this->hasMany('App\Models\Post');
     }
 
-//    public function name()
-//    {
-//        return $this->name;
-//    }
+    public function create($request)
+    {
+        $this->name = $request->bandName;
+        $bandNameLowerCase = strtolower($request->bandName);
+        $this->slug = implode("-", explode(" ", $bandNameLowerCase));
+        $this->genre_id = $request->genreId;
+
+        $this->save();
+    }
+
+    /**
+     * Update the specified band.
+     *
+     * @param $request
+     */
+    public function updateBand($request)
+    {
+        $this->name = $request->newBandName;
+        $bandNameLowerCase = strtolower($request->newBandName);
+        $this->slug = implode("-", explode(" ", $bandNameLowerCase));
+        $this->genre_id = $request->genreId;
+
+        $this->save();
+    }
+
+    /**
+     * Get a list of bands with their genres.
+     *
+     * @return mixed
+     */
+    public static function getBands()
+    {
+        $bands = DB::table('bands as b')
+            ->select(
+                'b.id as bandId',
+                'b.name as bandName',
+                'g.id as genreId',
+                'g.name as genreName')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->orderBy('bandId', 'desc')
+            ->get();
+
+        return $bands;
+    }
 }

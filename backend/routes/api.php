@@ -52,6 +52,12 @@ Route::post('admin/genres', 'GenreController@store');
 Route::put('admin/genres/{genreId}', 'GenreController@update');
 Route::delete('admin/genres/{genreId}', 'GenreController@destroy');
 
+// Bands
+Route::get('admin/bands', 'BandController@index');
+Route::post('admin/bands', 'BandController@store');
+Route::put('admin/bands/{bandId}', 'BandController@update');
+Route::delete('admin/bands/{bandId}', 'BandController@destroy');
+
 // Tags
 Route::get('admin/tags', 'TagController@index');
 Route::post('admin/tags', 'TagController@store');
