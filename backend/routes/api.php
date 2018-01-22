@@ -41,9 +41,8 @@ Route::get('hotPosts', 'PostController@hotPosts');
 // Tags routes
 Route::get('popularTags', 'TagController@popularTags');
 
-/*
- * ***** ADMIN ROUTES *****
- */
+
+// ****** ADMIN ROUTES *****
 
 Route::post('admin/login', 'ApiController@adminLogin');
 
@@ -53,3 +52,8 @@ Route::post('admin/genres', 'GenreController@store');
 Route::put('admin/genres/{genreId}', 'GenreController@update');
 Route::delete('admin/genres/{genreId}', 'GenreController@destroy');
 
+// Tags
+Route::get('admin/tags', 'TagController@index');
+Route::post('admin/tags', 'TagController@store');
+Route::put('admin/tags/{tagId}', 'TagController@update');
+Route::delete('admin/tags/{tagId}', 'TagController@destroy');
