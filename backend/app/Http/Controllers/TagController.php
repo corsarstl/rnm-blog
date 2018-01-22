@@ -74,6 +74,8 @@ class TagController extends Controller
         $tag = Tag::findOrFail($tagId);
         $tag->delete();
 
+        DB::table('post_tag')->where('tag_id', $tagId)->delete();
+
         $message = 'The tag has been deleted.';
 
         return response()->json(['data' => $message]);
