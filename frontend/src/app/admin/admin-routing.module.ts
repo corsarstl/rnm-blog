@@ -15,6 +15,7 @@ const adminRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
     { path: 'login', component: AdminLoginComponent },
     { path: 'dashboard', canActivate: [AdminAuthGuard], component: AdminDashboardComponent, children: [
+      { path: '', redirectTo: 'genres', pathMatch: 'full' },
       { path: 'genres', component: GenresComponent },
       { path: 'bands', component: BandsComponent },
       { path: 'tags', component: TagsComponent },

@@ -1,1 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-8">
+            <form [formGroup]="genreNewForm"
+                  novalidate>
+
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           [ngClass]="{'is-invalid':genreNewForm.get('genreName').invalid &&
+                                                    genreNewForm.get('genreName').touched}"
+                           name="genreName"
+                           formControlName="genreName">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 col-sm-4 col-4">
+            <button type="button"
+                    class="btn btn-success"
+                    [disabled]="genreNewForm.invalid"
+                    (click)="onAdd()">
+                Add new
+            </button>
+        </div>
+    </div>
+</div>
+
 

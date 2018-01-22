@@ -35,6 +35,17 @@ export class GenresService {
   }
 
   /**
+   * Add new genre to db.
+   *
+   * @param {string} genreName
+   * @returns {Observable<any>}
+   */
+  addNewGenre(genreName: string): Observable<any> {
+    return this.httpClient.post(this.apiUrl, genreName)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
    * Update selected genre.
    *
    * @param data

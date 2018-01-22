@@ -52,3 +52,4 @@ Route::get('admin/genres', 'GenreController@index');
 Route::post('admin/genres', 'GenreController@store');
 Route::put('admin/genres/{genreId}', 'GenreController@update');
 Route::delete('admin/genres/{genreId}', 'GenreController@destroy');
+
