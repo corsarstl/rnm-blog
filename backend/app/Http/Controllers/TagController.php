@@ -64,7 +64,7 @@ class TagController extends Controller
     }
 
     /**
-     * Remove the specified tag.
+     * Remove the specified tag and post-tag relation.
      *
      * @param $tagId
      * @return \Illuminate\Http\JsonResponse
