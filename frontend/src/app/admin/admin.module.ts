@@ -16,6 +16,9 @@ import { PostsComponent } from './admin-dashboard/posts/posts.component';
 import { GenresService } from './admin-dashboard/genres/genres.service';
 import { GenreNewComponent } from './admin-dashboard/genres/genre-new/genre-new.component';
 import { GenreEditComponent } from './admin-dashboard/genres/genre-edit/genre-edit.component';
+import { TagEditComponent } from './admin-dashboard/tags/tag-edit/tag-edit.component';
+import { TagNewComponent } from './admin-dashboard/tags/tag-new/tag-new.component';
+import { TagsService } from './admin-dashboard/tags/tags.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { GenreEditComponent } from './admin-dashboard/genres/genre-edit/genre-ed
     PostsComponent,
     GenreNewComponent,
     GenreEditComponent,
+    TagEditComponent,
+    TagNewComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -39,7 +44,8 @@ import { GenreEditComponent } from './admin-dashboard/genres/genre-edit/genre-ed
   providers: [
     AdminAuthService,
     AdminAuthGuard,
-    GenresService
+    GenresService,
+    TagsService
   ]
 })
 export class AdminModule { }

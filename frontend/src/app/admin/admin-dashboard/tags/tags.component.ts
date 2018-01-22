@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from './tag.model';
 
 @Component({
   selector: 'rnm-tags',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit {
+  tags: Tag[] = [];
+
 
   constructor() { }
 
