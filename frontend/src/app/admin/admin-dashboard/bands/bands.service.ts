@@ -40,4 +40,16 @@ export class BandsService {
       .catch(this.errorsService.handleError);
   }
 
+  /**
+   * Delete selected band from db.
+   *
+   * @param bandId
+   * @returns {Observable<any>}
+   */
+  deleteBand(bandId): Observable<any> {
+    const url = `${this.apiUrl}/${bandId}`;
+
+    return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
 }

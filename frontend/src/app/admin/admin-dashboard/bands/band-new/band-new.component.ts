@@ -48,6 +48,9 @@ export class BandNewComponent implements OnInit {
         console.log('A new band has been created.');
         this.bandsService.refreshBands.next();
         this.bandNewForm.patchValue({'bandName': '', 'genreId': ''});
-      });
+
+        this.bandNewForm.controls['bandName'].markAsUntouched();
+        this.bandNewForm.controls['bandName'].markAsPristine();
+    });
   }
 }

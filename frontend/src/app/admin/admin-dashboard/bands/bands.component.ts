@@ -34,6 +34,23 @@ export class BandsComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Delete selected band from db.
+   *
+   * @param bandId
+   */
+  onDelete(bandId) {
+    const confirmation = confirm('Are you sure?');
+
+    if (confirmation) {
+      this.bandsService.deleteBand(bandId)
+        .subscribe(() => {
+          console.log(`Band #${bandId} has been deleted.`);
+          this.bandsService.refreshBands.next();
+        });
+    }
+  }
+
   ngOnDestroy() {
     this.refreshBands.unsubscribe();
   }
