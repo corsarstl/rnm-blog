@@ -29,7 +29,7 @@ export class GenresComponent implements OnInit, OnDestroy {
    * Get a list of all genres.
    */
   showGenres() {
-    this.genresService.showGenres()
+    this.genresService.getGenres()
       .subscribe(data => {
         this.genres = data['genres'];
         console.log(this.genres);

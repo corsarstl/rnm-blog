@@ -26,7 +26,7 @@ export class GenresService {
    *
    * @returns {Observable<Genre[]>}
    */
-  showGenres(): Observable<Genre[]> {
+  getGenres(): Observable<Genre[]> {
     const url = this.apiUrl;
 
     return this.httpClient.get(url)

@@ -1,15 +1,40 @@
-<h1>Bands</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Id</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let band of bands; let i = index">
+        <th scope="row">
+            {{ i+1 }}
+        </th>
+        <td>
+            {{ band.bandName }}
+        </td>
+        <td>
+            {{ band.genreName }}
+        </td>
+        <td>
+            {{ band.bandId }}
+        </td>
+        <td>
+            <i class="far fa-edit fa-lg cursor-pointer"
+               data-toggle="tooltip"
+               data-placement="top"
+               title="Edit"
+               (click)="onEdit(band.bandName, band.bandId)"></i>
 
-Lorem ipsum dolor sit amet, probo malis ius in, at cum pericula forensibus. Volumus rationibus ei vim, vivendum repudiandae nam ea, minimum lucilius deserunt ex duo. Essent appareat ad eos. Ad ius scripta delicatissimi, ei vis animal perfecto, movet utinam mea an. Est ea possit sententiae adversarium, phaedrum ullamcorper est te. Aeque consequat forensibus no usu, alii alienum urbanitas ut vim.
-
-Te gubergren conclusionemque est, vidisse mediocrem mel ne, nibh lobortis et sit. In has ignota graeci gubergren. Sed et illud scriptorem, at vim antiopam sententiae complectitur. At quas utinam nusquam usu. Ei quo vitae appellantur, probo deleniti voluptaria et his.
-
-Id vis labores philosophia. Mea laudem feugait vituperatoribus ea, pri an diceret consetetur. Eum et vitae scripta cotidieque, eu eam odio referrentur. No mel integre electram deterruisset.
-
-Justo everti vis et. Ad qui minim elitr, inermis oportere vis ut. At eripuit copiosae his, exerci admodum liberavisse cum ut. Duo error sonet patrioque at. Eu possim tritani detracto eam, diceret liberavisse id his.
-
-Ea primis minimum tractatos vel, nam ex magna scripserit. Consul postea perpetua no sed, vix agam mazim percipit eu. Homero feugait qualisque eu eam, sumo suas lorem in nam, vix ut enim malorum. Et sumo diam est, sit ut quis discere. Natum reque temporibus ne eam, at eum latine intellegat, duo dico placerat atomorum ut. Adhuc iriure mei te, soleat scribentur ullamcorper ei sit, dolor timeam euismod duo ea.
-
-Ea qui cetero regione fierent. Vel ea nemore animal. Cu dico detraxit temporibus usu. His eius brute delicatissimi te. Harum equidem argumentum sit ei, mei veniam torquatos interesset ut.
-
-An sed stet evertitur, eu sed iisque petentium evertitur, veri aperiri equidem eum ut. Qui novum constituto liberavisse ea. Pro at adhuc convenire mediocritatem, nam ignota maiorum ea, ne animal menandri imperdiet vix. At quo minim quaeque conclusionemque. Mei at libris intellegebat.
+            <i class="far fa-trash-alt fa-lg cursor-pointer"
+               data-toggle="tooltip"
+               data-placement="top"
+               title="Delete"
+               (click)="onDelete(band.bandId)"></i>
+        </td>
+    </tr>
+    </tbody>
+</table>
