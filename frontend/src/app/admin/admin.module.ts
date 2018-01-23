@@ -19,6 +19,8 @@ import { GenreEditComponent } from './admin-dashboard/genres/genre-edit/genre-ed
 import { TagEditComponent } from './admin-dashboard/tags/tag-edit/tag-edit.component';
 import { TagNewComponent } from './admin-dashboard/tags/tag-new/tag-new.component';
 import { TagsService } from './admin-dashboard/tags/tags.service';
+import { BandNewComponent } from './admin-dashboard/bands/band-new/band-new.component';
+import { BandEditComponent } from './admin-dashboard/bands/band-edit/band-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { TagsService } from './admin-dashboard/tags/tags.service';
     GenreEditComponent,
     TagEditComponent,
     TagNewComponent,
+    BandNewComponent,
+    BandEditComponent,
   ],
   imports: [
     AppRoutingModule,
