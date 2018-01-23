@@ -27,9 +27,7 @@ export class GenresService {
    * @returns {Observable<Genre[]>}
    */
   getGenres(): Observable<Genre[]> {
-    const url = this.apiUrl;
-
-    return this.httpClient.get(url)
+    return this.httpClient.get(this.apiUrl)
       .map(res => res as Genre[])
       .catch(this.errorsService.handleError);
   }

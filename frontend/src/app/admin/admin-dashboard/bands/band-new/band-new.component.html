@@ -1,3 +1,44 @@
-<p>
-  band-new works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-sm-9 col-9">
+      <form [formGroup]="bandNewForm"
+            novalidate>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-7 mt-1">
+              <input type="text"
+                     class="form-control"
+                     [ngClass]="{'is-invalid':bandNewForm.get('bandName').invalid &&
+                                          bandNewForm.get('bandName').touched}"
+                     name="bandName"
+                     formControlName="bandName">
+            </div>
+            <div class="col-md-5 mt-1">
+              <select class="form-control"
+                      name="genreId"
+                      formControlName="genreId">
+
+                <option value="" disabled selected>Select genre...</option>
+
+                <option *ngFor="let genre of genres"
+                        value="{{ genre.id }}">
+                  {{ genre.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-3 mt-1">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="bandNewForm.invalid"
+              (click)="onAdd()">
+        Add new
+      </button>
+    </div>
+  </div>
+</div>
