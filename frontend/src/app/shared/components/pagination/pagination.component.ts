@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PostService } from '../../services/post.service';
 import { CommentService } from '../../../blog/news/comments/comment.service';
@@ -25,7 +26,8 @@ export class PaginationComponent {
               private commentService: CommentService,
               private searchService: SearchService,
               private bandsService: BandsService,
-              private tagsService: TagsService) { }
+              private tagsService: TagsService,
+              private router: Router) { }
 
   /**
    * Get numbers of pages to display between prev and next buttons.
@@ -38,18 +40,18 @@ export class PaginationComponent {
     const lastPage = this.lastPage;
     const pages = [];
 
-    switch (totalPages) {
-      case 1:
-        pages.push(1);
-        return pages;
-      case 2:
-        pages.push(1, 2);
-        return pages;
-      case 3:
-        pages.push(1, 2, 3);
-        return pages;
-      default:
-        break;
+    if (totalPages < 4) {
+      switch (totalPages) {
+        case 1:
+          pages.push(1);
+          return pages;
+        case 2:
+          pages.push(1, 2);
+          return pages;
+        case 3:
+          pages.push(1, 2, 3);
+          return pages;
+      }
     }
 
     if (currentPage === 1) {
@@ -70,11 +72,7 @@ export class PaginationComponent {
     const url = this.path;
 
     if (this.currentPage !== 1) {
-      this.postService.navigatedToNewPage.next(url);
-      this.commentService.refreshComments.next(url);
-      this.searchService.refreshResults.next(url);
-      this.bandsService.refreshBands.next(url);
-      this.tagsService.refreshTags.next(url);
+      this.updateComponent(url);
     }
   }
 
@@ -85,11 +83,7 @@ export class PaginationComponent {
     const url = this.prevPageUrl;
 
     if (this.currentPage !== 1) {
-      this.postService.navigatedToNewPage.next(url);
-      this.commentService.refreshComments.next(url);
-      this.searchService.refreshResults.next(url);
-      this.bandsService.refreshBands.next(url);
-      this.tagsService.refreshTags.next(url);
+      this.updateComponent(url);
     }
   }
 
@@ -102,11 +96,7 @@ export class PaginationComponent {
   onPage(offset: number, path = this.path) {
     const url = `${path}?page=${offset}`;
 
-    this.postService.navigatedToNewPage.next(url);
-    this.commentService.refreshComments.next(url);
-    this.searchService.refreshResults.next(url);
-    this.bandsService.refreshBands.next(url);
-    this.tagsService.refreshTags.next(url);
+    this.updateComponent(url);
   }
 
   /**
@@ -116,11 +106,7 @@ export class PaginationComponent {
     const url = this.nextPageUrl;
 
     if (this.currentPage !== this.lastPage) {
-      this.postService.navigatedToNewPage.next(url);
-      this.commentService.refreshComments.next(url);
-      this.searchService.refreshResults.next(url);
-      this.bandsService.refreshBands.next(url);
-      this.tagsService.refreshTags.next(url);
+      this.updateComponent(url);
     }
   }
 
@@ -133,10 +119,26 @@ export class PaginationComponent {
     const url = `${path}?page=${offset}`;
 
     if (this.currentPage !== this.lastPage) {
+      this.updateComponent(url);
+    }
+  }
+
+  /**
+   * Update loaded component after navigation to new page.
+   *
+   * @param {string} url
+   */
+  private updateComponent(url: string) {
+    const currentRoute = this.router.url;
+
+    if (currentRoute.includes('/blog/news/search')) {
+      this.searchService.refreshResults.next(url);
+    } else if (currentRoute.includes('/blog/news')) {
       this.postService.navigatedToNewPage.next(url);
       this.commentService.refreshComments.next(url);
-      this.searchService.refreshResults.next(url);
+    } else if (currentRoute.includes('/admin/dashboard/bands')) {
       this.bandsService.refreshBands.next(url);
+    } else if (currentRoute.includes('/admin/dashboard/tags')) {
       this.tagsService.refreshTags.next(url);
     }
   }
