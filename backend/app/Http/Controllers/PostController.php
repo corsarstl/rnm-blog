@@ -83,4 +83,28 @@ class PostController extends Controller
 
         return response()->json(['data' => $post]);
     }
+
+    /**
+     * Store newly created post.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $this->validate(request(), [
+            'title'   => 'required|min:20',
+            'content' => 'required|min:1000',
+            'image'   => 'required',
+            'bandId'  => 'required',
+            'tags' => 'required'
+        ]);
+
+        $post = new Post();
+        $post->create($request);
+
+        $message = 'Your post was published.';
+
+        return response()->json(['data' => $message]);
+    }
 }

@@ -275,6 +275,30 @@ class Post extends Model
         return $post;
     }
 
+    /**
+     * Store newly created post.
+     *
+     * @param array $request
+     * @return void.
+     */
+    public function create($request)
+    {
+        $this->title = $request->title;
+        $this->content = $request->content;
+        $this->image = $request->image;
+        $this->band_id = $request->bandId;
+
+        $this->save();
+
+        $this->tags()->sync($request->tags);
+    }
+
+    /**
+     * Shortens full post content to show in posts lists for genres, bands and tags.
+     *
+     * @param string $content
+     * @return string
+     */
     private static function createPostContentPreview(string $content)
     {
         $contentArray = str_split($content);
