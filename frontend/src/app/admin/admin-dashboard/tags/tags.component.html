@@ -1,5 +1,7 @@
 <rnm-tag-new></rnm-tag-new>
 
+<rnm-tag-edit *ngIf="showTagEditForm"></rnm-tag-edit>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -10,9 +12,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let tag of tags; let i = index">
+    <tr *ngFor="let tag of tags['data']; let i = index">
         <th scope="row">
-            {{ i+1 }}
+            {{ beginNumerationFrom + i }}
         </th>
         <td>
             {{ tag.name }}
@@ -37,4 +39,12 @@
     </tbody>
 </table>
 
-<rnm-tag-edit *ngIf="showTagEditForm"></rnm-tag-edit>
+<rnm-pagination *ngIf="tags['total'] > 10"
+                [currentPage]="tags['current_page']"
+                [path]="tags['path']"
+                [lastPage]="tags['last_page']"
+                [itemsPerPage]="tags['per_page']"
+                [totalItems]="tags['total']"
+                [nextPageUrl]="tags['next_page_url']"
+                [prevPageUrl]="tags['prev_page_url']">
+</rnm-pagination>

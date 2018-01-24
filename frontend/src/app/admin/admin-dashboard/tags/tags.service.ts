@@ -3,9 +3,9 @@ import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 import { ErrorsService } from '../../../shared/services/errors.service';
 import { Observable } from 'rxjs/Observable';
-import { Tag } from './tag.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { PaginatedTags } from './paginated-tags.model';
 
 @Injectable()
 export class TagsService {
@@ -24,14 +24,22 @@ export class TagsService {
   /**
    * Get all tags.
    *
-   * @returns {Observable<Tag[]>}
+   * @returns {Observable<PaginatedTags[]>}
    */
-  showTags(): Observable<Tag[]> {
+  showTags(): Observable<PaginatedTags[]> {
     const url = this.apiUrl;
 
-    return this.httpClient.get(url)
-      .map(res => res as Tag[])
-      .catch(this.errorsService.handleError);
+    return this.getTags(url);
+  }
+
+  /**
+   * Update tags after navigation to first, last, prev, next or selected pages.
+   *
+   * @param {string} url
+   * @returns {Observable<PaginatedTags[]>}
+   */
+  updateTags(url: string): Observable<PaginatedTags[]> {
+    return this.getTags(url);
   }
 
   /**
@@ -68,6 +76,18 @@ export class TagsService {
     const url = `${this.apiUrl}/${tagId}`;
 
     return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get all tags for passed url.
+   *
+   * @param {string} url
+   * @returns {Observable<PaginatedTags[]>}
+   */
+  private getTags(url: string): Observable<PaginatedTags[]> {
+    return this.httpClient.get(url)
+      .map(res => res as PaginatedTags[])
       .catch(this.errorsService.handleError);
   }
 }

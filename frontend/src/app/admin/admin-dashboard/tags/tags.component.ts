@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Tag } from './tag.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TagsService } from './tags.service';
+import { PaginatedTags } from './paginated-tags.model';
 
 @Component({
   selector: 'rnm-tags',
@@ -9,9 +9,10 @@ import { TagsService } from './tags.service';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit, OnDestroy {
-  tags: Tag[] = [];
+  tags: PaginatedTags[] = [];
   showTagEditForm = false;
   refreshTags: Subscription;
+  beginNumerationFrom: number;
 
   constructor(private tagsService: TagsService) { }
 
@@ -19,8 +20,12 @@ export class TagsComponent implements OnInit, OnDestroy {
     this.showTags();
 
     this.refreshTags = this.tagsService.refreshTags
-      .subscribe(() => {
-        this.showTags();
+      .subscribe((url: string) => {
+        if (url !== undefined) {
+          this.updateTags(url);
+        } else {
+          this.showTags();
+        }
         this.showTagEditForm = false;
       });
   }
@@ -32,6 +37,21 @@ export class TagsComponent implements OnInit, OnDestroy {
     this.tagsService.showTags()
       .subscribe(data => {
         this.tags = data['tags'];
+        this.beginNumerationFrom = this.tags['from'];
+        console.log(this.tags);
+      });
+  }
+
+  /**
+   * Update tags after navigation to first, last, prev, next or selected pages.
+   *
+   * @param {string} url
+   */
+  updateTags(url: string) {
+    this.tagsService.updateTags(url)
+      .subscribe(data => {
+        this.tags = data['tags'];
+        this.beginNumerationFrom = this.tags['from'];
         console.log(this.tags);
       });
   }

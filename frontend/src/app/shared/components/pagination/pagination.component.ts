@@ -4,6 +4,7 @@ import { PostService } from '../../services/post.service';
 import { CommentService } from '../../../blog/news/comments/comment.service';
 import { SearchService } from '../../services/search.service';
 import { BandsService } from '../../../admin/admin-dashboard/bands/bands.service';
+import { TagsService } from '../../../admin/admin-dashboard/tags/tags.service';
 
 @Component({
   selector: 'rnm-pagination',
@@ -23,7 +24,8 @@ export class PaginationComponent {
   constructor(private postService: PostService,
               private commentService: CommentService,
               private searchService: SearchService,
-              private bandsService: BandsService) { }
+              private bandsService: BandsService,
+              private tagsService: TagsService) { }
 
   /**
    * Get numbers of pages to display between prev and next buttons.
@@ -72,6 +74,7 @@ export class PaginationComponent {
       this.commentService.refreshComments.next(url);
       this.searchService.refreshResults.next(url);
       this.bandsService.refreshBands.next(url);
+      this.tagsService.refreshTags.next(url);
     }
   }
 
@@ -86,6 +89,7 @@ export class PaginationComponent {
       this.commentService.refreshComments.next(url);
       this.searchService.refreshResults.next(url);
       this.bandsService.refreshBands.next(url);
+      this.tagsService.refreshTags.next(url);
     }
   }
 
@@ -102,6 +106,7 @@ export class PaginationComponent {
     this.commentService.refreshComments.next(url);
     this.searchService.refreshResults.next(url);
     this.bandsService.refreshBands.next(url);
+    this.tagsService.refreshTags.next(url);
   }
 
   /**
@@ -115,6 +120,7 @@ export class PaginationComponent {
       this.commentService.refreshComments.next(url);
       this.searchService.refreshResults.next(url);
       this.bandsService.refreshBands.next(url);
+      this.tagsService.refreshTags.next(url);
     }
   }
 
@@ -131,6 +137,7 @@ export class PaginationComponent {
       this.commentService.refreshComments.next(url);
       this.searchService.refreshResults.next(url);
       this.bandsService.refreshBands.next(url);
+      this.tagsService.refreshTags.next(url);
     }
   }
 }
