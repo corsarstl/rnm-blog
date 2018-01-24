@@ -29,7 +29,7 @@
                    data-toggle="tooltip"
                    data-placement="top"
                    title="Edit"
-                   (click)="onEdit(band.bandName, band.bandId)"></i>
+                   (click)="onEdit(band.bandName, band.bandId, band.genreId)"></i>
 
                 <i class="far fa-trash-alt fa-lg cursor-pointer"
                    data-toggle="tooltip"
@@ -40,3 +40,5 @@
         </tr>
     </tbody>
 </table>
+
+<rnm-band-edit *ngIf="showBandEditForm"></rnm-band-edit>

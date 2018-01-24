@@ -9,6 +9,12 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class BandsService {
+  // Initial input values for the first band selected.
+  initialBandNameToEdit: string;
+  initialBandIdToEdit: number;
+  initialGenreIdToEdit: number;
+  // Update initial editForm input values on click according to selected band.
+  updateEditForm = new Subject();
   // Update list of bands after creating, updating or deleting of a band.
   refreshBands = new Subject();
   private apiUrl = 'http://rnmblog.com/api/admin/bands';
@@ -37,6 +43,19 @@ export class BandsService {
    */
   addNewBand(data: any): Observable<any> {
     return this.httpClient.post(this.apiUrl, data)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Update selected band.
+   *
+   * @param data
+   * @returns {Observable<any>}
+   */
+  updateBand(data: any): Observable<any> {
+    const url = `${this.apiUrl}/${data.bandId}`;
+
+    return this.httpClient.put(url, data)
       .catch(this.errorsService.handleError);
   }
 

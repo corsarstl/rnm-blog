@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class BandsComponent implements OnInit, OnDestroy {
   bands: Band[] = [];
+  showBandEditForm = false;
   refreshBands: Subscription;
 
   constructor(private bandsService: BandsService) { }
@@ -20,11 +21,12 @@ export class BandsComponent implements OnInit, OnDestroy {
     this.refreshBands = this.bandsService.refreshBands
       .subscribe(() => {
         this.showBands();
+        this.showBandEditForm = false;
       });
   }
 
   /**
-   * Get a list of bands.
+   * Get a list of all bands.
    */
   showBands() {
     this.bandsService.getBands()
@@ -32,6 +34,28 @@ export class BandsComponent implements OnInit, OnDestroy {
         this.bands = data['bands'];
         console.log(this.bands);
       });
+  }
+
+  /**
+   * Show bandEditForm.
+   * Pass initial or updated values to form and update bands list.
+   *
+   * @param {string} bandName
+   * @param {number} bandId
+   * @param {number} genreId
+   */
+  onEdit(bandName: string, bandId: number, genreId: number) {
+    this.showBandEditForm = true;
+    this.bandsService.initialBandNameToEdit = bandName;
+    this.bandsService.initialBandIdToEdit = bandId;
+    this.bandsService.initialGenreIdToEdit = genreId;
+
+    const newEditFormValues = [];
+    newEditFormValues['newBandName'] = bandName;
+    newEditFormValues['newBandId'] = bandId;
+    newEditFormValues['newGenreId'] = genreId;
+
+    this.bandsService.updateEditForm.next(newEditFormValues);
   }
 
   /**

@@ -40,10 +40,10 @@ export class GenresComponent implements OnInit, OnDestroy {
    * Show genreEditForm.
    * Pass initial or updated values to form and update genres list.
    *
-   * @param genreName
-   * @param genreId
+   * @param {string} genreName
+   * @param {number} genreId
    */
-  onEdit(genreName, genreId) {
+  onEdit(genreName: string, genreId: number) {
     this.showGenreEditForm = true;
     this.genresService.initialGenreNameToEdit = genreName;
     this.genresService.initialGenreIdToEdit = genreId;
@@ -59,9 +59,9 @@ export class GenresComponent implements OnInit, OnDestroy {
    * Delete selected genre from db.
    * Update list of genres.
    *
-   * @param genreId
+   * @param {number} genreId
    */
-  onDelete(genreId) {
+  onDelete(genreId: number) {
     const confirmation = confirm('Are you sure?');
 
     if (confirmation) {

@@ -1,3 +1,53 @@
-<p>
-  band-edit works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-8">
+      <form [formGroup]="bandEditForm"
+            novalidate>
+        <div class="form-group">
+                    <div class="row">
+            <div class="col-md-6 mt-1">
+              <input type="text"
+                     class="form-control"
+                     [ngClass]="{'is-invalid':bandEditForm.get('newBandName').invalid &&
+                                              bandEditForm.get('newBandName').touched}"
+                     name="newBandName"
+                     formControlName="newBandName">
+
+              <input type="hidden"
+                     class="form-control"
+                     name="bandId"
+                     formControlName="bandId">
+            </div>
+
+            <div class="col-md-6 mt-1">
+              <select class="form-control"
+                      name="genreId"
+                      formControlName="genreId">
+
+                <option *ngFor="let genre of genres"
+                        value="{{ genre.id }}">
+                  {{ genre.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-4">
+      <button type="button"
+              class="btn btn-success mt-1"
+              [disabled]="bandEditForm.invalid"
+              (click)="onSave()">
+        Save
+      </button>
+      <button type="button"
+              class="btn btn-danger mt-1"
+              [disabled]="bandEditForm.invalid"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
