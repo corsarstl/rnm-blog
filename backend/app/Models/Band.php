@@ -76,7 +76,7 @@ class Band extends Model
                 'g.name as genreName')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->orderBy('bandId', 'desc')
-            ->get();
+            ->paginate(10);
 
         return $bands;
     }

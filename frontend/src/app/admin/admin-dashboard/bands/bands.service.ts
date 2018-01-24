@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ErrorsService } from '../../../shared/services/errors.service';
 import { Observable } from 'rxjs/Observable';
-import { Band } from './band.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Subject } from 'rxjs/Subject';
+import { PaginatedBands } from './paginated-bands.model';
 
 @Injectable()
 export class BandsService {
@@ -25,14 +25,22 @@ export class BandsService {
   /**
    * Get a list of bands.
    *
-   * @returns {Observable<Band[]>}
+   * @returns {Observable<PaginatedBands[]>}
    */
-  getBands(): Observable<Band[]> {
+  showBands(): Observable<PaginatedBands[]> {
     const url = this.apiUrl;
 
-    return this.httpClient.get(url)
-      .map(res => res as Band[])
-      .catch(this.errorsService.handleError);
+    return this.getBands(url);
+  }
+
+  /**
+   * Update bands after navigation to first, last, prev, next or selected pages.
+   *
+   * @param {string} url
+   * @returns {Observable<PaginatedBands[]>}
+   */
+  updateBands(url: string): Observable<PaginatedBands[]> {
+    return this.getBands(url);
   }
 
   /**
@@ -69,6 +77,18 @@ export class BandsService {
     const url = `${this.apiUrl}/${bandId}`;
 
     return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get all bands for passed url.
+   *
+   * @param {string} url
+   * @returns {Observable<PaginatedBands[]>}
+   */
+  private getBands(url: string): Observable<PaginatedBands[]> {
+    return this.httpClient.get(url)
+      .map(res => res as PaginatedBands[])
       .catch(this.errorsService.handleError);
   }
 }

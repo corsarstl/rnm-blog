@@ -23,7 +23,7 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.refreshCommentsSubscription = this.commentService.refreshComments
-      .subscribe((url) => {
+      .subscribe((url: string) => {
         if (url !== undefined) {
           this.updateComments(url);
         } else {
@@ -66,9 +66,9 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Update comments after navigation to first, last, prev, next or selected pages.
    *
-   * @param postId
+   * @param {string} url
    */
-  updateComments(url) {
+  updateComments(url: string) {
     this.commentService.updateComments(url)
       .subscribe(data => {
         this.comments = data['comments'];

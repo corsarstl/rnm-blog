@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BandsService } from './bands.service';
-import { Band } from './band.model';
 import { Subscription } from 'rxjs/Subscription';
+import { PaginatedBands } from './paginated-bands.model';
 
 @Component({
   selector: 'rnm-bands',
@@ -9,9 +9,11 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./bands.component.css']
 })
 export class BandsComponent implements OnInit, OnDestroy {
-  bands: Band[] = [];
+  bands: PaginatedBands[] = [];
   showBandEditForm = false;
   refreshBands: Subscription;
+  // First
+  beginNumerationFrom: number;
 
   constructor(private bandsService: BandsService) { }
 
@@ -19,8 +21,13 @@ export class BandsComponent implements OnInit, OnDestroy {
     this.showBands();
 
     this.refreshBands = this.bandsService.refreshBands
-      .subscribe(() => {
-        this.showBands();
+      .subscribe((url: string) => {
+        if (url !== undefined) {
+          this.updateBands(url);
+        } else {
+          this.showBands();
+        }
+
         this.showBandEditForm = false;
       });
   }
@@ -29,11 +36,26 @@ export class BandsComponent implements OnInit, OnDestroy {
    * Get a list of all bands.
    */
   showBands() {
-    this.bandsService.getBands()
+    this.bandsService.showBands()
       .subscribe(data => {
         this.bands = data['bands'];
+        this.beginNumerationFrom = this.bands['from'];
         console.log(this.bands);
       });
+  }
+
+  /**
+   * Update bands after navigation to first, last, prev, next or selected pages.
+   *
+   * @param {string} url
+   */
+  updateBands(url: string) {
+    this.bandsService.updateBands(url)
+      .subscribe(data => {
+        this.bands = data['bands'];
+        this.beginNumerationFrom = this.bands['from'];
+        console.log(this.bands);
+    });
   }
 
   /**

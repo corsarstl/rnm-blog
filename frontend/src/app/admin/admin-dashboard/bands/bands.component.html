@@ -1,5 +1,7 @@
 <rnm-band-new></rnm-band-new>
 
+<rnm-band-edit *ngIf="showBandEditForm"></rnm-band-edit>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -11,9 +13,9 @@
     </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let band of bands; let i = index">
+        <tr *ngFor="let band of bands['data']; let i = index">
             <th scope="row">
-                {{ i+1 }}
+                {{ beginNumerationFrom + i }}
             </th>
             <td>
                 {{ band.bandName }}
@@ -41,4 +43,12 @@
     </tbody>
 </table>
 
-<rnm-band-edit *ngIf="showBandEditForm"></rnm-band-edit>
+<rnm-pagination *ngIf="bands['total'] > 10"
+                [currentPage]="bands['current_page']"
+                [path]="bands['path']"
+                [lastPage]="bands['last_page']"
+                [itemsPerPage]="bands['per_page']"
+                [totalItems]="bands['total']"
+                [nextPageUrl]="bands['next_page_url']"
+                [prevPageUrl]="bands['prev_page_url']">
+</rnm-pagination>
