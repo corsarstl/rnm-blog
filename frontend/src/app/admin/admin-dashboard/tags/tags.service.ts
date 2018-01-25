@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { PaginatedTags } from './paginated-tags.model';
+import { Tag } from './tag.model';
 
 @Injectable()
 export class TagsService {
@@ -16,7 +17,7 @@ export class TagsService {
   updateEditForm = new Subject();
   // Update list of tags after creating, updating or deleting of a tag.
   refreshTags = new Subject();
-  private apiUrl = 'http://rnmblog.com/api/admin/tags';
+  private baseUrl = 'http://rnmblog.com/api/admin';
 
   constructor(private httpClient: HttpClient,
               private errorsService: ErrorsService) { }
@@ -27,7 +28,7 @@ export class TagsService {
    * @returns {Observable<PaginatedTags[]>}
    */
   showTags(): Observable<PaginatedTags[]> {
-    const url = this.apiUrl;
+    const url = `${this.baseUrl}/tags`;
 
     return this.getTags(url);
   }
@@ -49,7 +50,9 @@ export class TagsService {
    * @returns {Observable<any>}
    */
   addNewTag(tagName: string): Observable<any> {
-    return this.httpClient.post(this.apiUrl, tagName)
+    const url = `${this.baseUrl}/tags`;
+
+    return this.httpClient.post(url, tagName)
       .catch(this.errorsService.handleError);
   }
 
@@ -60,7 +63,7 @@ export class TagsService {
    * @returns {Observable<any>}
    */
   updateTag(data: any): Observable<any> {
-    const url = `${this.apiUrl}/${data.tagId}`;
+    const url = `${this.baseUrl}/tags/${data.tagId}`;
 
     return this.httpClient.put(url, data)
       .catch(this.errorsService.handleError);
@@ -73,9 +76,22 @@ export class TagsService {
    * @returns {Observable<any>}
    */
   deleteTag(tagId): Observable<any> {
-    const url = `${this.apiUrl}/${tagId}`;
+    const url = `${this.baseUrl}/tags/${tagId}`;
 
     return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get a list of tags for select field in form to create new post.
+   *
+   * @returns {Observable<Tag[]>}
+   */
+  getTagsForNewPost(): Observable<Tag[]> {
+    const url = `${this.baseUrl}/posts/tagsForNewPost`;
+
+    return this.httpClient.get(url)
+      .map(res => res as Tag[])
       .catch(this.errorsService.handleError);
   }
 

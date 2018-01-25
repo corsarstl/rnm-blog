@@ -133,11 +133,24 @@ export class PostService {
    * @param postSlug
    * @returns {Observable<any>}
    */
-  singlePost(genreSlug, bandSlug, postId, postSlug): Observable<any> {
+  show(genreSlug, bandSlug, postId, postSlug): Observable<any> {
     const url = `${this.apiUrl}/posts/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
 
     return this.httpClient.get(url)
       .do(res => res as PostDetails[])
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Store newly created post to db.
+   *
+   * @param data
+   * @returns {Observable<any>}
+   */
+  store(data: any): Observable<any> {
+    const url = `${this.apiUrl}/admin/posts`;
+
+    return this.httpClient.post(url, data, {observe: 'response'})
       .catch(this.errorsService.handleError);
   }
 

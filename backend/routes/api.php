@@ -65,4 +65,6 @@ Route::put('admin/tags/{tagId}', 'TagController@update');
 Route::delete('admin/tags/{tagId}', 'TagController@destroy');
 
 // Posts
+Route::get('admin/posts/bandsForNewPost', 'BandController@bandsForNewPost');
+Route::get('admin/posts/tagsForNewPost', 'TagController@tagsForNewPost');
 Route::post('admin/posts', 'PostController@store');

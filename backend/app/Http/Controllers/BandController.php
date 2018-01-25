@@ -8,13 +8,25 @@ use Illuminate\Http\Request;
 class BandController extends Controller
 {
     /**
-     * Get a list of bands with their genres.
+     * Get a list of paginated bands with their genres.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $bands = Band::getBands();
+
+        return response()->json(['bands' => $bands]);
+    }
+
+    /**
+     * Get a list of bands for select field in form to create new post.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function bandsForNewPost()
+    {
+        $bands = Band::getBandsForNewPost();
 
         return response()->json(['bands' => $bands]);
     }

@@ -1,0 +1,142 @@
+<div class="container">
+
+  <h2 class="text-center">Publish a new post.</h2>
+
+  <form [formGroup]="postNewForm" novalidate>
+
+    <!--Title-->
+    <div class="form-group">
+      <label for="title">
+        <strong>
+          Title:
+        </strong>
+      </label>
+
+      <input type="text"
+             class="form-control"
+             name="title"
+             id="title"
+             formControlName="title"
+             aria-describedby="titleHelp"
+             placeholder="Type title here..."
+             [ngClass]="{'is-invalid':postNewForm.get('title').invalid &&
+                                      postNewForm.get('title').touched}">
+
+      <small id="titleHelp"
+             class="form-text text-muted">
+        Min. length 20 characters.
+      </small>
+    </div>
+
+    <!--Content-->
+    <div class="form-group">
+      <label for="content">
+        <strong>
+          Content:
+        </strong>
+      </label>
+
+      <textarea name="content"
+                id="content"
+                cols="30"
+                rows="10"
+                class="form-control"
+                formControlName="content"
+                aria-describedby="contentHelp"
+                placeholder="Add some content here..."
+                [ngClass]="{'is-invalid':postNewForm.get('content').invalid &&
+                                         postNewForm.get('content').touched}">>
+    </textarea>
+
+      <small id="contentHelp"
+             class="form-text text-muted">
+        Min. length 1000 characters.
+      </small>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <!--Band-->
+        <div class="form-group">
+          <label for="bandId">
+            <strong>
+              Choose band:
+            </strong>
+          </label>
+
+          <select class="form-control"
+                  name="bandId"
+                  id="bandId"
+                  formControlName="bandId">
+
+            <option value="" disabled selected>
+              Select band...
+            </option>
+
+            <option *ngFor="let band of bands"
+                    value="{{ band.bandId }}">
+              {{ band.bandName }} ({{ band.genreName }})
+            </option>
+          </select>
+        </div>
+
+        <!--Image-->
+        <div class="form-group">
+          <label for="image">
+            <strong>
+              Image
+            </strong>
+          </label>
+
+          <input type="file"
+                 id="image"
+                 name="image"
+                 class="form-control"
+                 (change)="onFileChange($event)">
+
+          <input type="hidden"
+                 name="fileHidden"
+                 formControlName="image">
+        </div>
+      </div>
+
+      <!--Tags-->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="tags">
+            <strong>
+              Choose tags:
+            </strong>
+          </label>
+
+          <select class="form-control"
+                  name="tags"
+                  id="tags"
+                  formControlName="tags"
+                  size="6"
+                  multiple>
+
+            <option *ngFor="let tag of tags"
+                    value="{{ tag.id }}">
+              {{ tag.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="float-right">
+      <button type="button"
+              class="btn btn-success"
+              [disabled]="postNewForm.invalid"
+              (click)="onPublish()">
+        Publish
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
+

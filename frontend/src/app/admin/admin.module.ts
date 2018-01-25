@@ -22,6 +22,7 @@ import { TagsService } from './admin-dashboard/tags/tags.service';
 import { BandNewComponent } from './admin-dashboard/bands/band-new/band-new.component';
 import { BandEditComponent } from './admin-dashboard/bands/band-edit/band-edit.component';
 import { BandsService } from './admin-dashboard/bands/bands.service';
+import { PostNewComponent } from './admin-dashboard/posts/post-new/post-new.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { BandsService } from './admin-dashboard/bands/bands.service';
     TagNewComponent,
     BandNewComponent,
     BandEditComponent,
+    PostNewComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -62,7 +62,7 @@ class Band extends Model
     }
 
     /**
-     * Get a list of bands with their genres.
+     * Get a list of paginated bands with their genres.
      *
      * @return mixed
      */
@@ -77,6 +77,26 @@ class Band extends Model
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->orderBy('bandId', 'desc')
             ->paginate(10);
+
+        return $bands;
+    }
+
+    /**
+     * Get a list of bands for select field in form to create new post.
+     *
+     * @return mixed
+     */
+    public static function getBandsForNewPost()
+    {
+        $bands = DB::table('bands as b')
+            ->select(
+                'b.id as bandId',
+                'b.name as bandName',
+                'g.id as genreId',
+                'g.name as genreName')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->orderBy('bandId', 'desc')
+            ->get();
 
         return $bands;
     }

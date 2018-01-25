@@ -21,6 +21,18 @@ class TagController extends Controller
     }
 
     /**
+     * Get a list of tags for select field in form to create new post.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function tagsForNewPost()
+    {
+        $tags = Tag::all();
+
+        return response()->json(['tags' => $tags]);
+    }
+
+    /**
      * Store a newly created tag.
      *
      * @param Request $request

@@ -56,7 +56,7 @@ export class PostComponent implements OnInit {
    * @param postSlug
    */
   getSinglePost(genreSlug, bandSlug, postId, postSlug) {
-    this.postService.singlePost(genreSlug, bandSlug, postId, postSlug)
+    this.postService.show(genreSlug, bandSlug, postId, postSlug)
       .subscribe(data => {
         this.post = data['data'];
         console.log(this.post);

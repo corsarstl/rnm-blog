@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Subject } from 'rxjs/Subject';
 import { PaginatedBands } from './paginated-bands.model';
+import { Band } from './band.model';
 
 @Injectable()
 export class BandsService {
@@ -17,7 +18,7 @@ export class BandsService {
   updateEditForm = new Subject();
   // Update list of bands after creating, updating or deleting of a band.
   refreshBands = new Subject();
-  private apiUrl = 'http://rnmblog.com/api/admin/bands';
+  private baseUrl = 'http://rnmblog.com/api/admin';
 
   constructor(private httpClient: HttpClient,
               private errorsService: ErrorsService) { }
@@ -28,7 +29,7 @@ export class BandsService {
    * @returns {Observable<PaginatedBands[]>}
    */
   showBands(): Observable<PaginatedBands[]> {
-    const url = this.apiUrl;
+    const url = `${this.baseUrl}/bands`;
 
     return this.getBands(url);
   }
@@ -50,7 +51,9 @@ export class BandsService {
    * @returns {Observable<any>}
    */
   addNewBand(data: any): Observable<any> {
-    return this.httpClient.post(this.apiUrl, data)
+    const url = `${this.baseUrl}/bands`;
+
+    return this.httpClient.post(url, data)
       .catch(this.errorsService.handleError);
   }
 
@@ -61,7 +64,7 @@ export class BandsService {
    * @returns {Observable<any>}
    */
   updateBand(data: any): Observable<any> {
-    const url = `${this.apiUrl}/${data.bandId}`;
+    const url = `${this.baseUrl}/bands/${data.bandId}`;
 
     return this.httpClient.put(url, data)
       .catch(this.errorsService.handleError);
@@ -74,9 +77,22 @@ export class BandsService {
    * @returns {Observable<any>}
    */
   deleteBand(bandId): Observable<any> {
-    const url = `${this.apiUrl}/${bandId}`;
+    const url = `${this.baseUrl}/bands/${bandId}`;
 
     return this.httpClient.delete(url)
+      .catch(this.errorsService.handleError);
+  }
+
+  /**
+   * Get a list of bands for select field in form to create new post.
+   *
+   * @returns {Observable<Band[]>}
+   */
+  getBandsForNewPost(): Observable<Band[]> {
+    const url = `${this.baseUrl}/posts/bandsForNewPost`;
+
+    return this.httpClient.get(url)
+      .map(res => res as Band[])
       .catch(this.errorsService.handleError);
   }
 
