@@ -1,14 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+
 import { BandsService } from '../bands.service';
-import { Genre } from '../../genres/genre.model';
 import { GenresService } from '../../genres/genres.service';
+
+import { Genre } from '../../genres/genre.model';
 
 @Component({
   selector: 'rnm-band-edit',
   templateUrl: './band-edit.component.html',
-  styleUrls: ['./band-edit.component.css']
+  styles: []
 })
 export class BandEditComponent implements OnInit, OnDestroy {
   bandEditForm: FormGroup;

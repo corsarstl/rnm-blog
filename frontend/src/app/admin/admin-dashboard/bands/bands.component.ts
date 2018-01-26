@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BandsService } from './bands.service';
 import { Subscription } from 'rxjs/Subscription';
+
+import { BandsService } from './bands.service';
+
 import { PaginatedBands } from './paginated-bands.model';
 
 @Component({
   selector: 'rnm-bands',
   templateUrl: './bands.component.html',
-  styleUrls: ['./bands.component.css']
+  styles: []
 })
 export class BandsComponent implements OnInit, OnDestroy {
   bands: PaginatedBands[] = [];

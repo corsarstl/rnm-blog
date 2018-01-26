@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+
 import { TagsService } from '../tags.service';
 
 @Component({
   selector: 'rnm-tag-edit',
   templateUrl: './tag-edit.component.html',
-  styleUrls: ['./tag-edit.component.css']
+  styles: []
 })
 export class TagEditComponent implements OnInit, OnDestroy {
   tagEditForm: FormGroup;

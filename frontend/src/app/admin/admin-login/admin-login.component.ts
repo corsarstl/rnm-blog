@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminAuthService } from './admin-auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AdminAuthService } from './admin-auth.service';
 
 @Component({
   selector: 'rnm-admin-login',
   templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.css']
+  styles: []
 })
 export class AdminLoginComponent implements OnInit {
   adminLoginForm: FormGroup;
   dataInvalid = false;
   formErrors = [];
-
-  mockEmail = 'master@master.com';
-  mockPass = '?nn9@n7aV9';
 
   constructor(private adminAuthService: AdminAuthService,
               private fb: FormBuilder,
@@ -24,8 +22,8 @@ export class AdminLoginComponent implements OnInit {
 
   ngOnInit() {
     this.adminLoginForm = this.fb.group({
-      'email': [this.mockEmail, Validators.required],
-      'password': [this.mockPass, Validators.required]
+      'email': ['', Validators.required],
+      'password': ['', Validators.required]
     });
   }
 

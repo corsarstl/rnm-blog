@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { BandsService } from '../bands.service';
 import { GenresService } from '../../genres/genres.service';
+
 import { Genre } from '../../genres/genre.model';
 
 @Component({
   selector: 'rnm-band-new',
   templateUrl: './band-new.component.html',
-  styleUrls: ['./band-new.component.css']
+  styles: []
 })
 export class BandNewComponent implements OnInit {
   bandNewForm: FormGroup;

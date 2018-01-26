@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ErrorsService } from '../../../shared/services/errors.service';
 import { Observable } from 'rxjs/Observable';
-import { Genre } from './genre.model';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Subject } from 'rxjs/Subject';
+
+import { ErrorsService } from '../../../shared/services/errors.service';
+
+import { Genre } from './genre.model';
 
 @Injectable()
 export class GenresService {

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { TagsService } from '../tags.service';
 
 @Component({
   selector: 'rnm-tag-new',
   templateUrl: './tag-new.component.html',
-  styleUrls: ['./tag-new.component.css']
+  styles: []
 })
 export class TagNewComponent implements OnInit {
   tagNewForm: FormGroup;

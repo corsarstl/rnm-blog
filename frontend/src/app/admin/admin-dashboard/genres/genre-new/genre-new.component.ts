@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GenresService } from '../genres.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'rnm-genre-new',
   templateUrl: './genre-new.component.html',
-  styleUrls: ['./genre-new.component.css']
+  styles: []
 })
 export class GenreNewComponent implements OnInit {
   genreNewForm: FormGroup;

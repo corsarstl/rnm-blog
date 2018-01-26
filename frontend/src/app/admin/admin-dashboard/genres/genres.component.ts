@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Genre } from './genre.model';
-import { GenresService } from './genres.service';
 import { Subscription } from 'rxjs/Subscription';
+
+import { GenresService } from './genres.service';
+
+import { Genre } from './genre.model';
 
 @Component({
   selector: 'rnm-genres',
   templateUrl: './genres.component.html',
-  styleUrls: ['./genres.component.css']
+  styles: []
 })
 export class GenresComponent implements OnInit, OnDestroy {
   genres: Genre[] = [];

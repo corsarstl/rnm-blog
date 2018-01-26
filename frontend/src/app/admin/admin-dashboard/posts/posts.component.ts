@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'rnm-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  template: `
+      <rnm-post-new></rnm-post-new>
+  `,
+  styles: []
 })
-export class PostsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class PostsComponent { }

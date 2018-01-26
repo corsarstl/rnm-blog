@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Band } from '../../bands/band.model';
-import { Tag } from '../../tags/tag.model';
+
 import { BandsService } from '../../bands/bands.service';
 import { TagsService } from '../../tags/tags.service';
 import { PostService } from '../../../../shared/services/post.service';
+
+import { Band } from '../../bands/band.model';
+import { Tag } from '../../tags/tag.model';
 
 require('aws-sdk/dist/aws-sdk');
 
 @Component({
   selector: 'rnm-post-new',
   templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css']
+  styles: []
 })
 export class PostNewComponent implements OnInit {
   postNewForm: FormGroup;

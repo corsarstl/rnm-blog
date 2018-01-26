@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GenresService } from '../genres.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'rnm-genre-edit',
   templateUrl: './genre-edit.component.html',
-  styleUrls: ['./genre-edit.component.css']
+  styles: []
 })
 export class GenreEditComponent implements OnInit, OnDestroy {
   genreEditForm: FormGroup;

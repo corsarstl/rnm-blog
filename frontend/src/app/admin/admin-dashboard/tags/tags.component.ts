@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
 import { TagsService } from './tags.service';
+
 import { PaginatedTags } from './paginated-tags.model';
 
 @Component({
   selector: 'rnm-tags',
   templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.css']
+  styles: []
 })
 export class TagsComponent implements OnInit, OnDestroy {
   tags: PaginatedTags[] = [];
