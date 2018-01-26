@@ -19,7 +19,8 @@ import { PostDetails } from '../../blog/news/posts/post/post-details.model';
 export class PostService {
   navigatedToNewPage = new Subject();
   private apiUrl = 'http://rnmblog.com/api';
-  imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
+  // imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
+  imageUrl = 'https://s3.eu-west-2.amazonaws.com/rnm-blog.media/images/posts/';
 
   constructor(private httpClient: HttpClient,
               private errorsService: ErrorsService) {}

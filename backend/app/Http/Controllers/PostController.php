@@ -103,8 +103,9 @@ class PostController extends Controller
         $post = new Post();
         $post->create($request);
 
-        $message = 'Your post was published.';
+        $awsS3credentials['accessKeyId'] = env('AWS_S3_ACCESS_KEY_ID');
+        $awsS3credentials['secretAccessKey'] = env('AWS_S3_SECRET_ACCESS_KEY');
 
-        return response()->json(['data' => $message]);
+        return response()->json(['credentials' => $awsS3credentials]);
     }
 }
