@@ -22,8 +22,11 @@ export class AuthService {
 
       if (this.authData.user) {
         this.userId = this.authData.user.id;
-        console.log(this.userId);
+      } else if (this.authData.admin) {
+        this.userId = this.authData.admin.id;
       }
+
+      console.log(this.userId);
     }
   }
 
