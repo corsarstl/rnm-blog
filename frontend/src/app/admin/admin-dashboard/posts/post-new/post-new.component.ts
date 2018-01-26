@@ -5,6 +5,7 @@ import { Tag } from '../../tags/tag.model';
 import { BandsService } from '../../bands/bands.service';
 import { TagsService } from '../../tags/tags.service';
 import { PostService } from '../../../../shared/services/post.service';
+require('aws-sdk/dist/aws-sdk');
 
 @Component({
   selector: 'rnm-post-new',
@@ -19,6 +20,7 @@ export class PostNewComponent implements OnInit {
   tags: Tag[] = [];
   fileName = '';
   imageFile: any;
+  imageFileName: string;
 
   constructor(private bandsService: BandsService,
               private tagsService: TagsService,
@@ -71,7 +73,10 @@ export class PostNewComponent implements OnInit {
         const responseStatus = response.status;
 
           if (responseStatus === 200) {
-            console.log('Post saved to db. Can upload image to AWS S3!');
+            this.onUploadImage();
+
+            this.postNewForm.reset();
+            this.postNewForm.patchValue({'bandId': ''});
           }
       });
   }
@@ -82,11 +87,33 @@ export class PostNewComponent implements OnInit {
    * @param $event
    */
   onFileChange($event) {
-    this.imageFile = $event.target.files[0];
-    const imageExtension = this.imageFile.name.split('.').pop();
-    const newFileName = Date.now();
-    const newFullFileName = `${newFileName}.${imageExtension}`;
+    if ($event.target.files.length > 0) {
+      this.imageFile = $event.target.files[0];
+      const imageExtension = this.imageFile.name.split('.').pop();
+      const newFileName = Date.now();
+      const newFullFileName = `${newFileName}.${imageExtension}`;
+      this.imageFileName = newFullFileName;
 
-    this.postNewForm.patchValue({'image': newFullFileName});
+      this.postNewForm.patchValue({'image': newFullFileName});
+      console.log(newFullFileName);
+    }
+  }
+
+  /**
+   * Upload image to Amazon S3 bucket.
+   */
+  onUploadImage() {
+    const AWSService = window.AWS;
+    const file = this.imageFile;
+    AWSService.config.accessKeyId = 'AKIAJK356CGLXKPIYNFA';
+    AWSService.config.secretAccessKey = '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';
+    AWSService.config.region = 'eu-west-2';
+    const bucket = new AWSService.S3({params: {Bucket: 'rnm-blog.media/images/posts'}});
+    const params = {Key: this.imageFileName, Body: file};
+
+    bucket.upload(params, function (error, res) {
+      console.log('error', error);
+      console.log('response', res);
+    });
   }
 }

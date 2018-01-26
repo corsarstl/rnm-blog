@@ -126,17 +126,19 @@
       </div>
     </div>
 
-    <div class="float-right">
+    <div class="form-group">
       <button type="button"
-              class="btn btn-success"
+              class="btn btn-success float-right"
               [disabled]="postNewForm.invalid"
               (click)="onPublish()">
         Publish
       </button>
+
+      <button type="button"
+              class="btn btn-info float-left"
+              (click)="onUploadImage()">
+        Upload image
+      </button>
     </div>
   </form>
 </div>
-
-
-
-
