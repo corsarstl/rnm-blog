@@ -46,25 +46,32 @@ Route::get('popularTags', 'TagController@popularTags');
 
 Route::post('admin/login', 'ApiController@adminLogin');
 
-// Genres
-Route::get('admin/genres', 'GenreController@index');
-Route::post('admin/genres', 'GenreController@store');
-Route::put('admin/genres/{genreId}', 'GenreController@update');
-Route::delete('admin/genres/{genreId}', 'GenreController@destroy');
+Route::group(
+    [
+        'prefix' => 'admin',
+        'middleware' => 'admin'
+    ], function()
+{
+    // Genres
+    Route::get('genres', 'GenreController@index');
+    Route::post('genres', 'GenreController@store');
+    Route::put('genres/{genreId}', 'GenreController@update');
+    Route::delete('genres/{genreId}', 'GenreController@destroy');
 
-// Bands
-Route::get('admin/bands', 'BandController@index');
-Route::post('admin/bands', 'BandController@store');
-Route::put('admin/bands/{bandId}', 'BandController@update');
-Route::delete('admin/bands/{bandId}', 'BandController@destroy');
+    // Bands
+    Route::get('bands', 'BandController@index');
+    Route::post('bands', 'BandController@store');
+    Route::put('bands/{bandId}', 'BandController@update');
+    Route::delete('bands/{bandId}', 'BandController@destroy');
 
-// Tags
-Route::get('admin/tags', 'TagController@index');
-Route::post('admin/tags', 'TagController@store');
-Route::put('admin/tags/{tagId}', 'TagController@update');
-Route::delete('admin/tags/{tagId}', 'TagController@destroy');
+    // Tags
+    Route::get('tags', 'TagController@index');
+    Route::post('tags', 'TagController@store');
+    Route::put('tags/{tagId}', 'TagController@update');
+    Route::delete('tags/{tagId}', 'TagController@destroy');
 
-// Posts
-Route::get('admin/posts/bandsForNewPost', 'BandController@bandsForNewPost');
-Route::get('admin/posts/tagsForNewPost', 'TagController@tagsForNewPost');
-Route::post('admin/posts', 'PostController@store');
+    // Posts
+    Route::get('posts/bandsForNewPost', 'BandController@bandsForNewPost');
+    Route::get('posts/tagsForNewPost', 'TagController@tagsForNewPost');
+    Route::post('posts', 'PostController@store');
+});
