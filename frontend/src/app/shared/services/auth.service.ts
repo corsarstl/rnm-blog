@@ -19,8 +19,11 @@ export class AuthService {
       if (this.authData.token) {
         this.isLoggedIn = true;
       }
-      this.userId = this.authData.user.id;
-      console.log(this.userId);
+
+      if (this.authData.user) {
+        this.userId = this.authData.user.id;
+        console.log(this.userId);
+      }
     }
   }
 

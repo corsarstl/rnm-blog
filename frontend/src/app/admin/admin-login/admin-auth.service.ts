@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class AdminAuthService {
   adminIsLoggedIn = false;
-  private authData = JSON.parse(localStorage.getItem('adminAuthData'));
+  private authData = JSON.parse(localStorage.getItem('authData'));
   private loginApiUrl = 'http://rnmblog.com/api/admin/login';
 
   constructor(private httpClient: HttpClient) {
@@ -30,7 +30,7 @@ export class AdminAuthService {
 
     return this.httpClient.post(url, data)
       .do(res => {
-        localStorage.setItem('adminAuthData', JSON.stringify(res['data']));
+        localStorage.setItem('authData', JSON.stringify(res['data']));
       });
   }
 }

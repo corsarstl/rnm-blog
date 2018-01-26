@@ -61,7 +61,7 @@ class ApiController extends Controller
                 $token = $user->createToken('login')->accessToken;
 
                 return response()->json(['data' => [
-                    'admin' => $user,
+                    'user' => $user,
                     'token' => $token
                 ]], 200);
             }
