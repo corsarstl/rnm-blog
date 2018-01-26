@@ -105,8 +105,10 @@ export class PostNewComponent implements OnInit {
   onUploadImage() {
     const AWSService = window.AWS;
     const file = this.imageFile;
+
     AWSService.config.accessKeyId = '';
     AWSService.config.secretAccessKey = '';
+
     AWSService.config.region = 'eu-west-2';
     const bucket = new AWSService.S3({params: {Bucket: 'rnm-blog.media/images/posts'}});
     const params = {Key: this.imageFileName, Body: file};
