@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     const passConf = group.controls['password_confirmation'].value;
 
     if (pass !== passConf) {
-      this.registerForm.get('passwords.password_confirmation').setErrors({no: true});
+      this.registerForm.get('passwords.password_confirmation').setErrors({passwordNotConfirmed: true});
     }
     return null;
   }

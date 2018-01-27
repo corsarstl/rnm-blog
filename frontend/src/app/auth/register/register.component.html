@@ -144,7 +144,7 @@
                                 Please, retype your password.
                             </span>
 
-                            <span *ngIf="registerForm.get('passwords.password_confirmation').errors?.no &&
+                            <span *ngIf="registerForm.get('passwords.password_confirmation').errors?.passwordNotConfirmed &&
                                          registerForm.get('passwords.password_confirmation').touched"
                                   class="invalid-feedback">
                                 Passwords don't match.
