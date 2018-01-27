@@ -61,7 +61,7 @@
                         <input type="email"
                                class="form-control"
                                [ngClass]="{'is-invalid':registerForm.get('email').invalid &&
-                                                    registerForm.get('email').touched}"
+                                                        registerForm.get('email').touched}"
                                id="email"
                                name="email"
                                formControlName="email"
@@ -69,19 +69,19 @@
                                required>
 
                         <span *ngIf="registerForm.get('email').errors?.required &&
-                                 registerForm.get('email').touched"
+                                     registerForm.get('email').touched"
                               class="invalid-feedback">
                             Email is required.
                         </span>
 
                         <span *ngIf="registerForm.get('email').errors?.pattern &&
-                                 registerForm.get('email').touched"
+                                     registerForm.get('email').touched"
                               class="invalid-feedback">
                             Email is not a valid email address.
                         </span>
 
                         <span *ngIf="registerForm.get('email').errors?.maxlength &&
-                                 registerForm.get('email').touched"
+                                     registerForm.get('email').touched"
                               class="invalid-feedback">
                             Email must be no longer than 30 characters.
                         </span>
@@ -91,7 +91,7 @@
                     <!--FormGroupName - Passwords-->
                     <div formGroupName="passwords"
                          [ngClass]="{'is-invalid':registerForm.get('passwords').invalid &&
-                                              registerForm.get('passwords').touched}">
+                                                  registerForm.get('passwords').touched}">
 
                         <!--FormControlName - Password-->
                         <div class="form-group">
@@ -99,26 +99,26 @@
                             <input type="password"
                                    class="form-control"
                                    [ngClass]="{'is-invalid':registerForm.get('passwords.password').invalid &&
-                                                        registerForm.get('passwords.password').touched}"
+                                                            registerForm.get('passwords.password').touched}"
                                    id="password"
                                    name="password"
                                    formControlName="password"
                                    placeholder="Type your password.">
 
                             <span *ngIf="registerForm.get('passwords.password').errors?.required &&
-                                     registerForm.get('passwords.password').touched"
+                                         registerForm.get('passwords.password').touched"
                                   class="invalid-feedback">
                                 Password is required.
                             </span>
 
                             <span *ngIf="registerForm.get('passwords.password').errors?.minlength &&
-                                     registerForm.get('passwords.password').touched"
+                                         registerForm.get('passwords.password').touched"
                                   class="invalid-feedback">
                                 Password must be at least 8 characters long.
                             </span>
 
                             <span *ngIf="registerForm.get('passwords.password').errors?.pattern &&
-                                     registerForm.get('passwords.password').touched"
+                                         registerForm.get('passwords.password').touched"
                                   class="invalid-feedback">
                                 Password must contain at least one uppercase and lowercase letters,
                                 one digit and one special character.
@@ -132,25 +132,25 @@
                             <input type="password"
                                    class="form-control"
                                    [ngClass]="{'is-invalid':registerForm.get('passwords.password_confirmation').invalid &&
-                                                        registerForm.get('passwords.password_confirmation').touched}"
+                                                            registerForm.get('passwords.password_confirmation').touched}"
                                    id="password_confirmation"
                                    name="password_confirmation"
                                    formControlName="password_confirmation"
                                    placeholder="Type your password one more time.">
 
                             <span *ngIf="registerForm.get('passwords.password_confirmation').errors?.required &&
-                                     registerForm.get('passwords.password_confirmation').touched"
+                                         registerForm.get('passwords.password_confirmation').touched"
                                   class="invalid-feedback">
                                 Please, retype your password.
                             </span>
+
+                            <span *ngIf="registerForm.get('passwords.password_confirmation').errors?.no &&
+                                         registerForm.get('passwords.password_confirmation').touched"
+                                  class="invalid-feedback">
+                                Passwords don't match.
+                            </span>
                         </div>
                         <!--End of FormControlName - Password Confirmation-->
-
-                        <span *ngIf="registerForm.get('passwords').errors?.passwordNotConfirmed &&
-                                 registerForm.get('passwords').touched"
-                              class="invalid-feedback">
-                            Passwords don't match.
-                        </span>
                     </div>
                     <!--End of FormGroupName - Passwords-->
 

@@ -53,11 +53,11 @@ export class RegisterComponent implements OnInit {
    * @constructor
    */
   ValidatePasswordConfirmation(group: FormGroup): {[s: string]: boolean} {
-    let pass = group.controls['password'].value;
-    let passConf = group.controls['password_confirmation'].value;
+    const pass = group.controls['password'].value;
+    const passConf = group.controls['password_confirmation'].value;
 
     if (pass !== passConf) {
-      return {'passwordNotConfirmed': true};
+      this.registerForm.get('passwords.password_confirmation').setErrors({no: true});
     }
     return null;
   }
