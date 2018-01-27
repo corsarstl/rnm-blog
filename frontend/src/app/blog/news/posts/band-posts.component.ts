@@ -7,7 +7,7 @@ import { PaginatedPosts } from './posts-list/paginated-posts.model';
 @Component({
   selector: 'rnm-band-posts',
   template: `
-      <h1 class="text-center">{{ posts['data'] && posts['data'][0].bandName }}</h1>
+      <h1 class="text-center mt-3">{{ posts['data'] && posts['data'][0].bandName }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
   styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']
