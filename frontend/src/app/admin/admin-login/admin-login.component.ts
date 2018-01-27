@@ -8,7 +8,7 @@ import { AdminAuthService } from './admin-auth.service';
 @Component({
   selector: 'rnm-admin-login',
   templateUrl: './admin-login.component.html',
-  styles: []
+  styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
   adminLoginForm: FormGroup;

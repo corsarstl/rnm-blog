@@ -1,7 +1,12 @@
 .cursor-pointer {
     cursor: pointer;
 }
-
 .background-white {
     background-color: whitesmoke !important;
+}
+.height-full {
+    height: 100vh;
+}
+.table-min-height {
+    height: 580px;
 }
