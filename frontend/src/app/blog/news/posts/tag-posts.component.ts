@@ -7,7 +7,7 @@ import { PaginatedPosts } from './posts-list/paginated-posts.model';
 @Component({
   selector: 'rnm-tag-posts',
   template: `
-      <h1 class="text-center">{{ tagUrl.tagSlug | titleCase }}</h1>
+      <h1 class="text-center mt-3">{{ tagUrl.tagSlug | titleCase }}</h1>
       <rnm-posts-list [postsToDisplay]="posts"></rnm-posts-list>
   `,
   styles: ['h1 {font-family: \'Varela Round\', sans-serif;}']

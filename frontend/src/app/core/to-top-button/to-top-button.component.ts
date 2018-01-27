@@ -3,12 +3,8 @@ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'rnm-to-top-button',
-  template: `
-      <div class="scroll-to-top cursor-pointer" [ngClass]="{'show-scroll': navIsFixed}">
-          <i class="far fa-arrow-alt-circle-up fa-2x" (click)="scrollToTop()"></i>
-      </div>
-  `,
-  styleUrls: ['./to-top-button.component.css']
+  templateUrl: './to-top-button.component.html',
+  styleUrls: ['./to-top-button.component.css'],
 })
 export class ToTopButtonComponent {
   navIsFixed: boolean;
