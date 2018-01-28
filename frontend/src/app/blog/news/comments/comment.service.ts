@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from '../../../shared/services/errors.service';
+import { BackendDomainUrlService } from '../../../shared/services/backend-domain-url.service';
+
 import { PaginatedComments } from './comments-list/paginated-comments.model';
 
 @Injectable()
@@ -15,10 +17,11 @@ export class CommentService {
   refreshComments = new Subject();
   commentIdToEdit: number;
   commentBodyToEdit: string;
-  private apiUrl = 'http://rnmblog.com/api/comments';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api/comments`;
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    * Get all comments for selected post.

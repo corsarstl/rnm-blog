@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { ErrorsService } from './errors.service';
+import { BackendDomainUrlService } from './backend-domain-url.service';
+
 import { PaginatedSearchResults } from '../../core/search/paginated-search-results.model';
 
 @Injectable()
@@ -14,10 +16,11 @@ export class SearchService {
   refreshResults = new Subject();
   // Term typed in navbar search input used as initial value for quickSearchForm.
   searchTermFromNavbar: string;
-  private apiUrl = 'http://rnmblog.com/api/quickSearch';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api/quickSearch`;
 
   constructor(private httpClient: HttpClient,
-              private errorService: ErrorsService) { }
+              private errorService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    * Get posts from db containing search term in their title.

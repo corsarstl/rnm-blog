@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   // Genres with bands to display in menu
   menuItems: MenuItem[] = [];
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private navbarService: NavbarService,
               private searchService: SearchService,
               private router: Router) { }

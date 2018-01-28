@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from './errors.service';
+import { BackendDomainUrlService } from './backend-domain-url.service';
 
 import { HotPost } from '../components/hot-posts/hot-post.model';
 import { PopularTag } from '../components/popular-tags/popular-tag.model';
@@ -18,12 +19,13 @@ import { PostDetails } from '../../blog/news/posts/post/post-details.model';
 @Injectable()
 export class PostService {
   navigatedToNewPage = new Subject();
-  private apiUrl = 'http://rnmblog.com/api';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api`;
   // imageUrl = 'https://d3nkp9h6zk1y70.cloudfront.net/images/posts/';
   imageUrl = 'https://s3.eu-west-2.amazonaws.com/rnm-blog.media/images/posts/';
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) {}
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) {}
 
   /**
    * Get 4 latest posts for each genre for home page.

@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
+import { BackendDomainUrlService } from './backend-domain-url.service';
+
 @Injectable()
 export class AuthService {
-  private apiUrl = 'http://rnmblog.com/api';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api`;
   isLoggedIn = false;
   // Data containing user name, email, id and valid token.
   authData = JSON.parse(localStorage.getItem('authData'));
@@ -14,7 +16,8 @@ export class AuthService {
   showLoginForm = false;
   showRegisterForm = false;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private backendDomainUrlService: BackendDomainUrlService) {
     if (this.authData != null) {
       if (this.authData.token) {
         this.isLoggedIn = true;

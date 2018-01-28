@@ -19,7 +19,7 @@
 
         <p class="text-center">Search results: <strong>{{ results['total'] }}</strong></p>
 
-        <div *ngFor="let result of results.data"
+        <div *ngFor="let result of results['data']"
              class="mt-3">
 
             <p>
@@ -40,11 +40,11 @@
                 </a>
             </h5>
 
-            <hr *ngIf="results.data && results.data.length > 2">
+            <hr *ngIf="results['data'] && results['data'].length > 2">
         </div>
     </div>
 
-    <h4 *ngIf="(results.data && results.data.length === 0) || !results.data"
+    <h4 *ngIf="(results['data'] && results['data'].length === 0) || !results['data']"
         class="my-5">
         Sorry, no results for your request ...
     </h4>

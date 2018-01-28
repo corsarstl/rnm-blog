@@ -4,15 +4,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { ErrorsService } from '../../shared/services/errors.service';
-import { MenuItem } from './menu-item.model';
+import { BackendDomainUrlService } from '../../shared/services/backend-domain-url.service';
 
+import { MenuItem } from './menu-item.model';
 
 @Injectable()
 export class NavbarService {
-  private apiUrl = 'http://rnmblog.com/api';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api`;
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    *Get all genres with corresponding bands for menu.

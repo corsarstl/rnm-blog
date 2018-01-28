@@ -17,7 +17,7 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   refreshCommentsSubscription: Subscription;
 
   constructor(private commentService: CommentService,
-              private authService: AuthService) {
+              public authService: AuthService) {
     console.log(`Post id = ${this.postId}`);
   }
 

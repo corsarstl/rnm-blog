@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from '../../../shared/services/errors.service';
+import { BackendDomainUrlService } from '../../../shared/services/backend-domain-url.service';
 
 import { PaginatedBands } from './paginated-bands.model';
 import { Band } from './band.model';
@@ -20,10 +21,11 @@ export class BandsService {
   updateEditForm = new Subject();
   // Update list of bands after creating, updating or deleting of a band.
   refreshBands = new Subject();
-  private baseUrl = 'http://rnmblog.com/api/admin';
+  private baseUrl = `${this.backendDomainUrlService.backendUrl}/api/admin`;
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    * Get a list of bands.

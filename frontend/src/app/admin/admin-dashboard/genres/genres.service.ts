@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from '../../../shared/services/errors.service';
+import { BackendDomainUrlService } from '../../../shared/services/backend-domain-url.service';
 
 import { Genre } from './genre.model';
 
@@ -18,10 +19,11 @@ export class GenresService {
   updateEditForm = new Subject();
   // Update list of genres after creating, updating or deleting of a genre.
   refreshGenres = new Subject();
-  private apiUrl = 'http://rnmblog.com/api/admin/genres';
+  private apiUrl = `${this.backendDomainUrlService.backendUrl}/api/admin/genres`;
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    * Get all genres.

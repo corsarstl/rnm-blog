@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ErrorsService } from '../../../shared/services/errors.service';
+import { BackendDomainUrlService } from '../../../shared/services/backend-domain-url.service';
 
 import { PaginatedTags } from './paginated-tags.model';
 import { Tag } from './tag.model';
@@ -19,10 +20,11 @@ export class TagsService {
   updateEditForm = new Subject();
   // Update list of tags after creating, updating or deleting of a tag.
   refreshTags = new Subject();
-  private baseUrl = 'http://rnmblog.com/api/admin';
+  private baseUrl = `${this.backendDomainUrlService.backendUrl}/api/admin`;
 
   constructor(private httpClient: HttpClient,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService,
+              private backendDomainUrlService: BackendDomainUrlService) { }
 
   /**
    * Get all tags.

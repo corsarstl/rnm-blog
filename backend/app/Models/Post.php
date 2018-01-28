@@ -219,7 +219,6 @@ class Post extends Model
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('g.id', $genreId)
-            ->groupBy('postId')
             ->orderBy('postId', 'desc')
             ->take(4)
             ->get();
