@@ -1,10 +1,19 @@
-<div id="myRegisterForm" class="modal fade mt-5">
-    <div class="modal-dialog modal-login">
+<div id="myRegisterForm"
+     class="modal fade mt-5"
+     tabindex="-1"
+     role="dialog">
+
+    <div class="modal-dialog modal-login"
+         role="document">
+
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Register</h4>
 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
@@ -23,32 +32,32 @@
                         <input type="text"
                                class="form-control"
                                [ngClass]="{'is-invalid':registerForm.get('username').invalid &&
-                                                    registerForm.get('username').touched}"
+                                                        registerForm.get('username').touched}"
                                id="username"
                                name="username"
                                formControlName="username"
                                placeholder="Your name here.">
 
                         <span *ngIf="registerForm.get('username').errors?.required &&
-                                 registerForm.get('username').touched"
+                                     registerForm.get('username').touched"
                               class="invalid-feedback">
                             Username is required.
                         </span>
 
                         <span *ngIf="registerForm.get('username').errors?.pattern &&
-                                 registerForm.get('username').touched"
+                                     registerForm.get('username').touched"
                               class="invalid-feedback">
                             Username can contain only upper/lowercase letters and digits.
                         </span>
 
                         <span *ngIf="registerForm.get('username').errors?.minlength &&
-                                 registerForm.get('username').touched"
+                                     registerForm.get('username').touched"
                               class="invalid-feedback">
                             Username must be at least 3 characters long.
                         </span>
 
                         <span *ngIf="registerForm.get('username').errors?.maxlength &&
-                                 registerForm.get('username').touched"
+                                     registerForm.get('username').touched"
                               class="invalid-feedback">
                             Username must be no longer than 20 characters.
                         </span>
@@ -157,8 +166,6 @@
                     <div class="form-group">
                         <button type="submit"
                                 class="btn btn-primary btn-block btn-lg"
-                                data-toggle="modal"
-                                data-target="#myRegisterForm"
                                 [disabled]="registerForm.invalid">
                             Register
                         </button>

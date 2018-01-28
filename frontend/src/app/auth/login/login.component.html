@@ -1,5 +1,11 @@
-<div id="myLoginForm" class="modal fade mt-5">
-    <div class="modal-dialog modal-login">
+<div id="myLoginForm"
+     class="modal fade mt-5"
+     tabindex="-1"
+     role="dialog">
+
+    <div class="modal-dialog modal-login"
+         role="document">
+
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Login</h4>
@@ -35,13 +41,13 @@
                                required>
 
                         <span *ngIf="loginForm.get('email').errors?.required &&
-                                 loginForm.get('email').touched"
+                                     loginForm.get('email').touched"
                               class="invalid-feedback">
                             Email is required.
                         </span>
 
                         <span *ngIf="loginForm.get('email').errors?.pattern &&
-                                 loginForm.get('email').touched"
+                                     loginForm.get('email').touched"
                               class="invalid-feedback">
                             Email is not a valid email address.
                         </span>
@@ -54,14 +60,14 @@
                         <input type="password"
                                class="form-control"
                                [ngClass]="{'is-invalid':loginForm.get('password').invalid &&
-                                                    loginForm.get('password').touched}"
+                                                        loginForm.get('password').touched}"
                                id="password"
                                name="password"
                                formControlName="password"
                                placeholder="Type your password.">
 
                         <span *ngIf="loginForm.get('password').errors?.required &&
-                                 loginForm.get('password').touched"
+                                     loginForm.get('password').touched"
                               class="invalid-feedback">
                             Password is required.
                         </span>
@@ -71,8 +77,6 @@
                     <div class="form-group">
                         <button type="submit"
                                 class="btn btn-primary btn-block btn-lg"
-                                data-toggle="modal"
-                                data-target="#myLoginForm"
                                 [disabled]="loginForm.invalid">
                             Login
                         </button>

@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../shared/services/auth.service';
 
+declare var $: any;
+
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
 @Component({
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginForm.value)
       .subscribe(() => {
-        this.authService.showLoginForm = false;
+      $('#myLoginForm').modal('hide');
+      this.loginForm.reset();
     },
       (err: HttpErrorResponse) => {
       this.dataInvalid = true;

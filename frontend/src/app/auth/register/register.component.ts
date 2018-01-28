@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../shared/services/auth.service';
 
+declare var $: any;
+
 const USER_NAME_REGEX = /^([a-zA-Z0-9]+)$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/;
@@ -67,8 +69,10 @@ export class RegisterComponent implements OnInit {
    * If fail, return errors for handling.
    */
   register() {
-    this.authService.register(this.registerForm.value).subscribe(() => {
-      this.authService.showRegisterForm = false;
+    this.authService.register(this.registerForm.value)
+      .subscribe(() => {
+        $('#myRegisterForm').modal('hide');
+        this.registerForm.reset();
     }, (err: HttpErrorResponse) => {
       this.dataInvalid = true;
       if (err.error instanceof Error) {
