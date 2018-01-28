@@ -1,6 +1,8 @@
 # rnm-blog
 PHP Academy course project
 
+Available online here: https://tinyurl.com/ybkgdr3t
+
 Bugs:
 
 *** When publishing a new post, image is uploaded to aws s3 bucket, but all get request to display it on site
