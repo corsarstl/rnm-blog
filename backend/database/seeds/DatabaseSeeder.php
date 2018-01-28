@@ -11,13 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\User::class, 100)->create();
+        factory(App\Models\User::class, 1000)->create();
         $this->call(GenresTableSeeder::class);
         $this->call(BandsTableSeeder::class);
-        factory(App\Models\Post::class, 1000)->create();
+        factory(App\Models\Post::class, 10000)->create();
         $this->call(TagsTableSeeder::class);
         $this->call(PostTagTableSeeder::class);
-        factory(App\Models\Comment::class, 5000)->create();
+        factory(App\Models\Comment::class, 500000)->create();
         $this->call(AdminSeeder::class);
     }
 }

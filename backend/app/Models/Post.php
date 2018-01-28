@@ -177,7 +177,7 @@ class Post extends Model
             ->join('comments as c', 'p.id', 'c.post_id')
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
-            ->groupBy('postId')
+            ->groupBy('postId', 'postTitle', 'bandSlug', 'genreSlug')
             ->orderBy('commentsCount', 'desc')
             ->take(5)
             ->get();
@@ -256,7 +256,6 @@ class Post extends Model
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('p.id', $postId)
-            ->groupBy('postId')
             ->get();
 
         $tags = DB::table('tags as t')
@@ -265,7 +264,6 @@ class Post extends Model
                 't.name as tagName')
             ->join('post_tag as pt', 't.id', 'pt.tag_id')
             ->where('pt.post_id', $postId)
-            ->groupBy('tagId')
             ->get();
 
         $post['info'] = $postInfo[0];

@@ -14,6 +14,7 @@ import { ErrorsService } from '../shared/services/errors.service';
 import { CommentService } from '../blog/news/comments/comment.service';
 import { AuthInterceptorService } from '../shared/services/auth-interceptor.service';
 import { SearchService } from '../shared/services/search.service';
+import { BackendDomainUrlService } from '../shared/services/backend-domain-url.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -47,6 +48,7 @@ import { ToTopButtonComponent } from './to-top-button/to-top-button.component';
     ErrorsService,
     CommentService,
     SearchService,
+    BackendDomainUrlService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

@@ -11,7 +11,6 @@ import { BlogModule } from './blog/blog.module';
 import { AdminModule } from './admin/admin.module';
 
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
     NgProgressModule,
     AppRoutingModule,
     CoreModule,
