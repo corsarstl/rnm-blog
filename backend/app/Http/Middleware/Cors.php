@@ -16,7 +16,7 @@ class Cors
     public function handle($request, Closure $next)
     {
         //Trusted client domains
-        $trusted_domains = ["http://rnm-blog.media.s3-website.eu-west-2.amazonaws.com"];
+        $trusted_domains = ["http://rnm-blog.media.s3-website.eu-west-2.amazonaws.com", "http://localhost:4200"];
 
         if(isset($request->server()['HTTP_ORIGIN'])) {
             $origin = $request->server()['HTTP_ORIGIN'];
