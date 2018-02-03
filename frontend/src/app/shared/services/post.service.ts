@@ -33,7 +33,7 @@ export class PostService {
    * @returns {Observable<any>}
    */
   latestPostsForHomepage(): Observable<LatestPostsForHomepage[]> {
-    const url = `${this.apiUrl}/home`;
+    const url = `${this.apiUrl}/posts/home`;
 
     return this.httpClient.get(url)
       .map(res => res as LatestPostsForHomepage[])
@@ -46,7 +46,7 @@ export class PostService {
    * @returns {Observable<SliderPost[]>}
    */
   postsForSlider(): Observable<SliderPost[]> {
-    const url = `${this.apiUrl}/slider`;
+    const url = `${this.apiUrl}/posts/slider`;
 
     return this.httpClient.get(url)
       .map(res => res as SliderPost[])
@@ -60,7 +60,7 @@ export class PostService {
    * @returns {Observable<PaginatedPosts[]>}
    */
   postsByGenre(genreSlug): Observable<PaginatedPosts[]> {
-    const url = `${this.apiUrl}/genres/${genreSlug}`;
+    const url = `${this.apiUrl}/posts/byGenre/${genreSlug}`;
 
     return this.getPosts(url);
   }
@@ -68,12 +68,11 @@ export class PostService {
   /**
    * Get all posts for selected band.
    *
-   * @param genreSlug
    * @param bandSlug
    * @returns {Observable<PaginatedPosts[]>}
    */
-  postsByBand(genreSlug, bandSlug): Observable<PaginatedPosts[]> {
-    const url = `${this.apiUrl}/posts/${genreSlug}/${bandSlug}`;
+  postsByBand(bandSlug): Observable<PaginatedPosts[]> {
+    const url = `${this.apiUrl}/posts/byBand/${bandSlug}`;
 
     return this.getPosts(url);
   }
@@ -82,11 +81,10 @@ export class PostService {
    * Get all posts for selected tag.
    *
    * @param tagId
-   * @param tagSlug
    * @returns {Observable<PaginatedPosts[]>}
    */
-  postsByTag(tagId, tagSlug): Observable<PaginatedPosts[]> {
-    const url = `${this.apiUrl}/tags/${tagId}/${tagSlug}`;
+  postsByTag(tagId): Observable<PaginatedPosts[]> {
+    const url = `${this.apiUrl}/posts/byTag/${tagId}`;
 
     return this.getPosts(url);
   }
@@ -107,7 +105,7 @@ export class PostService {
    * @returns {Observable<HotPost[]>}
    */
   hotPosts(): Observable<HotPost[]> {
-    const url = `${this.apiUrl}/hotPosts`;
+    const url = `${this.apiUrl}/posts/hotPosts`;
 
     return this.httpClient.get(url)
       .map(res => res as HotPost[])
@@ -130,14 +128,11 @@ export class PostService {
   /**
    * Get single post.
    *
-   * @param genreSlug
-   * @param bandSlug
    * @param postId
-   * @param postSlug
    * @returns {Observable<any>}
    */
-  show(genreSlug, bandSlug, postId, postSlug): Observable<any> {
-    const url = `${this.apiUrl}/posts/${genreSlug}/${bandSlug}/${postId}/${postSlug}`;
+  show(postId): Observable<any> {
+    const url = `${this.apiUrl}/posts/show/${postId}`;
 
     return this.httpClient.get(url)
       .do(res => res as PostDetails[])

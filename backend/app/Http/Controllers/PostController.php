@@ -3,20 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     /**
-     * Display a list of posts for selected genre.
+     * Get 4 latest posts for each genre.
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function indexByGenre(Request $request)
+    public function latestPostsForHome()
     {
-        $posts = Post::showPostsByGenre($request->genreSlug);
+        $genres = Genre::all();
+
+        foreach ($genres as $genre) {
+            $genre['posts'] = Post::show4LatestPostsForGenre($genre->id);
+        }
+
+        return response()->json(['data'=> $genres]);
+    }
+
+    /**
+     * Display a list of posts for selected genre.
+     *
+     * @param string $genreSlug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexByGenre(string $genreSlug)
+    {
+        $posts = Post::showPostsByGenre($genreSlug);
 
         return response()->json(['posts' => $posts]);
     }
@@ -24,12 +41,12 @@ class PostController extends Controller
     /**
      * Display a list of posts for selected band.
      *
-     * @param Request $request
+     * @param string $bandSlug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function indexByBand(Request $request)
+    public function indexByBand(string $bandSlug)
     {
-        $posts = Post::showPostsByBand($request->bandSlug);
+        $posts = Post::showPostsByBand($bandSlug);
 
         return response()->json(['posts' => $posts]);
     }
@@ -37,12 +54,12 @@ class PostController extends Controller
     /**
      * Display a list of posts for selected tag.
      *
-     * @param Request $request
+     * @param int $tagId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function indexByTag(Request $request)
+    public function indexByTag(int $tagId)
     {
-        $posts = Post::showPostsByTag($request->tagId);
+        $posts = Post::showPostsByTag($tagId);
 
         return response()->json(['posts' => $posts]);
     }
@@ -77,9 +94,14 @@ class PostController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Request $request)
+
+    /**
+     * @param int $postId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(int $postId)
     {
-        $post = Post::showSingePost($request->postId);
+        $post = Post::showSingePost($postId);
 
         return response()->json(['data' => $post]);
     }

@@ -185,21 +185,6 @@ class Post extends Model
         return $posts;
     }
 
-//    public static function showLatest5PostsPerGenre()
-//    {
-//        $posts = Genre::with([
-//            'posts' => function($query) {
-//                $query->with('band')
-//                    ->take(30)
-//                    ->orderBy('id', 'desc')
-//                    ->get();
-//            }])
-//            ->orderBy('name')
-//            ->get();
-//
-//        return $posts;
-//    }
-
     /**
      * Get 4 latest posts per genre for homepage.
      *

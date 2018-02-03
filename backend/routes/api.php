@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,8 +16,7 @@ Route::post('register', 'ApiController@register');
 Route::post('login', 'ApiController@login');
 Route::post('logout', 'ApiController@logout');
 
-Route::get('navbarMenu', 'HomeController@genresBandsForMenu');
-Route::get('home', 'HomeController@latestPostsForHome');
+Route::get('navbarMenu', 'GenreController@genresBandsForMenu');
 
 //Search routes
 Route::get('quickSearch/{searchTerm}', 'SearchController@quickSearch');
@@ -31,12 +28,18 @@ Route::put('comments/{commentId}', 'CommentController@update');
 Route::delete('comments/{commentId}', 'CommentController@destroy');
 
 // Posts routes
-Route::get('genres/{genreSlug}', 'PostController@indexByGenre');
-Route::get('tags/{tagId}/{tagSlug}', 'PostController@indexByTag');
-Route::get('posts/{genreSlug}/{bandSlug}', 'PostController@indexByBand');
-Route::get('posts/{genreSlug}/{bandSlug}/{postId}/{postSlug}', 'PostController@show');
-Route::get('slider', 'PostController@indexForSlider');
-Route::get('hotPosts', 'PostController@hotPosts');
+Route::group(
+    ['prefix' => 'posts'],
+    function ()
+{
+    Route::get('byGenre/{genreSlug}', 'PostController@indexByGenre');
+    Route::get('byBand/{bandSlug}', 'PostController@indexByBand');
+    Route::get('byTag/{tagId}', 'PostController@indexByTag');
+    Route::get('slider', 'PostController@indexForSlider');
+    Route::get('hotPosts', 'PostController@hotPosts');
+    Route::get('home', 'PostController@latestPostsForHome');
+    Route::get('show/{postId}', 'PostController@show');
+});
 
 // Tags routes
 Route::get('popularTags', 'TagController@popularTags');

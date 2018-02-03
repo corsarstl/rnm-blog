@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\DB;
 class GenreController extends Controller
 {
     /**
+     * Get all genres with corresponding bands for menu in navbar.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function genresBandsForMenu()
+    {
+        $genres = Genre::showGenresBandsForMenu();
+
+        return response()->json(['data'=> $genres]);
+    }
+
+    /**
      *
      * Get all genres.
      *

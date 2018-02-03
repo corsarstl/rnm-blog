@@ -37,12 +37,7 @@ export class PostComponent implements OnInit {
         (params: Params) => {
           this.postUrl.postId = params['postId'];
 
-          this.getSinglePost(
-            this.postUrl.genreSlug,
-            this.postUrl.bandSlug,
-            this.postUrl.postId,
-            this.postUrl.postSlug
-          );
+          this.getSinglePost(this.postUrl.postId);
         }
       );
   }
@@ -50,13 +45,10 @@ export class PostComponent implements OnInit {
   /**
    * Get single post.
    *
-   * @param genreSlug
-   * @param bandSlug
    * @param postId
-   * @param postSlug
    */
-  getSinglePost(genreSlug, bandSlug, postId, postSlug) {
-    this.postService.show(genreSlug, bandSlug, postId, postSlug)
+  getSinglePost(postId) {
+    this.postService.show(postId)
       .subscribe(data => {
         this.post = data['data'];
         console.log(this.post);

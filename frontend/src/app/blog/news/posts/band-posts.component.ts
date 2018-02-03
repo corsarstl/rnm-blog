@@ -32,7 +32,8 @@ export class BandPostsComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.bandUrl.bandSlug = params['bandSlug'];
-          this.getPostsByBand(this.bandUrl.genreSlug, this.bandUrl.bandSlug);
+
+          this.getPostsByBand(this.bandUrl.bandSlug);
         }
       );
   }
@@ -42,8 +43,8 @@ export class BandPostsComponent implements OnInit {
    *
    * @param bandSlug
    */
-  getPostsByBand(genreSlug, bandSlug) {
-    this.postService.postsByBand(genreSlug, bandSlug)
+  getPostsByBand(bandSlug) {
+    this.postService.postsByBand(bandSlug)
       .subscribe(data => {
         this.posts = data['posts'];
         console.log(this.posts);

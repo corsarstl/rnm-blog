@@ -30,6 +30,7 @@ export class GenrePostsComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.genreUrl.genreSlug = params['genreSlug'];
+
           this.getPostsByGenre(this.genreUrl.genreSlug);
         }
       );

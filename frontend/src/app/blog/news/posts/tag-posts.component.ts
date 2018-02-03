@@ -32,9 +32,8 @@ export class TagPostsComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.tagUrl.tagId = params['tagId'];
-          this.tagUrl.tagSlug = params['tagSlug'];
 
-          this.getPostsByTag(this.tagUrl.tagId, this.tagUrl.tagSlug);
+          this.getPostsByTag(this.tagUrl.tagId);
         }
       );
   }
@@ -43,10 +42,9 @@ export class TagPostsComponent implements OnInit {
    * Get all posts for selected tag.
    *
    * @param tagId
-   * @param tagSlug
    */
-  getPostsByTag(tagId, tagSlug) {
-    this.postService.postsByTag(tagId, tagSlug)
+  getPostsByTag(tagId) {
+    this.postService.postsByTag(tagId)
       .subscribe(data => {
         this.posts = data['posts'];
         console.log(this.posts);
