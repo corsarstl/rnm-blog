@@ -45,4 +45,23 @@ class Tag extends Model
 
         return $tags;
     }
+
+    /**
+     * Get a list tags for current post.
+     *
+     * @param $postId
+     * @return mixed
+     */
+    public static function showTagsForPost($postId)
+    {
+        $tags = DB::table('tags as t')
+            ->select(
+                't.id as tagId',
+                't.name as tagName')
+            ->join('post_tag as pt', 't.id', 'pt.tag_id')
+            ->where('pt.post_id', $postId)
+            ->get();
+
+        return $tags;
+    }
 }

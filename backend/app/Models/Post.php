@@ -258,13 +258,7 @@ class Post extends Model
             ->where('p.id', $postId)
             ->get();
 
-        $tags = DB::table('tags as t')
-            ->select(
-                't.id as tagId',
-                't.name as tagName')
-            ->join('post_tag as pt', 't.id', 'pt.tag_id')
-            ->where('pt.post_id', $postId)
-            ->get();
+        $tags = Tag::showTagsForPost($postId);
 
         $post['info'] = $postInfo[0];
         $post['tags'] = $tags;
