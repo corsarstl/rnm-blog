@@ -71,7 +71,7 @@ class Post extends Model
             ->paginate(10);
 
         foreach ($posts as $post) {
-            $post->postContent = self::createPostContentPreview($post->postContent);
+            $post->postContent = substr($post->postContent, 0, 320);
         }
 
         return $posts;
@@ -100,7 +100,7 @@ class Post extends Model
             ->paginate(10);
 
         foreach ($posts as $post) {
-            $post->postContent = self::createPostContentPreview($post->postContent);
+            $post->postContent = substr($post->postContent, 0, 320);
         }
 
         return $posts;
@@ -131,7 +131,7 @@ class Post extends Model
             ->paginate(10);
 
         foreach ($posts as $post) {
-            $post->postContent = self::createPostContentPreview($post->postContent);
+            $post->postContent = substr($post->postContent, 0, 320);
         }
 
         return $posts;
@@ -282,25 +282,5 @@ class Post extends Model
         $this->save();
 
         $this->tags()->sync($request->tags);
-    }
-
-    /**
-     * Shortens full post content to show in posts lists for genres, bands and tags.
-     *
-     * @param string $content
-     * @return string
-     */
-    private static function createPostContentPreview(string $content)
-    {
-        $contentArray = str_split($content);
-        $contentPreviewArray = [];
-
-        for ($i = 0; $i < 320; $i++) {
-            $contentPreviewArray[] = $contentArray[$i];
-        }
-
-        $contentPreviewString = implode('', $contentPreviewArray);
-
-        return $contentPreviewString;
     }
 }
