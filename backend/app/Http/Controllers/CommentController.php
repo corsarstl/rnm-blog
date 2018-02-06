@@ -15,12 +15,12 @@ class CommentController extends Controller
     /**
      * Show all comments for selected post.
      *
-     * @param Request $request
+     * @param int $postId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index(int $postId)
     {
-        $comments = Comment::getComments($request->postId);
+        $comments = Comment::getComments($postId);
 
         return response()->json(['comments' => $comments], 206);
     }

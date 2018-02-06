@@ -55,7 +55,8 @@ class RegistrationRequest extends FormRequest
             'email.unique'                 => 'The user with such email already exists.',
             'passwords.password.required'  => 'The password field is required.',
             'passwords.password.min'       => 'The password must be at least 8 characters long.',
-            'passwords.password.regex'     => 'The password must contain at least one uppercase and lowercase letters, one digit and one special character.',
+            'passwords.password.regex'     => 'The password must contain at least one uppercase and lowercase letters,'.
+                                              'one digit and one special character.',
             'passwords.password.confirmed' => 'The password is not confirmed.'
         ];
     }

@@ -66,7 +66,7 @@ class ApiController extends Controller
                 ]], 200);
             }
 
-            return response()->json(['message' => 'You are not a master!!!'], 422);
+            return response()->json(['message' => 'You are not a master!!!'], 401);
         }
 
         return response()->json(['message' => 'Please, check your credentials.'], 422);
@@ -84,6 +84,6 @@ class ApiController extends Controller
             ->where('user_id', $request->get('id'))
             ->delete();
 
-        return response()->json(['message' => 'You are logged out.'], 200);
+        return response()->json(null, 204);
     }
 }
