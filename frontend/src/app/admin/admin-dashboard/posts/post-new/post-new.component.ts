@@ -80,7 +80,7 @@ export class PostNewComponent implements OnInit {
         const accessKeyId = response.body.credentials.accessKeyId;
         const secretAccessKey = response.body.credentials.secretAccessKey;
 
-        if (responseStatus === 200) {
+        if (responseStatus === 201) {
           this.onUploadImage(accessKeyId, secretAccessKey);
 
           this.postNewForm.reset();

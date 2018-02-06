@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
+    /**
+     * Show paginated results for quick search.
+     *
+     * @param $searchTerm
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function quickSearch($searchTerm)
     {
         $posts = DB::table('posts as p')
@@ -20,6 +26,6 @@ class SearchController extends Controller
             ->orderBy('postId', 'desc')
             ->paginate(10);
 
-        return response()->json(['results' => $posts]);
+        return response()->json(['results' => $posts], 206);
     }
 }

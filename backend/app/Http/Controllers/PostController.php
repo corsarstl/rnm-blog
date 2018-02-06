@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByGenre($genreSlug);
 
-        return response()->json(['posts' => $posts]);
+        return response()->json(['posts' => $posts], 206);
     }
 
     /**
@@ -48,7 +48,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByBand($bandSlug);
 
-        return response()->json(['posts' => $posts]);
+        return response()->json(['posts' => $posts], 206);
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
     {
         $posts = Post::showPostsByTag($tagId);
 
-        return response()->json(['posts' => $posts]);
+        return response()->json(['posts' => $posts], 206);
     }
 
     /**
@@ -91,11 +91,6 @@ class PostController extends Controller
     /**
      * Show the post with request id.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-
-    /**
      * @param int $postId
      * @return \Illuminate\Http\JsonResponse
      */
@@ -128,6 +123,6 @@ class PostController extends Controller
         $awsS3credentials['accessKeyId'] = env('AWS_S3_ACCESS_KEY_ID');
         $awsS3credentials['secretAccessKey'] = env('AWS_S3_SECRET_ACCESS_KEY');
 
-        return response()->json(['credentials' => $awsS3credentials]);
+        return response()->json(['credentials' => $awsS3credentials], 201);
     }
 }

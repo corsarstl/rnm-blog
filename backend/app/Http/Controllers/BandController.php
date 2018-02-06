@@ -16,7 +16,7 @@ class BandController extends Controller
     {
         $bands = Band::getBands();
 
-        return response()->json(['bands' => $bands]);
+        return response()->json(['bands' => $bands], 206);
     }
 
     /**
@@ -47,9 +47,7 @@ class BandController extends Controller
         $band = new Band();
         $band->create($request);
 
-        $message = 'A new band has been created.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $band], 201);
     }
 
     /**
@@ -69,9 +67,7 @@ class BandController extends Controller
         $band = Band::findOrFail($bandId);
         $band->updateBand($request);
 
-        $message = 'The band has been updated.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $band], 200);
     }
 
     /**
@@ -85,8 +81,6 @@ class BandController extends Controller
         $band = Band::findOrFail($bandId);
         $band->delete();
 
-        $message = 'The band has been deleted.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(null, 204);
     }
 }

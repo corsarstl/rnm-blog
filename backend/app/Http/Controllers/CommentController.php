@@ -22,7 +22,7 @@ class CommentController extends Controller
     {
         $comments = Comment::getComments($request->postId);
 
-        return response()->json(['comments' => $comments]);
+        return response()->json(['comments' => $comments], 206);
     }
     
     /**
@@ -42,9 +42,7 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->create($request);
 
-        $message = 'Your comment has been published';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $comment], 201);
     }
 
     /**
@@ -64,10 +62,7 @@ class CommentController extends Controller
         $comment->body = $request->newCommentBody;
         $comment->save();
 
-        $message = 'Your comment has been updated';
-
-        return response()->json(['data' => $message]);
-
+        return response()->json(['data' => $comment]);
     }
 
     /**
@@ -81,8 +76,6 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($commentId);
         $comment->delete();
 
-        $message = 'Your comment has been deleted';
-
-        return response()->json(['data' => $message]);
+        return response()->json(null, 204);
     }
 }

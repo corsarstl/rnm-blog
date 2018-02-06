@@ -17,7 +17,7 @@ class TagController extends Controller
     {
         $tags = Tag::orderBy('id', 'desc')->paginate(10);
 
-        return response()->json(['tags' => $tags]);
+        return response()->json(['tags' => $tags], 206);
     }
 
     /**
@@ -48,9 +48,7 @@ class TagController extends Controller
         $tag->name = $request->tagName;
         $tag->save();
 
-        $message = 'A new tag has been created.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $tag], 201);
     }
 
     /**
@@ -70,9 +68,7 @@ class TagController extends Controller
         $tag->name = $request->newTagName;
         $tag->save();
 
-        $message = 'The tag has been updated.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $tag]);
     }
 
     /**
@@ -86,11 +82,11 @@ class TagController extends Controller
         $tag = Tag::findOrFail($tagId);
         $tag->delete();
 
-        DB::table('post_tag')->where('tag_id', $tagId)->delete();
+        DB::table('post_tag')
+            ->where('tag_id', $tagId)
+            ->delete();
 
-        $message = 'The tag has been deleted.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(null, 204);
     }
     
     /**

@@ -48,9 +48,7 @@ class GenreController extends Controller
         $genre = new Genre();
         $genre->create($request);
 
-        $message = 'A new genre has been created.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $genre], 201);
     }
 
     /**
@@ -69,9 +67,7 @@ class GenreController extends Controller
         $genre = Genre::findOrFail($genreId);
         $genre->updateGenre($request);
 
-        $message = 'The genre has been updated.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(['data' => $genre]);
     }
 
     /**
@@ -85,8 +81,6 @@ class GenreController extends Controller
         $genre = Genre::findOrFail($genreId);
         $genre->delete();
 
-        $message = 'The genre has been deleted.';
-
-        return response()->json(['data' => $message]);
+        return response()->json(null, 204);
     }
 }
