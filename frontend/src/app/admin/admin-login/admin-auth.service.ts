@@ -14,7 +14,7 @@ export class AdminAuthService {
   constructor(private httpClient: HttpClient,
               private backendDomainUrlService: BackendDomainUrlService) {
     if (this.authData != null) {
-      if (this.authData.token) {
+      if (this.authData.token && this.authData.admin === true) {
         this.adminIsLoggedIn = true;
       }
     }

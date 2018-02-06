@@ -62,6 +62,7 @@ class ApiController extends Controller
 
                 return response()->json(['data' => [
                     'user' => $user,
+                    'admin' => true,
                     'token' => $token
                 ]], 200);
             }
