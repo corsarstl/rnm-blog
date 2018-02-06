@@ -24,8 +24,6 @@ export class PostsListComponent implements OnInit, OnDestroy {
         this.postService.updatePosts(url).subscribe(
           (data) => {
             this.postsToDisplay = data['posts'];
-            console.log('Posts after navigation:');
-            console.log(this.postsToDisplay);
           });
       }
     );

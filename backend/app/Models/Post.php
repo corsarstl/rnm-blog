@@ -49,6 +49,24 @@ class Post extends Model
     }
 
     /**
+     * Store newly created post.
+     *
+     * @param array $request
+     * @return void.
+     */
+    public function create($request)
+    {
+        $this->title = $request->title;
+        $this->content = $request->content;
+        $this->image = $request->image;
+        $this->band_id = $request->bandId;
+
+        $this->save();
+
+        $this->tags()->sync($request->tags);
+    }
+
+    /**
      * Display a list of posts for selected genre.
      *
      * @param $genreSlug
@@ -252,20 +270,25 @@ class Post extends Model
     }
 
     /**
-     * Store newly created post.
+     * Show paginated results for quick search.
      *
-     * @param array $request
-     * @return void.
+     * @param string $searchTerm
+     * @return mixed
      */
-    public function create($request)
+    public static function showPostsForQuickSearch(string $searchTerm)
     {
-        $this->title = $request->title;
-        $this->content = $request->content;
-        $this->image = $request->image;
-        $this->band_id = $request->bandId;
+        $posts = DB::table('posts as p')
+            ->select(
+                'p.id as postId',
+                'p.title as postTitle',
+                'b.name as bandName',
+                'g.name as genreName')
+            ->join('bands as b', 'b.id', 'p.band_id')
+            ->join('genres as g', 'g.id', 'b.genre_id')
+            ->where('p.title', 'like', "%$searchTerm%")
+            ->orderBy('postId', 'desc')
+            ->paginate(10);
 
-        $this->save();
-
-        $this->tags()->sync($request->tags);
+        return $posts;
     }
 }
