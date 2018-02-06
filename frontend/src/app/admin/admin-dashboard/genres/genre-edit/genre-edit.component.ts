@@ -31,9 +31,6 @@ export class GenreEditComponent implements OnInit, OnDestroy {
 
     this.updateEditForm = this.genresService.updateEditForm
       .subscribe((newEditFormValues) => {
-        console.log(newEditFormValues['newGenreName']);
-        console.log(newEditFormValues['newGenreId']);
-
         this.genreEditForm.patchValue({'newGenreName': newEditFormValues['newGenreName']});
         this.genreEditForm.patchValue({'genreId': newEditFormValues['newGenreId']});
       });
@@ -46,7 +43,6 @@ export class GenreEditComponent implements OnInit, OnDestroy {
   onSave() {
     this.genresService.updateGenre(this.genreEditForm.value)
       .subscribe(() => {
-        console.log('Genre has been updated.');
         this.genresService.refreshGenres.next();
         this.genreEditForm.reset();
       });

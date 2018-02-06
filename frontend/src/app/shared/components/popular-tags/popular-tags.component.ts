@@ -25,7 +25,6 @@ export class PopularTagsComponent implements OnInit {
     this.postService.getPopularTags()
       .subscribe(data => {
         this.popularTags = data['data'];
-        console.log(this.popularTags);
       });
   }
 }

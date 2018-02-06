@@ -36,7 +36,6 @@ export class CommentEditComponent implements OnInit {
   onUpdate() {
     this.editMode = true;
     this.commentService.toggleCommentEditMode.next(this.commentId);
-    console.log(`Enter edit mode on comment ${this.commentId}. Hiding comment body...`);
   }
 
   /**
@@ -46,7 +45,6 @@ export class CommentEditComponent implements OnInit {
   onSave() {
     this.commentService.updateComment(this.editForm.value)
       .subscribe(() => {
-        console.log('Your comment was updated!');
         this.editMode = false;
         this.commentService.toggleCommentEditMode.next(this.commentId);
         this.commentService.refreshComments.next();
@@ -79,7 +77,6 @@ export class CommentEditComponent implements OnInit {
     if (confirmation) {
       this.commentService.deleteComment(this.editForm.get('commentId').value)
         .subscribe(() => {
-          console.log(`Comment #${this.editForm.get('commentId').value} was deleted.`);
           this.commentService.refreshComments.next();
         });
     }

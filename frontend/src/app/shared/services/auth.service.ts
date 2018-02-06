@@ -28,8 +28,6 @@ export class AuthService {
       } else if (this.authData.admin) {
         this.userId = this.authData.admin.id;
       }
-
-      console.log(this.userId);
     }
   }
 
@@ -82,7 +80,6 @@ export class AuthService {
       this.isLoggedIn = false;
       this.userId = 0;
       localStorage.clear();
-      console.log(res);
     });
   }
 
@@ -92,6 +89,5 @@ export class AuthService {
   private setUserId() {
     const authData = JSON.parse(localStorage.getItem('authData'));
     this.userId = authData.user.id;
-    console.log(this.userId);
   }
 }

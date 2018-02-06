@@ -67,7 +67,6 @@ export class PostNewComponent implements OnInit {
     this.tagsService.getTagsForNewPost()
       .subscribe(data => {
         this.tags = data['tags'];
-        console.log(this.tags);
       });
   }
 
@@ -104,7 +103,6 @@ export class PostNewComponent implements OnInit {
       this.imageFileName = newFullFileName;
 
       this.postNewForm.patchValue({'image': newFullFileName});
-      console.log(newFullFileName);
     }
   }
 

@@ -27,7 +27,6 @@ export class TagNewComponent implements OnInit {
   onAdd() {
     this.tagsService.addNewTag(this.tagNewForm.value)
       .subscribe(() => {
-        console.log('A new genre has been created.');
         this.tagsService.refreshTags.next();
         this.tagNewForm.reset();
       });

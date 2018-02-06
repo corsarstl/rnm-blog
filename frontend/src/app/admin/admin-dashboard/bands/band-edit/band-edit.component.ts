@@ -43,10 +43,6 @@ export class BandEditComponent implements OnInit, OnDestroy {
 
     this.updateEditForm = this.bandsService.updateEditForm
       .subscribe((newEditFormValues) => {
-        console.log(newEditFormValues['newBandName']);
-        console.log(newEditFormValues['newBandId']);
-        console.log(newEditFormValues['newGenreId']);
-
         this.bandEditForm.patchValue({'newBandName': newEditFormValues['newBandName']});
         this.bandEditForm.patchValue({'bandId': newEditFormValues['newBandId']});
         this.bandEditForm.patchValue({'genreId': newEditFormValues['newGenreId']});
@@ -60,7 +56,6 @@ export class BandEditComponent implements OnInit, OnDestroy {
     this.genresService.getGenres()
       .subscribe(data => {
         this.genres = data['genres'];
-        console.log(this.genres);
       });
   }
 
@@ -71,7 +66,6 @@ export class BandEditComponent implements OnInit, OnDestroy {
   onSave() {
     this.bandsService.updateBand(this.bandEditForm.value)
       .subscribe(() => {
-        console.log('Band has been updated.');
         this.bandsService.refreshBands.next();
         this.bandEditForm.reset();
       });

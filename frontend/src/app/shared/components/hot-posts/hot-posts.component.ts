@@ -24,7 +24,6 @@ export class HotPostsComponent implements OnInit {
     this.postService.hotPosts()
       .subscribe(data => {
         this.hotPosts = data['data'];
-        console.log(this.hotPosts);
       });
   }
 }

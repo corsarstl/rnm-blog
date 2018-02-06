@@ -25,7 +25,6 @@ export class SliderComponent implements OnInit {
     this.postService.postsForSlider()
       .subscribe(data => {
         this.posts = data['data'];
-        console.log(this.posts);
       });
   }
 }

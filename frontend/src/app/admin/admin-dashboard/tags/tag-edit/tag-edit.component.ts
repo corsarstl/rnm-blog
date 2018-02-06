@@ -31,9 +31,6 @@ export class TagEditComponent implements OnInit, OnDestroy {
 
     this.updateEditForm = this.tagsService.updateEditForm
       .subscribe((newEditFormValues) => {
-        console.log(newEditFormValues['newTagName']);
-        console.log(newEditFormValues['newTagId']);
-
         this.tagEditForm.patchValue({'newTagName': newEditFormValues['newTagName']});
         this.tagEditForm.patchValue({'tagId': newEditFormValues['newTagId']});
       });
@@ -46,7 +43,6 @@ export class TagEditComponent implements OnInit, OnDestroy {
   onSave() {
     this.tagsService.updateTag(this.tagEditForm.value)
       .subscribe(() => {
-        console.log('Genre has been updated.');
         this.tagsService.refreshTags.next();
         this.tagEditForm.reset();
       });

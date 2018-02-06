@@ -34,7 +34,6 @@ export class GenresComponent implements OnInit, OnDestroy {
     this.genresService.getGenres()
       .subscribe(data => {
         this.genres = data['genres'];
-        console.log(this.genres);
       });
   }
 
@@ -69,7 +68,6 @@ export class GenresComponent implements OnInit, OnDestroy {
     if (confirmation) {
       this.genresService.deleteGenre(genreId)
         .subscribe(() => {
-          console.log(`Genre #${genreId} has been deleted.`);
           this.genresService.refreshGenres.next();
         });
     }

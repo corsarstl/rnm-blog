@@ -19,14 +19,11 @@ export class AuthInterceptorService implements HttpInterceptor {
       const token = authData.token;
 
       if (token !== undefined) {
-        console.log('Interceptor is working');
-
         return next.handle(req.clone({
           headers: req.headers.set('Authorization', 'Bearer ' + authData.token)
         }));
       }
     } else {
-      console.log('Interceptor: no token is needed.');
       return next.handle(req);
     }
   }

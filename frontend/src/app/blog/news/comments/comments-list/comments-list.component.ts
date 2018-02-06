@@ -17,9 +17,7 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   refreshCommentsSubscription: Subscription;
 
   constructor(private commentService: CommentService,
-              public authService: AuthService) {
-    console.log(`Post id = ${this.postId}`);
-  }
+              public authService: AuthService) { }
 
   ngOnInit() {
     this.refreshCommentsSubscription = this.commentService.refreshComments
@@ -33,7 +31,6 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(`Post id changed to ${this.postId}`);
     this.showComments(this.postId);
 
     if (this.newCommentCreatedSubscription !== undefined) {
@@ -58,8 +55,6 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
     this.commentService.showComments(postId)
       .subscribe(data => {
         this.comments = data['comments'];
-        console.log('Comments for the post:');
-        console.log(this.comments);
       });
   }
 
@@ -72,8 +67,6 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
     this.commentService.updateComments(url)
       .subscribe(data => {
         this.comments = data['comments'];
-        console.log('Comments for the post:');
-        console.log(this.comments);
       });
   }
 
@@ -83,7 +76,6 @@ export class CommentsListComponent implements OnInit, OnChanges, OnDestroy {
   createNewCommentSubscription() {
     this.newCommentCreatedSubscription = this.commentService.newCommentCreated
       .subscribe(() => {
-        console.log(`Listener: Comment was added for post#${this.postId} `);
         this.showComments(this.postId);
       });
   }

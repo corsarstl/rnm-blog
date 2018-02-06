@@ -36,7 +36,6 @@ export class BandNewComponent implements OnInit {
     this.genresService.getGenres()
       .subscribe(data => {
         this.genres = data['genres'];
-        console.log(this.genres);
       });
   }
 
@@ -47,7 +46,6 @@ export class BandNewComponent implements OnInit {
   onAdd() {
     this.bandsService.addNewBand(this.bandNewForm.value)
       .subscribe(() => {
-        console.log('A new band has been created.');
         this.bandsService.refreshBands.next();
         this.bandNewForm.patchValue({'bandName': '', 'genreId': ''});
 

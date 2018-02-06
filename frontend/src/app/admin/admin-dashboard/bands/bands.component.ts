@@ -42,7 +42,6 @@ export class BandsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.bands = data['bands'];
         this.beginNumerationFrom = this.bands['from'];
-        console.log(this.bands);
       });
   }
 
@@ -56,7 +55,6 @@ export class BandsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.bands = data['bands'];
         this.beginNumerationFrom = this.bands['from'];
-        console.log(this.bands);
     });
   }
 
@@ -93,7 +91,6 @@ export class BandsComponent implements OnInit, OnDestroy {
     if (confirmation) {
       this.bandsService.deleteBand(bandId)
         .subscribe(() => {
-          console.log(`Band #${bandId} has been deleted.`);
           this.bandsService.refreshBands.next();
         });
     }

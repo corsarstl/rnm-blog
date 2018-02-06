@@ -47,7 +47,6 @@ export class TagPostsComponent implements OnInit {
     this.postService.postsByTag(tagId)
       .subscribe(data => {
         this.posts = data['posts'];
-        console.log(this.posts);
       });
   }
 }

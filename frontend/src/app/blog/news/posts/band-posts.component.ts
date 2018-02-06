@@ -47,7 +47,6 @@ export class BandPostsComponent implements OnInit {
     this.postService.postsByBand(bandSlug)
       .subscribe(data => {
         this.posts = data['posts'];
-        console.log(this.posts);
       });
   }
 }

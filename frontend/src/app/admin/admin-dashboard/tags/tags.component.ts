@@ -40,7 +40,6 @@ export class TagsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.tags = data['tags'];
         this.beginNumerationFrom = this.tags['from'];
-        console.log(this.tags);
       });
   }
 
@@ -54,7 +53,6 @@ export class TagsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.tags = data['tags'];
         this.beginNumerationFrom = this.tags['from'];
-        console.log(this.tags);
       });
   }
 
@@ -89,7 +87,6 @@ export class TagsComponent implements OnInit, OnDestroy {
     if (confirmation) {
       this.tagsService.deleteTag(tagId)
         .subscribe(() => {
-          console.log(`Tag #${tagId} has been deleted.`);
           this.tagsService.refreshTags.next();
         });
     }

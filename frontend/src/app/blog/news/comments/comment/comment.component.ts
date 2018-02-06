@@ -26,7 +26,6 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.hideCommentBody = this.commentService.toggleCommentEditMode
       .subscribe((commentId) => {
         if (commentId === this.comment.commentId) {
-          console.log(`Listener: hiding body for comment #${commentId}`);
           this.showCommentBody = !this.showCommentBody;
         }
       });
@@ -47,9 +46,6 @@ export class CommentComponent implements OnInit, OnDestroy {
       this.showEditComponent = true;
       this.commentService.commentIdToEdit = this.comment.commentId;
       this.commentService.commentBodyToEdit = this.comment.commentBody;
-
-      console.log(this.commentService.commentIdToEdit);
-      console.log(this.commentService.commentBodyToEdit);
     }
   }
 }

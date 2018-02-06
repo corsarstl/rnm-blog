@@ -45,7 +45,6 @@ export class GenrePostsComponent implements OnInit {
     this.postService.postsByGenre(genreSlug)
       .subscribe(data => {
         this.posts = data['posts'];
-        console.log(this.posts);
       });
   }
 }

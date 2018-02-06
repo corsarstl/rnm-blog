@@ -25,7 +25,6 @@ export class LatestPostsComponent implements OnInit {
     this.postService.latestPostsForHomepage()
       .subscribe(data => {
         this.latestPostsForHomepage = data['data'];
-        console.log(this.latestPostsForHomepage);
       });
   }
 }

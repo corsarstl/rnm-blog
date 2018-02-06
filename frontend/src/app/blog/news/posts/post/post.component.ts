@@ -51,7 +51,6 @@ export class PostComponent implements OnInit {
     this.postService.show(postId)
       .subscribe(data => {
         this.post = data['data'];
-        console.log(this.post);
       });
   }
 }

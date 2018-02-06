@@ -21,7 +21,10 @@ export class QuickSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.quickSearchForm = this.fb.group({
-      'searchTerm': [this.searchService.searchTermFromNavbar, Validators.required]
+      'searchTerm': [
+        this.searchService.searchTermFromNavbar,
+        Validators.required
+      ]
     });
 
     this.getResults();
@@ -31,7 +34,6 @@ export class QuickSearchComponent implements OnInit, OnDestroy {
         this.searchService.updateResults(url).subscribe(
           data => {
             this.results = data['results'];
-            console.log(this.results);
           });
       }
     );
@@ -50,7 +52,6 @@ export class QuickSearchComponent implements OnInit, OnDestroy {
       return this.searchService.quickSearch(searchTerm)
         .subscribe(data => {
           this.results = data['results'];
-          console.log(this.results);
         });
     }
   }

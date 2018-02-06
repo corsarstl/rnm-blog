@@ -27,7 +27,6 @@ export class GenreNewComponent implements OnInit {
   onAdd() {
     this.genresService.addNewGenre(this.genreNewForm.value)
       .subscribe(() => {
-        console.log('A new genre has been created.');
         this.genresService.refreshGenres.next();
         this.genreNewForm.reset();
       });

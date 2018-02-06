@@ -18,8 +18,6 @@ export class CommentNewComponent implements OnChanges {
               private commentService: CommentService,
               private fb: FormBuilder) {
     this.loggedInUserId = this.authService.userId;
-    console.log(this.postIdForNewComment);
-    console.log(this.loggedInUserId);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -39,9 +37,7 @@ export class CommentNewComponent implements OnChanges {
   onAddNewComment() {
     this.commentService.addNewComment(this.newCommentForm.value)
       .subscribe(() => {
-        console.log('Your comment was published!');
         this.newCommentForm.patchValue({'commentBody': ''});
-        // need to trigger event to reload comments-list to show added comment
         this.commentService.newCommentCreated.next();
       });
   }
