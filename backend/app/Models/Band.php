@@ -73,7 +73,8 @@ class Band extends Model
                 'b.id as bandId',
                 'b.name as bandName',
                 'g.id as genreId',
-                'g.name as genreName')
+                'g.name as genreName'
+            )
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->orderBy('bandId', 'desc')
             ->paginate(10);
@@ -93,7 +94,8 @@ class Band extends Model
                 'b.id as bandId',
                 'b.name as bandName',
                 'g.id as genreId',
-                'g.name as genreName')
+                'g.name as genreName'
+            )
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->orderBy('bandId', 'desc')
             ->get();

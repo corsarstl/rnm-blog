@@ -81,7 +81,8 @@ class Post extends Model
                 'p.content as postContent',
                 'p.image as postImage',
                 'b.name as bandName',
-                'g.slug as genreSlug')
+                'g.slug as genreSlug'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('g.slug', $genreSlug)
@@ -110,7 +111,8 @@ class Post extends Model
                 'p.content as postContent',
                 'p.image as postImage',
                 'b.name as bandName',
-                'g.slug as genreSlug')
+                'g.slug as genreSlug'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('b.slug', $bandSlug)
@@ -139,7 +141,8 @@ class Post extends Model
                 'p.content as postContent',
                 'p.image as postImage',
                 'b.name as bandName',
-                'g.slug as genreSlug')
+                'g.slug as genreSlug'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->join('post_tag as pt', 'p.id', 'pt.post_id')
@@ -168,7 +171,8 @@ class Post extends Model
                 'p.title as postTitle',
                 'p.image as postImage',
                 'b.slug as bandSlug',
-                'g.slug as genreSlug')
+                'g.slug as genreSlug'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->orderBy('postId', 'desc')
@@ -191,7 +195,8 @@ class Post extends Model
                 'p.title as postTitle',
                 'b.slug as bandSlug',
                 'g.slug as genreSlug',
-                DB::raw('COUNT(c.id) as commentsCount'))
+                DB::raw('COUNT(c.id) as commentsCount')
+            )
             ->join('comments as c', 'p.id', 'c.post_id')
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
@@ -218,7 +223,8 @@ class Post extends Model
                 'p.image as postImage',
                 'b.name as bandName',
                 'g.id as genreId',
-                'g.name as genreName')
+                'g.name as genreName'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('g.id', $genreId)
@@ -255,7 +261,8 @@ class Post extends Model
                 'p.content as postContent',
                 'p.image as postImage',
                 'b.name as bandName',
-                'g.name as genreName')
+                'g.name as genreName'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('p.id', $postId)
@@ -282,7 +289,8 @@ class Post extends Model
                 'p.id as postId',
                 'p.title as postTitle',
                 'b.name as bandName',
-                'g.name as genreName')
+                'g.name as genreName'
+            )
             ->join('bands as b', 'b.id', 'p.band_id')
             ->join('genres as g', 'g.id', 'b.genre_id')
             ->where('p.title', 'like', "%$searchTerm%")

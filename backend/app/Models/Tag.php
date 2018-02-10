@@ -37,7 +37,8 @@ class Tag extends Model
             ->select(
                 't.id as tagId',
                 't.name as tagName',
-                DB::raw('COUNT(pt.post_id) as postsCount'))
+                DB::raw('COUNT(pt.post_id) as postsCount')
+            )
             ->join('post_tag as pt', 't.id', 'pt.tag_id')
             ->groupBy('tagId', 'tagName')
             ->orderBy('postsCount', 'desc')
@@ -57,7 +58,8 @@ class Tag extends Model
         $tags = DB::table('tags as t')
             ->select(
                 't.id as tagId',
-                't.name as tagName')
+                't.name as tagName'
+            )
             ->join('post_tag as pt', 't.id', 'pt.tag_id')
             ->where('pt.post_id', $postId)
             ->get();

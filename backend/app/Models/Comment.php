@@ -63,7 +63,8 @@ class Comment extends Model
                 'c.body as commentBody',
                 'c.created_at as commentCreatedAt',
                 'u.id as userId',
-                'u.name as userName')
+                'u.name as userName'
+            )
             ->join('users as u', 'u.id', 'c.user_id')
             ->where('c.post_id', $postId)
             ->orderBy('commentId', 'desc')
@@ -72,4 +73,3 @@ class Comment extends Model
         return $comments;
     }
 }
-

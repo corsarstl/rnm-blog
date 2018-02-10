@@ -70,7 +70,7 @@ class Genre extends Model
      */
     public static function showGenresBandsForMenu()
     {
-        $genres = Genre::with(['bands' => function($q) {
+        $genres = Genre::with(['bands' => function ($q) {
             $q->orderBy('name')->get();
         }])->orderBy('name')->get();
 
